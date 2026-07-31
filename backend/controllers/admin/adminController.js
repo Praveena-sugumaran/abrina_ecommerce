@@ -8,7 +8,6 @@ const auditService = require('../../services/auditService');
 exports.getAdminStats = async (req, res) => {
     try {
         const now = new Date();
-        // User counts by role
         const [usersCount, buyerCount, supplierCount, adminCount] = await Promise.all([
             User.countDocuments(),
             User.countDocuments({ roles: 'buyer' }),
@@ -42,7 +41,6 @@ exports.getAdminStats = async (req, res) => {
         const todayOrderCount = todayOrderStats[0]?.count || 0;
         const todayEarnings = todayOrderStats[0]?.earnings || 0;
 
-        // Financial Aggregation
         const financialStats = await Order.aggregate([
             { $match: { payment_status: 'paid' } },
             {
@@ -57,7 +55,6 @@ exports.getAdminStats = async (req, res) => {
         const totalVolume = financialStats[0]?.totalVolume || 0;
         const transactionFees = financialStats[0]?.transactionFees || 0;
 
-        // Ad Revenue (RFQs + PPC)
         const boostedRFQsCount = 0;
         const adRevenueFromBoosts = boostedRFQsCount * 10;
 
@@ -65,7 +62,6 @@ exports.getAdminStats = async (req, res) => {
         const adRevenueFromPPC = promotedProducts.reduce((sum, p) => sum + (p.ppc_bid || 0) * 100, 0);
         const totalAdRevenue = adRevenueFromBoosts + adRevenueFromPPC;
 
-        // Subscription Revenue
         const subscriptionStats = await User.aggregate([
             { $match: { subscription_plan: { $ne: null } } },
             {
@@ -81,10 +77,8 @@ exports.getAdminStats = async (req, res) => {
         ]);
         const subscriptionRevenue = subscriptionStats[0]?.total || 0;
 
-        // Platform Profit (Fees + Ads + Subscriptions)
         const totalPlatformRevenue = transactionFees + totalAdRevenue + subscriptionRevenue;
 
-        // Current Month Performance (Volume & Revenue)
         const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
         const thisMonthStats = await Order.aggregate([
             { $match: { payment_status: 'paid', createdAt: { $gte: firstDayOfMonth } } },
@@ -97,11 +91,8 @@ exports.getAdminStats = async (req, res) => {
             }
         ]);
 
-        // "Monthly Revenue" card in dashboard usually refers to transaction volume (GMV) 
-        // while "Admin Earnings" refers to platform intake
         const currentMonthVolume = thisMonthStats[0]?.volume || 0;
 
-        // Real 6-Month Rolling Volume Aggregation for Growth Chart
         const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 5, 1);
         const monthlyAggregation = await Order.aggregate([
             {
@@ -205,10 +196,8 @@ exports.approveProduct = async (req, res) => {
                 role: 'supplier',
                 link: '/supplier/products'
             });
-            // 📜 Log Audit
             await auditService.logAction(req, 'APPROVE_PRODUCT', 'PRODUCT', 'success', { productId: product._id, name: product.name });
 
-            // 📧 Send Email Notification (Queued)
             const { enqueueTemplatedMail } = require('../../services/mailService');
             const supplier = await User.findById(product.supplier);
             if (supplier && supplier.email) {
@@ -247,10 +236,8 @@ exports.rejectProduct = async (req, res) => {
                 role: 'supplier',
                 link: '/supplier/products'
             });
-            // 📜 Log Audit
             await auditService.logAction(req, 'REJECT_PRODUCT', 'PRODUCT', 'success', { productId: product._id, name: product.name, note });
 
-            // 📧 Send Email Notification (Queued)
             const { enqueueTemplatedMail } = require('../../services/mailService');
             const supplier = await User.findById(product.supplier);
             if (supplier && supplier.email) {
@@ -274,8 +261,6 @@ exports.deleteProduct = async (req, res) => {
         if (!product) return res.status(404).json({ message: 'Product not found' });
 
         await product.deleteOne();
-
-        // 📜 Log Audit
         await auditService.logAction(req, 'DELETE_PRODUCT', 'PRODUCT', 'success', { productId: product._id, name: product.name });
 
         res.json({ success: true, message: 'Product deleted' });
@@ -283,8 +268,6 @@ exports.deleteProduct = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
-
-// --- COMPANY MANAGEMENT ---
 
 exports.getAdminCompanies = async (req, res) => {
     try {
@@ -299,7 +282,7 @@ exports.getAdminCompanies = async (req, res) => {
 
 exports.verifyCompany = async (req, res) => {
     try {
-        const { status, note } = req.body; // 'verified' or 'rejected'
+        const { status, note } = req.body;
         if (!['verified', 'rejected'].includes(status)) {
             return res.status(400).json({ message: 'Invalid status' });
         }
@@ -327,7 +310,6 @@ exports.verifyCompany = async (req, res) => {
                 link: '/supplier/dashboard'
             });
 
-            // 📧 Send email (Queued)
             const { enqueueTemplatedMail } = require('../../services/mailService');
             const user = await User.findById(company.user_id);
             if (user && user.email) {
@@ -340,17 +322,16 @@ exports.verifyCompany = async (req, res) => {
         } else {
             await User.findByIdAndUpdate(company.user_id, {
                 is_verified: false,
-                status: 'active' // Revert to active buyer status
+                status: 'active'
             });
 
             await Notification.create({
                 userId: company.user_id,
                 title: '❌ Supplier Verification Rejected',
                 message: `Your company profile for "${company.company_name}" was not approved. ${note ? `Reason: ${note}` : 'Please review your documents and try again.'}`,
-                role: 'supplier',
+                role: 'supplier'
             });
 
-            // 📧 Send email (Queued)
             const { enqueueTemplatedMail } = require('../../services/mailService');
             const user = await User.findById(company.user_id);
             if (user && user.email) {
@@ -385,7 +366,6 @@ exports.addFactoryAudit = async (req, res) => {
 
         await company.save();
 
-        // Notify Supplier
         const Notification = require('../../models/Notification');
         await Notification.create({
             userId: company.user_id,
@@ -411,10 +391,66 @@ exports.getRiskAlerts = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
 exports.getSupplierPayouts = async (req, res) => {
     try {
         const users = await User.find({ roles: 'supplier' }, 'first_name last_name email company_name payout_methods wallet_balance');
         res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+exports.getAdminSupplierProfile = async (req, res) => {
+    try {
+        const { id } = req.params;
+        let user = await User.findById(id).select('-password');
+        let company = null;
+
+        if (user) {
+            company = await Company.findOne({ user_id: user._id });
+        } else {
+            company = await Company.findById(id);
+            if (company && company.user_id) {
+                user = await User.findById(company.user_id).select('-password');
+            }
+        }
+
+        if (!user && !company) {
+            return res.status(404).json({ message: 'Supplier profile not found' });
+        }
+
+        const userId = user ? user._id : company?.user_id;
+
+        const products = userId
+            ? await Product.find({ supplier: userId }).sort({ createdAt: -1 })
+            : [];
+
+        const totalOrders = userId
+            ? await Order.countDocuments({ "items.seller_id": userId })
+            : 0;
+
+        const orderVolumeStats = userId
+            ? await Order.aggregate([
+                { $match: { "items.seller_id": userId, payment_status: 'paid' } },
+                { $group: { _id: null, total: { $sum: "$total_amount" } } }
+            ])
+            : [];
+
+        const totalRevenue = orderVolumeStats[0]?.total || 0;
+
+        res.json({
+            user,
+            company,
+            products,
+            stats: {
+                totalProducts: products.length,
+                activeProducts: products.filter(p => p.status === 'active' || p.approval_status === 'approved').length,
+                pendingProducts: products.filter(p => p.approval_status === 'pending').length,
+                totalOrders,
+                totalRevenue
+            }
+        });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

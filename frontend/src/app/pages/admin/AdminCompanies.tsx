@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useToast } from '@/context/ToastContext';
 import { useAuth } from '@/context/AuthContext';
 import api from '@/services/axiosConfig';
@@ -481,6 +482,14 @@ const AdminCompanies = () => {
                                     </td>
                                     <td>
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                            <Link
+                                                href={`/admin/suppliers/${company._id}`}
+                                                className={"admin-badge" + " " + "admin-badge-info"}
+                                                style={{ display: 'flex', alignItems: 'center', gap: '6px', border: '1px solid #bae6fd', cursor: 'pointer', padding: '6px 14px', textDecoration: 'none' }}
+                                            >
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                                <span style={{ fontSize: '11px', fontWeight: 900, textTransform: 'uppercase' }}>Full Profile</span>
+                                            </Link>
                                             <button
                                                 onClick={() => handleViewDetails(company)}
                                                 className={"admin-badge" + " " + "admin-badge-neutral"}

@@ -26,6 +26,7 @@ router.put('/products/:id/reject', adminController.rejectProduct);
 router.delete('/products/:id', adminController.deleteProduct);
 
 router.get('/companies', adminController.getAdminCompanies);
+router.get('/suppliers/:id', adminController.getAdminSupplierProfile);
 router.put('/companies/:id/verify', adminController.verifyCompany);
 router.post('/companies/:id/factory-audit', adminController.addFactoryAudit);
 
