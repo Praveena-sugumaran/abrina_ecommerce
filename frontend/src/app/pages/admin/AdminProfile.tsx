@@ -6,12 +6,17 @@ import { useToast } from '@/context/ToastContext';
 import styles from './AdminProfile.module.css';
 
 const AdminProfile = () => {
-    const {  user, login , t } = useAuth();
+    const { user, login, t, siteSettings } = useAuth();
     const { showToast } = useToast();
     const [profileLoading, setProfileLoading] = useState(false);
     const [passwordLoading, setPasswordLoading] = useState(false);
     const [imageLoading, setImageLoading] = useState(false);
-    
+    const primaryColor = siteSettings?.primary_color || 'var(--primary-color, var(--primary, #ff6600))';
+    const secondaryColor = siteSettings?.secondary_color;
+    const buttonGradient = secondaryColor
+        ? `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`
+        : (siteSettings?.primary_color ? primaryColor : 'var(--button-gradient, var(--primary-color, var(--primary, #ff6600)))');
+
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -113,7 +118,7 @@ const AdminProfile = () => {
     return (
         <div className={styles['admin-profile-container']}>
             <div className={styles['profile-header-banner']}>
-                <div className={styles['profile-cover']}></div>
+                <div className={styles['profile-cover']} style={{ background: buttonGradient }}></div>
                 <div className={styles['profile-identity']}>
                     <div className={styles['profile-avatar-wrapper']}>
                         <div className={styles['profile-avatar-main']} style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -184,7 +189,7 @@ const AdminProfile = () => {
                         </div>
 
                         <div className={styles['form-actions']}>
-                            <button type="submit" className={styles['save-btn']} disabled={profileLoading}>
+                            <button type="submit" className={styles['save-btn']} style={{ background: buttonGradient }} disabled={profileLoading}>
                                 {profileLoading ? 'Saving...' : 'Save Profile Changes'}
                             </button>
                         </div>
