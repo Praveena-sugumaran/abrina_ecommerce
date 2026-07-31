@@ -125,18 +125,14 @@ export default function AdminSupplierDetail({ supplierId }: AdminSupplierDetailP
 
             {/* ─ Top Bar ─ */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                    <button onClick={() => router.back()}
-                        style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '10px', padding: '8px 14px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, fontSize: '13px', color: 'var(--admin-text-main)', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                        Back
-                    </button>
-                    <div>
-                        <h1 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--admin-text-main)', margin: 0 }}>Seller Profile</h1>
-                        <div style={{ fontSize: '12px', color: 'var(--admin-text-sub, #64748b)', marginTop: '2px' }}>Admin › Sellers › {companyName}</div>
-                    </div>
+                {/* Left: title + breadcrumb */}
+                <div>
+                    <h1 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--admin-text-main)', margin: 0 }}>Seller Profile</h1>
+                    <div style={{ fontSize: '12px', color: 'var(--admin-text-sub, #64748b)', marginTop: '2px' }}>Admin › Sellers › {companyName}</div>
                 </div>
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+
+                {/* Right: Back + action buttons */}
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
                     <a href={`/supplier/${user?._id || supplierId}`} target="_blank" rel="noopener noreferrer"
                         style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '10px', border: '1px solid var(--admin-border, #e2e8f0)', background: 'var(--admin-card-bg, #fff)', fontSize: '13px', fontWeight: 700, color: 'var(--admin-text-main)', textDecoration: 'none' }}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -154,6 +150,11 @@ export default function AdminSupplierDetail({ supplierId }: AdminSupplierDetailP
                             ✕ Reject
                         </button>
                     )}
+                    <button onClick={() => router.push('/admin/suppliers')}
+                        style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '10px', padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, fontSize: '13px', color: 'var(--admin-text-main)', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        Back
+                    </button>
                 </div>
             </div>
 
