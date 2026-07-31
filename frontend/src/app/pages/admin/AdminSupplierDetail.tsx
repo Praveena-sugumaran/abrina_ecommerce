@@ -114,10 +114,10 @@ export default function AdminSupplierDetail({ supplierId }: AdminSupplierDetailP
     const statusStyle = STATUS[status] || STATUS.pending;
 
     const TABS = [
-        { key: 'business' as const,  label: 'Business', icon: '🏢' },
-        { key: 'financial' as const, label: 'Financial', icon: '💳' },
-        { key: 'products' as const,  label: `Products (${products.length})`, icon: '📦' },
-        { key: 'contact' as const,   label: 'Contact', icon: '👤' },
+        { key: 'business' as const,  label: 'Business' },
+        { key: 'financial' as const, label: 'Financial' },
+        { key: 'products' as const,  label: `Products (${products.length})` },
+        { key: 'contact' as const,   label: 'Contact' },
     ];
 
     return (
@@ -157,29 +157,26 @@ export default function AdminSupplierDetail({ supplierId }: AdminSupplierDetailP
                 </div>
             </div>
 
-            {/* ─ Hero Card ─ */}
-            <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
-                <div style={{ height: '90px', background: 'linear-gradient(135deg, #0f172a 0%, #1e40af 55%, #7c3aed 100%)', position: 'relative' }}>
-                    <div style={{ position: 'absolute', inset: 0, opacity: 0.06, backgroundImage: 'radial-gradient(circle at 20px 20px, white 2px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-                </div>
-                <div style={{ padding: '0 28px 22px', marginTop: '-36px', display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: '16px' }}>
-                    <div style={{ width: '78px', height: '78px', borderRadius: '16px', background: '#fff', border: '4px solid var(--admin-card-bg, #fff)', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
+            {/* ─ Hero Profile Card ─ */}
+            <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '20px' }}>
+                    <div style={{ width: '64px', height: '64px', borderRadius: '14px', background: 'var(--admin-bg, #f8fafc)', border: '1px solid var(--admin-border, #e2e8f0)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
                         {company?.logo
                             ? <img src={getImgUrl(company.logo)} alt={companyName} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                            : <div style={{ fontSize: '28px', fontWeight: 900, background: 'linear-gradient(135deg, #1e40af, #7c3aed)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{companyName.charAt(0).toUpperCase()}</div>
+                            : <div style={{ fontSize: '24px', fontWeight: 900, color: 'var(--admin-text-main, #0f172a)' }}>{companyName.charAt(0).toUpperCase()}</div>
                         }
                     </div>
-                    <div style={{ paddingBottom: '4px', flex: 1 }}>
+                    <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                            <h2 style={{ fontSize: '19px', fontWeight: 900, color: 'var(--admin-text-main)', margin: 0 }}>{companyName}</h2>
+                            <h2 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--admin-text-main)', margin: 0 }}>{companyName}</h2>
                             <span style={{ padding: '3px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 800, background: statusStyle.bg, color: statusStyle.color }}>
                                 {statusStyle.label}
                             </span>
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '5px', fontSize: '12px', color: 'var(--admin-text-sub, #64748b)', flexWrap: 'wrap' }}>
-                            {user?.email && <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>{user.email}</span>}
-                            {company?.country && <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20"/><path d="M2 12h20"/></svg>{company.country}</span>}
-                            {user?.createdAt && <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Joined {new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '6px', fontSize: '13px', color: 'var(--admin-text-sub, #64748b)', flexWrap: 'wrap' }}>
+                            {user?.email && <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>{user.email}</span>}
+                            {company?.country && <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20"/><path d="M2 12h20"/></svg>{company.country}</span>}
+                            {user?.createdAt && <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Joined {new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>}
                         </div>
                     </div>
                 </div>
@@ -197,29 +194,27 @@ export default function AdminSupplierDetail({ supplierId }: AdminSupplierDetailP
                     icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>} />
             </div>
 
-            {/* ─ Content: Sidebar Tabs + Panel ─ */}
-            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
-                {/* Sidebar Navigation */}
-                <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '16px', padding: '8px', display: 'flex', flexDirection: 'column', gap: '4px', minWidth: '185px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', flexShrink: 0, position: 'sticky', top: '80px' }}>
-                    {TABS.map(tab => {
-                        const isActive = activeTab === tab.key;
-                        return (
-                            <button key={tab.key} onClick={() => setActiveTab(tab.key)}
-                                style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '11px 16px', borderRadius: '10px', border: 'none', background: isActive ? 'linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)' : 'transparent', color: isActive ? '#fff' : 'var(--admin-text-sub, #64748b)', fontWeight: isActive ? 800 : 600, fontSize: '13px', cursor: 'pointer', textAlign: 'left', transition: 'all 0.15s', boxShadow: isActive ? '0 4px 12px rgba(30,64,175,0.3)' : 'none', whiteSpace: 'nowrap' }}>
-                                <span style={{ fontSize: '16px' }}>{tab.icon}</span>
-                                {tab.label}
-                            </button>
-                        );
-                    })}
-                </div>
+            {/* ─ Horizontal Tab Bar ─ */}
+            <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '14px', padding: '6px', display: 'flex', gap: '4px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', flexWrap: 'wrap' }}>
+                {TABS.map(tab => {
+                    const isActive = activeTab === tab.key;
+                    return (
+                        <button key={tab.key} onClick={() => setActiveTab(tab.key)}
+                            style={{ flex: 1, minWidth: '120px', padding: '10px 18px', borderRadius: '10px', border: 'none', background: isActive ? 'linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)' : 'transparent', color: isActive ? '#fff' : 'var(--admin-text-sub, #64748b)', fontWeight: isActive ? 800 : 600, fontSize: '13px', cursor: 'pointer', transition: 'all 0.15s', boxShadow: isActive ? '0 4px 12px rgba(30,64,175,0.25)' : 'none', whiteSpace: 'nowrap' }}>
+                            {tab.label}
+                        </button>
+                    );
+                })}
+            </div>
 
-                {/* Panel */}
-                <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {/* ─ Tab Content ─ */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
-                    {/* Business Tab */}
-                    {activeTab === 'business' && (<>
+                {/* Business Tab */}
+                {activeTab === 'business' && (<>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
                         <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                                 <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#eff6ff', color: '#1e40af', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                                 </div>
@@ -260,10 +255,12 @@ export default function AdminSupplierDetail({ supplierId }: AdminSupplierDetailP
                                 </div>
                             )}
                         </div>
-                    </>)}
+                    </div>
+                </>)}
 
-                    {/* Financial Tab */}
-                    {activeTab === 'financial' && (<>
+                {/* Financial Tab */}
+                {activeTab === 'financial' && (<>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
                         <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
                                 <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#eff6ff', color: '#1e40af', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -308,71 +305,73 @@ export default function AdminSupplierDetail({ supplierId }: AdminSupplierDetailP
                                 </div>
                             </div>
                         </div>
-                    </>)}
+                    </div>
+                </>)}
 
-                    {/* Products Tab */}
-                    {activeTab === 'products' && (
-                        <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                            <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--admin-border)', display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--admin-bg, #f8fafc)' }}>
-                                <div style={{ width: '30px', height: '30px', borderRadius: '8px', background: '#fff7ed', color: '#ea580c', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                                </div>
-                                <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--admin-text-main)', margin: 0 }}>Products Catalog <span style={{ fontSize: '12px', color: 'var(--admin-text-sub)', fontWeight: 600 }}>({products.length} items)</span></h3>
+                {/* Products Tab */}
+                {activeTab === 'products' && (
+                    <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+                        <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--admin-border)', display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--admin-bg, #f8fafc)' }}>
+                            <div style={{ width: '30px', height: '30px', borderRadius: '8px', background: '#fff7ed', color: '#ea580c', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                             </div>
-                            {products.length === 0 ? (
-                                <div style={{ padding: '60px 24px', textAlign: 'center' }}>
-                                    <div style={{ fontSize: '48px', marginBottom: '12px' }}>📦</div>
-                                    <div style={{ color: 'var(--admin-text-sub)', fontWeight: 600 }}>No products listed by this seller yet</div>
-                                </div>
-                            ) : (
-                                <div style={{ overflowX: 'auto' }}>
-                                    <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                                        <thead>
-                                            <tr style={{ borderBottom: '1px solid var(--admin-border)' }}>
-                                                {['Product', 'Price', 'Stock', 'Status', ''].map(h => (
-                                                    <th key={h} style={{ padding: '12px 20px', fontSize: '11px', fontWeight: 800, color: 'var(--admin-text-sub)', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'var(--admin-bg, #f8fafc)' }}>{h}</th>
-                                                ))}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {products.map((prod: any) => {
-                                                const aColor = prod.approval_status === 'approved' ? { bg: '#dcfce7', color: '#16a34a' } : prod.approval_status === 'rejected' ? { bg: '#fee2e2', color: '#dc2626' } : { bg: '#fef3c7', color: '#d97706' };
-                                                return (
-                                                    <tr key={prod._id} style={{ borderBottom: '1px solid var(--admin-border)' }}>
-                                                        <td style={{ padding: '14px 20px' }}>
-                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                                                <div style={{ width: '44px', height: '44px', borderRadius: '10px', overflow: 'hidden', background: '#f1f5f9', flexShrink: 0, border: '1px solid var(--admin-border)' }}>
-                                                                    <img src={getImgUrl(prod.images?.[0] || prod.image)} alt={prod.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                                                </div>
-                                                                <div>
-                                                                    <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--admin-text-main)' }}>{prod.name}</div>
-                                                                    <div style={{ fontSize: '11px', color: 'var(--admin-text-sub)' }}>SKU: {prod.sku || prod._id?.slice(-8)}</div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td style={{ padding: '14px 20px', fontWeight: 800, fontSize: '14px', color: 'var(--admin-text-main)' }}>{formatCurrency ? formatCurrency(prod.price) : `$${prod.price}`}</td>
-                                                        <td style={{ padding: '14px 20px', fontWeight: 600, fontSize: '13px', color: 'var(--admin-text-main)' }}>{prod.stock || 0} <span style={{ color: 'var(--admin-text-sub)', fontWeight: 400 }}>units</span></td>
-                                                        <td style={{ padding: '14px 20px' }}>
-                                                            <span style={{ padding: '4px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 800, background: aColor.bg, color: aColor.color }}>{prod.approval_status || 'pending'}</span>
-                                                        </td>
-                                                        <td style={{ padding: '14px 20px' }}>
-                                                            <a href={`/product/${prod.slug || prod._id}`} target="_blank" rel="noopener noreferrer"
-                                                                style={{ fontSize: '12px', color: '#3b82f6', fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '5px 10px', borderRadius: '6px', border: '1px solid #bfdbfe', background: '#eff6ff' }}>
-                                                                View <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            )}
+                            <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--admin-text-main)', margin: 0 }}>Products Catalog <span style={{ fontSize: '12px', color: 'var(--admin-text-sub)', fontWeight: 600 }}>({products.length} items)</span></h3>
                         </div>
-                    )}
+                        {products.length === 0 ? (
+                            <div style={{ padding: '60px 24px', textAlign: 'center' }}>
+                                <div style={{ fontSize: '48px', marginBottom: '12px' }}>📦</div>
+                                <div style={{ color: 'var(--admin-text-sub)', fontWeight: 600 }}>No products listed by this seller yet</div>
+                            </div>
+                        ) : (
+                            <div style={{ overflowX: 'auto' }}>
+                                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                                    <thead>
+                                        <tr style={{ borderBottom: '1px solid var(--admin-border)' }}>
+                                            {['Product', 'Price', 'Stock', 'Status', ''].map(h => (
+                                                <th key={h} style={{ padding: '12px 20px', fontSize: '11px', fontWeight: 800, color: 'var(--admin-text-sub)', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'var(--admin-bg, #f8fafc)' }}>{h}</th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {products.map((prod: any) => {
+                                            const aColor = prod.approval_status === 'approved' ? { bg: '#dcfce7', color: '#16a34a' } : prod.approval_status === 'rejected' ? { bg: '#fee2e2', color: '#dc2626' } : { bg: '#fef3c7', color: '#d97706' };
+                                            return (
+                                                <tr key={prod._id} style={{ borderBottom: '1px solid var(--admin-border)' }}>
+                                                    <td style={{ padding: '14px 20px' }}>
+                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                                            <div style={{ width: '44px', height: '44px', borderRadius: '10px', overflow: 'hidden', background: '#f1f5f9', flexShrink: 0, border: '1px solid var(--admin-border)' }}>
+                                                                <img src={getImgUrl(prod.images?.[0] || prod.image)} alt={prod.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                            </div>
+                                                            <div>
+                                                                <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--admin-text-main)' }}>{prod.name}</div>
+                                                                <div style={{ fontSize: '11px', color: 'var(--admin-text-sub)' }}>SKU: {prod.sku || prod._id?.slice(-8)}</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td style={{ padding: '14px 20px', fontWeight: 800, fontSize: '14px', color: 'var(--admin-text-main)' }}>{formatCurrency ? formatCurrency(prod.price) : `$${prod.price}`}</td>
+                                                    <td style={{ padding: '14px 20px', fontWeight: 600, fontSize: '13px', color: 'var(--admin-text-main)' }}>{prod.stock || 0} <span style={{ color: 'var(--admin-text-sub)', fontWeight: 400 }}>units</span></td>
+                                                    <td style={{ padding: '14px 20px' }}>
+                                                        <span style={{ padding: '4px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 800, background: aColor.bg, color: aColor.color }}>{prod.approval_status || 'pending'}</span>
+                                                    </td>
+                                                    <td style={{ padding: '14px 20px' }}>
+                                                        <a href={`/product/${prod.slug || prod._id}`} target="_blank" rel="noopener noreferrer"
+                                                            style={{ fontSize: '12px', color: '#3b82f6', fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '5px 10px', borderRadius: '6px', border: '1px solid #bfdbfe', background: '#eff6ff' }}>
+                                                            View <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
+                    </div>
+                )}
 
-                    {/* Contact Tab */}
-                    {activeTab === 'contact' && (
+                {/* Contact Tab */}
+                {activeTab === 'contact' && (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
                         <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
                                 <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#fdf4ff', color: '#9333ea', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -383,13 +382,24 @@ export default function AdminSupplierDetail({ supplierId }: AdminSupplierDetailP
                             <InfoRow label="Full Name" value={user?.first_name || user?.last_name ? `${user.first_name || ''} ${user.last_name || ''}`.trim() : null} />
                             <InfoRow label="Email Address" value={user?.email} />
                             <InfoRow label="Phone Number" value={user?.phone_number || user?.phone} />
-                            <InfoRow label="Company Name" value={user?.company_name || company?.company_name} />
                             <InfoRow label="Country" value={company?.country || user?.country} />
                             <InfoRow label="Account Created" value={user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : null} />
                             <InfoRow label="User ID" value={<span style={{ fontFamily: 'monospace', fontSize: '11px', background: 'var(--admin-bg, #f8fafc)', padding: '3px 8px', borderRadius: '6px', border: '1px solid var(--admin-border)' }}>{user?._id}</span>} />
                         </div>
-                    )}
-                </div>
+                        <div style={{ background: 'var(--admin-card-bg, #fff)', border: '1px solid var(--admin-border, #e2e8f0)', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+                                <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#eff6ff', color: '#1e40af', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                </div>
+                                <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--admin-text-main)', margin: 0 }}>Business Contact</h3>
+                            </div>
+                            <InfoRow label="Company Name" value={user?.company_name || company?.company_name} />
+                            <InfoRow label="Business Type" value={company?.business_type} />
+                            <InfoRow label="Country / Region" value={company?.country} />
+                            <InfoRow label="Tax ID / GST" value={company?.tax_id ? <span style={{ fontFamily: 'monospace', fontSize: '13px' }}>{company.tax_id}</span> : null} />
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* ─ Document Preview Modal ─ */}
