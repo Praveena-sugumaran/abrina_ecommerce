@@ -88,35 +88,17 @@ export default function CustomerLoyaltyRewards() {
                 </div>
             </div>
 
-            {/* Convert Points Modal Card */}
-            <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                <h3 style={{ fontSize: '16px', fontWeight: 800, margin: '0 0 14px', color: '#0f172a' }}>🎁 Redeem Points for Discount Coupon</h3>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-                    <div style={{ flex: 1, minWidth: '200px' }}>
-                        <label style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', display: 'block', marginBottom: '6px' }}>Select Points to Redeem</label>
-                        <select value={redeemPoints} onChange={e => setRedeemPoints(Number(e.target.value))} style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '14px', fontWeight: 700, outline: 'none' }}>
-                            <option value={100}>100 Points ($10 Off Coupon)</option>
-                            <option value={250}>250 Points ($25 Off Coupon)</option>
-                            <option value={500}>500 Points ($50 Off Coupon)</option>
-                            <option value={1000}>1000 Points ($100 Off Coupon)</option>
-                        </select>
-                    </div>
-                    <div style={{ paddingTop: '18px' }}>
-                        <button onClick={handleRedeem} disabled={redeeming || balance < redeemPoints} style={{ padding: '11px 24px', borderRadius: '10px', border: 'none', background: 'linear-gradient(135deg, #16a34a, #059669)', color: '#fff', fontWeight: 800, fontSize: '13px', cursor: 'pointer', opacity: redeeming || balance < redeemPoints ? 0.6 : 1 }}>
-                            {redeeming ? 'Processing...' : 'Redeem Now'}
-                        </button>
+            {/* Info Banner: How Points are Applied */}
+            <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '16px', padding: '20px 24px', color: '#1e40af', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                    <div style={{ fontSize: '24px', lineHeight: 1 }}>🛒</div>
+                    <div>
+                        <h4 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 800, color: '#1e3a8a' }}>How to Use Your Loyalty Points</h4>
+                        <p style={{ margin: 0, fontSize: '13px', color: '#1e40af', lineHeight: 1.5 }}>
+                            Your loyalty points can be applied <strong>directly during checkout / booking</strong>! When placing an order, simply check <strong>"Use Loyalty Points"</strong> on the checkout page to receive an instant discount on your order total.
+                        </p>
                     </div>
                 </div>
-
-                {lastCoupon && (
-                    <div style={{ marginTop: '16px', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px', padding: '14px 18px', color: '#15803d', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div>
-                            <div style={{ fontSize: '12px', fontWeight: 700 }}>Coupon Generated Successfully!</div>
-                            <div style={{ fontSize: '18px', fontWeight: 900, fontFamily: 'monospace', letterSpacing: '0.08em', marginTop: '2px' }}>{lastCoupon.code}</div>
-                        </div>
-                        <div style={{ fontSize: '14px', fontWeight: 800 }}>${lastCoupon.value} OFF</div>
-                    </div>
-                )}
             </div>
 
             {/* Transactions History */}
