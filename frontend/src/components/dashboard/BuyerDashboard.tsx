@@ -33,9 +33,24 @@ import CustomerLoyaltyRewards from './CustomerLoyaltyRewards';
 
 const BuyerDashboard = ({ tab, subtab }: { tab?: string; subtab?: string }) => {
     const { unreadTotal } = useChat();
-    const activeSidebar = tab || 'dashboard';
+    const [localTab, setLocalTab] = useState(tab || 'dashboard');
+    const activeSidebar = localTab;
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
+
+    useEffect(() => {
+        if (tab) setLocalTab(tab);
+    }, [tab]);
+
+    const handleTabClick = (targetTab: string, customRoute?: string) => {
+        setLocalTab(targetTab);
+        setDrawerOpen(false);
+        if (typeof window !== 'undefined') {
+            const base = window.location.pathname.includes('/buyer/dashboard') ? '/buyer/dashboard' : '/dashboard';
+            const url = customRoute || (targetTab === 'dashboard' ? base : `${base}/${targetTab}`);
+            window.history.pushState({}, '', url);
+        }
+    };
 
     // Cart Recovery Coupon countdown state
     const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -424,7 +439,7 @@ const BuyerDashboard = ({ tab, subtab }: { tab?: string; subtab?: string }) => {
                         <div
                             key={idx}
                             className="buyer-stat-card"
-                            onClick={() => navigate.push(item.route)}
+                            onClick={() => handleTabClick(item.route.split('/').pop() || 'orders', item.route)}
                             style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: isMobile ? '8px' : '16px', padding: isMobile ? '16px 12px' : '20px 24px', background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', cursor: 'pointer', transition: 'all 0.2s', width: '100%', boxSizing: 'border-box' }}
                         >
                             <div className="buyer-stat-icon" style={{ background: item.bg, color: item.color, width: isMobile ? '38px' : '48px', height: isMobile ? '38px' : '48px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, margin: 0 }}>
@@ -552,7 +567,7 @@ const BuyerDashboard = ({ tab, subtab }: { tab?: string; subtab?: string }) => {
                             ].map((link, idx) => (
                                 <div
                                     key={idx}
-                                    onClick={() => navigate.push(link.route)}
+                                    onClick={() => link.route.startsWith('/help') ? navigate.push(link.route) : handleTabClick(link.route.split('/').pop() || 'orders', link.route)}
                                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', borderRadius: '12px', border: '1px solid #f1f5f9', cursor: 'pointer', transition: 'all 0.15s ease' }}
                                     onMouseEnter={e => { e.currentTarget.style.borderColor = link.color; e.currentTarget.style.background = '#fafbfc'; }}
                                     onMouseLeave={e => { e.currentTarget.style.borderColor = '#f1f5f9'; e.currentTarget.style.background = '#fff'; }}
@@ -713,10 +728,7 @@ const BuyerDashboard = ({ tab, subtab }: { tab?: string; subtab?: string }) => {
                                             <button
                                                 key={item.id}
                                                 className={`bdr-sb-hub ${isActive ? 'active' : ''}`}
-                                                onClick={() => {
-                                                    navigate.push(baseRoute);
-                                                    setDrawerOpen(false);
-                                                }}
+                                                onClick={() => handleTabClick('dashboard')}
                                             >
                                                 <SidebarIcon type={item.icon} />
                                                 <span>{item.label}</span>
@@ -728,10 +740,7 @@ const BuyerDashboard = ({ tab, subtab }: { tab?: string; subtab?: string }) => {
                                         <button
                                             key={item.id}
                                             className={`bdr-sb-item ${isActive ? 'active' : ''}`}
-                                            onClick={() => {
-                                                navigate.push(`${baseRoute}/${item.id}`);
-                                                setDrawerOpen(false);
-                                            }}
+                                            onClick={() => handleTabClick(item.id)}
                                         >
                                             <span className="bdr-sb-iico"><SidebarIcon type={item.icon} /></span>
                                             <span className="bdr-sb-item-label">{item.label}</span>
