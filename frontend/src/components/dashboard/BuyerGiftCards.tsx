@@ -12,7 +12,7 @@ const BuyerGiftCards = () => {
     const [loading, setLoading] = useState(true);
     
     // Purchase states
-    const [purchaseAmount, setPurchaseAmount] = useState('');
+    const [purchaseAmount, setPurchaseAmount] = useState('25');
     const [customAmount, setCustomAmount] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('stripe');
     const [purchasing, setPurchasing] = useState(false);
@@ -20,6 +20,7 @@ const BuyerGiftCards = () => {
     // Redeem states
     const [redeemCode, setRedeemCode] = useState('');
     const [redeeming, setRedeeming] = useState(false);
+    const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
     useEffect(() => {
         fetchGiftCardsAndWallet();
@@ -59,8 +60,8 @@ const BuyerGiftCards = () => {
 
             if (data.success) {
                 if (paymentMethod === 'wallet') {
-                    showToast(`Successfully purchased $${finalAmount.toFixed(2)} Gift Card! Check code below.`, 'success', 'Purchase Complete');
-                    setPurchaseAmount('');
+                    showToast(`Successfully purchased $${finalAmount.toFixed(2)} Gift Card Voucher! Use it during checkout booking.`, 'success', 'Purchase Complete');
+                    setPurchaseAmount('25');
                     setCustomAmount('');
                     fetchGiftCardsAndWallet();
                 } else if (data.url) {
@@ -80,7 +81,7 @@ const BuyerGiftCards = () => {
     const handleRedeem = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!redeemCode.trim()) {
-            return showToast('Please enter a gift card code.', 'error', 'Invalid Code');
+            return showToast('Please enter a gift card voucher code.', 'error', 'Invalid Code');
         }
 
         setRedeeming(true);
@@ -90,7 +91,7 @@ const BuyerGiftCards = () => {
             });
 
             if (data.success) {
-                showToast(`Successfully redeemed gift card! $${data.amount.toFixed(2)} added to Wallet.`, 'success', 'Redeemed Successfully');
+                showToast(`Successfully redeemed voucher! $${data.amount.toFixed(2)} credited to your account for booking.`, 'success', 'Redeemed Successfully');
                 setRedeemCode('');
                 fetchGiftCardsAndWallet();
             }
@@ -101,130 +102,293 @@ const BuyerGiftCards = () => {
         }
     };
 
+    const copyVoucherCode = (code: string) => {
+        navigator.clipboard.writeText(code);
+        setCopiedCode(code);
+        showToast(`Voucher code ${code} copied! Paste this code under Gift Card field during checkout / booking.`, 'success', 'Code Copied');
+        setTimeout(() => setCopiedCode(null), 3000);
+    };
+
     if (loading) {
         return (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', opacity: 0.7 }}>
-                <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0', height: '220px', padding: '24px' }} />
-                <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0', height: '220px', padding: '24px' }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div style={{ background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', height: '140px', padding: '24px', opacity: 0.6 }} />
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px', opacity: 0.6 }}>
+                    <div style={{ background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', height: '260px' }} />
+                    <div style={{ background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', height: '260px' }} />
+                </div>
             </div>
         );
     }
 
+    const totalVoucherBalance = giftCards.reduce((acc, card) => acc + (card.is_active && card.balance > 0 ? card.balance : 0), 0);
+
     return (
-        <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif', padding: '10px 0', color: '#1e293b' }}>
-            {/* Header section with wallet info */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '24px' }}>
-                <div>
-                    <h2 style={{ fontSize: '24px', fontWeight: 900, margin: 0, color: '#0f172a' }}>Digital Gift Cards</h2>
-                    <p style={{ fontSize: '13px', color: '#64748b', margin: '4px 0 0 0' }}>Buy gift certificates for shopping, or redeem codes to top-up wallet balance.</p>
-                </div>
-                <div style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', padding: '14px 20px', borderRadius: '12px', border: '1px solid #fcd34d', boxShadow: '0 4px 10px rgba(0,0,0,0.03)' }}>
-                    <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#78350f', display: 'block' }}>Wallet Balance</span>
-                    <span style={{ fontSize: '20px', fontWeight: 900, color: '#78350f' }}>{convertPrice(walletBalance).formatted}</span>
+        <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif', color: '#1e293b', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            
+            {/* Header Section */}
+            <div style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #312e81 100%)', borderRadius: '20px', padding: '28px 32px', color: '#fff', boxShadow: '0 8px 24px rgba(15, 23, 42, 0.15)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+                    <div>
+                        <div style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#93c5fd' }}>Marketplace Vouchers</div>
+                        <h1 style={{ fontSize: '26px', fontWeight: 900, margin: '4px 0 0', lineHeight: 1.2 }}>Digital Gift Cards & Vouchers</h1>
+                        <p style={{ fontSize: '13px', color: '#cbd5e1', margin: '6px 0 0', maxWidth: '520px' }}>
+                            Purchase official gift vouchers or redeem voucher codes to instantly pay for product order bookings at Checkout.
+                        </p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                        <div style={{ background: 'rgba(255, 255, 255, 0.1)', padding: '12px 20px', borderRadius: '14px', backdropFilter: 'blur(10px)', textAlign: 'center', border: '1px solid rgba(255,255,255,0.15)' }}>
+                            <span style={{ fontSize: '11px', color: '#93c5fd', display: 'block', fontWeight: 700 }}>Wallet Balance</span>
+                            <span style={{ fontSize: '20px', fontWeight: 900, color: '#fff', marginTop: '2px', display: 'block' }}>{convertPrice(walletBalance).formatted}</span>
+                        </div>
+                        <div style={{ background: 'rgba(255, 255, 255, 0.1)', padding: '12px 20px', borderRadius: '14px', backdropFilter: 'blur(10px)', textAlign: 'center', border: '1px solid rgba(255,255,255,0.15)' }}>
+                            <span style={{ fontSize: '11px', color: '#93c5fd', display: 'block', fontWeight: 700 }}>Active Vouchers Value</span>
+                            <span style={{ fontSize: '20px', fontWeight: 900, color: '#4ade80', marginTop: '2px', display: 'block' }}>{convertPrice(totalVoucherBalance).formatted}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', marginBottom: '30px' }}>
-                {/* Panel 1: Purchase Gift Card */}
-                <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '24px', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
-                    <h3 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 16px 0', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>🎁</span> Buy Gift Card
-                    </h3>
-                    <form onSubmit={handlePurchase} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                        <div>
-                            <label style={{ fontSize: '12px', fontWeight: 700, color: '#64748b', display: 'block', marginBottom: '8px' }}>Select Voucher Value</label>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '10px' }}>
-                                {['10', '25', '50', '100'].map(amt => (
-                                    <button
-                                        key={amt}
-                                        type="button"
-                                        onClick={() => setPurchaseAmount(amt)}
+            {/* Quick Redeem Voucher Card */}
+            <div style={{ background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', padding: '24px', boxShadow: '0 4px 20px rgba(13, 46, 103, 0.02)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', fontWeight: 800 }}>
+                        🎫
+                    </div>
+                    <div>
+                        <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: '#0f172a' }}>Redeem Voucher Code</h3>
+                        <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 500 }}>Have a gift card or promo voucher code? Enter it below to claim its value for booking.</span>
+                    </div>
+                </div>
+
+                <form onSubmit={handleRedeem} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <div style={{ flex: 1, minWidth: '260px' }}>
+                        <input
+                            type="text"
+                            placeholder="GIFT-XXXX-XXXX-XXXX"
+                            value={redeemCode}
+                            onChange={(e) => setRedeemCode(e.target.value.toUpperCase())}
+                            style={{
+                                width: '100%',
+                                padding: '12px 16px',
+                                borderRadius: '10px',
+                                border: '1.5px solid #cbd5e1',
+                                fontSize: '15px',
+                                fontWeight: 800,
+                                fontFamily: 'monospace',
+                                letterSpacing: '0.08em',
+                                color: '#0f172a',
+                                outline: 'none',
+                                boxSizing: 'border-box'
+                            }}
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        disabled={redeeming || !redeemCode.trim()}
+                        style={{
+                            padding: '12px 26px',
+                            borderRadius: '10px',
+                            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)',
+                            color: '#fff',
+                            border: 'none',
+                            fontWeight: 800,
+                            fontSize: '13.5px',
+                            cursor: 'pointer',
+                            opacity: redeeming || !redeemCode.trim() ? 0.6 : 1,
+                            transition: 'all 0.18s'
+                        }}
+                    >
+                        {redeeming ? 'Claiming...' : 'Redeem Code to Account'}
+                    </button>
+                </form>
+            </div>
+
+            {/* Split Row: My Active Gift Cards & Purchase New Store Gift Voucher */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '24px', alignItems: 'start' }}>
+                
+                {/* Panel 1: My Purchased & Active Gift Cards */}
+                <div style={{ background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', padding: '24px', boxShadow: '0 4px 20px rgba(13, 46, 103, 0.02)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+                        <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <span>🎁</span> My Active Gift Cards ({giftCards.length})
+                        </h3>
+                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#64748b' }}>Ready for Booking</span>
+                    </div>
+
+                    {giftCards.length === 0 ? (
+                        <div style={{ textAlign: 'center', padding: '40px 20px', background: '#f8fafc', borderRadius: '14px', border: '1px dashed #cbd5e1' }}>
+                            <div style={{ fontSize: '36px', marginBottom: '8px' }}>🏷️</div>
+                            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 800, color: '#334155' }}>No Active Gift Cards Found</h4>
+                            <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8' }}>Purchased gift cards and redeemed vouchers will appear here for checkout booking.</p>
+                        </div>
+                    ) : (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxHeight: '420px', overflowY: 'auto', paddingRight: '4px' }}>
+                            {giftCards.map((card) => {
+                                const isExpired = card.expiresAt && new Date(card.expiresAt) < new Date();
+                                const isUsed = card.balance <= 0;
+                                const isActive = card.is_active && !isExpired && !isUsed;
+
+                                return (
+                                    <div
+                                        key={card._id}
                                         style={{
-                                            padding: '10px 0',
-                                            borderRadius: '8px',
-                                            border: purchaseAmount === amt ? '2px solid #ff6600' : '1px solid #cbd5e1',
-                                            background: purchaseAmount === amt ? '#fff7ed' : '#fff',
-                                            color: purchaseAmount === amt ? '#ff6600' : '#1e293b',
-                                            fontWeight: 800,
-                                            cursor: 'pointer',
-                                            transition: 'all 0.2s'
+                                            background: isActive ? '#f0fdf4' : '#f8fafc',
+                                            border: isActive ? '1.5px solid #bbf7d0' : '1px solid #e2e8f0',
+                                            borderRadius: '14px',
+                                            padding: '16px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: '10px'
                                         }}
                                     >
-                                        ${amt}
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <span style={{ fontFamily: 'monospace', fontSize: '15px', fontWeight: 900, color: '#0f172a', letterSpacing: '0.05em' }}>
+                                                {card.code}
+                                            </span>
+                                            <span style={{
+                                                fontSize: '10px',
+                                                fontWeight: 800,
+                                                padding: '3px 8px',
+                                                borderRadius: '6px',
+                                                textTransform: 'uppercase',
+                                                background: isActive ? '#dcfce7' : isUsed ? '#e2e8f0' : '#fee2e2',
+                                                color: isActive ? '#15803d' : isUsed ? '#64748b' : '#b91c1c'
+                                            }}>
+                                                {isActive ? 'Active' : isUsed ? 'Redeemed' : 'Expired'}
+                                            </span>
+                                        </div>
+
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                                            <div>
+                                                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600, display: 'block' }}>Remaining Balance</span>
+                                                <span style={{ fontSize: '20px', fontWeight: 900, color: isActive ? '#16a34a' : '#64748b' }}>
+                                                    {convertPrice(card.balance).formatted}
+                                                </span>
+                                            </div>
+                                            <div style={{ textAlign: 'right', fontSize: '11px', color: '#94a3b8' }}>
+                                                Initial Value: {convertPrice(card.initial_value).formatted}
+                                            </div>
+                                        </div>
+
+                                        {isActive && (
+                                            <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => copyVoucherCode(card.code)}
+                                                    style={{
+                                                        flex: 1,
+                                                        padding: '8px 12px',
+                                                        borderRadius: '8px',
+                                                        background: '#fff',
+                                                        border: '1px solid #cbd5e1',
+                                                        color: '#334155',
+                                                        fontSize: '12px',
+                                                        fontWeight: 700,
+                                                        cursor: 'pointer',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        gap: '4px'
+                                                    }}
+                                                >
+                                                    {copiedCode === card.code ? '✓ Copied' : '📋 Copy Code'}
+                                                </button>
+                                                <a
+                                                    href="/checkout"
+                                                    style={{
+                                                        flex: 1,
+                                                        padding: '8px 12px',
+                                                        borderRadius: '8px',
+                                                        background: '#ff6a00',
+                                                        color: '#fff',
+                                                        textDecoration: 'none',
+                                                        fontSize: '12px',
+                                                        fontWeight: 800,
+                                                        textAlign: 'center',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    🛒 Apply for Booking
+                                                </a>
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+
+                {/* Panel 2: Purchase Store Gift Card */}
+                <div style={{ background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', padding: '24px', boxShadow: '0 4px 20px rgba(13, 46, 103, 0.02)' }}>
+                    <h3 style={{ fontSize: '16px', fontWeight: 800, margin: '0 0 6px 0', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span>💳</span> Buy Official Store Gift Card
+                    </h3>
+                    <p style={{ fontSize: '12px', color: '#64748b', margin: '0 0 16px 0', lineHeight: 1.4 }}>
+                        Purchase store gift vouchers to pay for product bookings during checkout or send voucher codes to friends.
+                    </p>
+
+                    <form onSubmit={handlePurchase} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        <div>
+                            <label style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>Select Voucher Value</label>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '10px' }}>
+                                {['10', '25', '50', '100'].map((val) => (
+                                    <button
+                                        key={val}
+                                        type="button"
+                                        onClick={() => setPurchaseAmount(val)}
+                                        style={{
+                                            padding: '10px 4px',
+                                            borderRadius: '10px',
+                                            border: purchaseAmount === val ? '2px solid #ff6a00' : '1px solid #cbd5e1',
+                                            background: purchaseAmount === val ? '#fff7ed' : '#fff',
+                                            color: purchaseAmount === val ? '#ff6a00' : '#334155',
+                                            fontWeight: 800,
+                                            fontSize: '14px',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.15s'
+                                        }}
+                                    >
+                                        ${val}
                                     </button>
                                 ))}
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => setPurchaseAmount('custom')}
-                                style={{
-                                    width: '100%',
-                                    padding: '10px 0',
-                                    borderRadius: '8px',
-                                    border: purchaseAmount === 'custom' ? '2px solid #ff6600' : '1px solid #cbd5e1',
-                                    background: purchaseAmount === 'custom' ? '#fff7ed' : '#fff',
-                                    color: purchaseAmount === 'custom' ? '#ff6600' : '#1e293b',
-                                    fontWeight: 800,
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s',
-                                    marginBottom: '10px'
-                                }}
-                            >
-                                Custom Amount...
-                            </button>
-                            {purchaseAmount === 'custom' && (
-                                <div style={{ position: 'relative' }}>
-                                    <span style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', fontWeight: 800, color: '#64748b' }}>$</span>
-                                    <input
-                                        type="number"
-                                        min="1"
-                                        placeholder="Enter amount (USD)"
-                                        value={customAmount}
-                                        onChange={e => setCustomAmount(e.target.value)}
-                                        style={{
-                                            width: '100%',
-                                            padding: '12px 12px 12px 28px',
-                                            borderRadius: '8px',
-                                            border: '1px solid #cbd5e1',
-                                            fontSize: '14px',
-                                            boxSizing: 'border-box'
-                                        }}
-                                    />
-                                </div>
+
+                            {purchaseAmount === 'custom' ? (
+                                <input
+                                    type="number"
+                                    placeholder="Enter custom amount ($)"
+                                    value={customAmount}
+                                    onChange={(e) => setCustomAmount(e.target.value)}
+                                    style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1.5px solid #cbd5e1', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }}
+                                />
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={() => setPurchaseAmount('custom')}
+                                    style={{ fontSize: '12px', color: '#ff6a00', background: 'none', border: 'none', fontWeight: 700, cursor: 'pointer', padding: 0 }}
+                                >
+                                    + Enter Custom Amount
+                                </button>
                             )}
                         </div>
 
                         <div>
-                            <label style={{ fontSize: '12px', fontWeight: 700, color: '#64748b', display: 'block', marginBottom: '8px' }}>Select Payment Method</label>
+                            <label style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>Payment Method</label>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                                {[
-                                    { id: 'stripe', label: 'Credit Card (Stripe)' },
-                                    { id: 'paypal', label: 'PayPal Checkout' },
-                                    { id: 'wallet', label: `Use Wallet Balance (Current: ${convertPrice(walletBalance).formatted})` }
-                                ].map(method => (
-                                    <label
-                                        key={method.id}
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '10px',
-                                            padding: '12px',
-                                            borderRadius: '8px',
-                                            border: '1px solid #e2e8f0',
-                                            cursor: 'pointer',
-                                            background: paymentMethod === method.id ? '#f8fafc' : '#fff'
-                                        }}
-                                    >
-                                        <input
-                                            type="radio"
-                                            name="paymentMethod"
-                                            checked={paymentMethod === method.id}
-                                            onChange={() => setPaymentMethod(method.id)}
-                                            style={{ accentColor: '#ff6600' }}
-                                        />
-                                        <span style={{ fontSize: '13px', fontWeight: 600 }}>{method.label}</span>
-                                    </label>
-                                ))}
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', borderRadius: '10px', border: paymentMethod === 'stripe' ? '2px solid #ff6a00' : '1px solid #e2e8f0', background: paymentMethod === 'stripe' ? '#fff7ed' : '#fff', cursor: 'pointer', fontSize: '13px', fontWeight: 700 }}>
+                                    <input type="radio" name="pay" checked={paymentMethod === 'stripe'} onChange={() => setPaymentMethod('stripe')} />
+                                    <span>💳 Credit / Debit Card (Stripe)</span>
+                                </label>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', borderRadius: '10px', border: paymentMethod === 'paypal' ? '2px solid #ff6a00' : '1px solid #e2e8f0', background: paymentMethod === 'paypal' ? '#fff7ed' : '#fff', cursor: 'pointer', fontSize: '13px', fontWeight: 700 }}>
+                                    <input type="radio" name="pay" checked={paymentMethod === 'paypal'} onChange={() => setPaymentMethod('paypal')} />
+                                    <span>🅿️ PayPal Checkout</span>
+                                </label>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', borderRadius: '10px', border: paymentMethod === 'wallet' ? '2px solid #ff6a00' : '1px solid #e2e8f0', background: paymentMethod === 'wallet' ? '#fff7ed' : '#fff', cursor: 'pointer', fontSize: '13px', fontWeight: 700 }}>
+                                    <input type="radio" name="pay" checked={paymentMethod === 'wallet'} onChange={() => setPaymentMethod('wallet')} />
+                                    <span>👛 Use Wallet Balance ({convertPrice(walletBalance).formatted})</span>
+                                </label>
                             </div>
                         </div>
 
@@ -233,140 +397,23 @@ const BuyerGiftCards = () => {
                             disabled={purchasing}
                             style={{
                                 width: '100%',
-                                padding: '14px 0',
-                                borderRadius: '8px',
-                                background: '#ff6600',
+                                padding: '13px 20px',
+                                borderRadius: '12px',
+                                background: 'linear-gradient(135deg, #ff6a00 0%, #ff8e3c 100%)',
                                 color: '#fff',
+                                border: 'none',
                                 fontWeight: 800,
                                 fontSize: '14px',
-                                border: 'none',
                                 cursor: 'pointer',
-                                boxShadow: '0 4px 12px rgba(255, 102, 0, 0.15)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '8px'
+                                opacity: purchasing ? 0.6 : 1,
+                                boxShadow: '0 4px 14px rgba(255, 106, 0, 0.25)',
+                                marginTop: '4px'
                             }}
                         >
-                            {purchasing ? 'Processing Order...' : 'Confirm & Buy Gift Card'}
+                            {purchasing ? 'Processing Purchase...' : 'Confirm & Purchase Gift Voucher'}
                         </button>
                     </form>
                 </div>
-
-                {/* Panel 2: Redeem Gift Card */}
-                <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '24px', boxShadow: '0 4px 12px rgba(0,0,0,0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <div>
-                        <h3 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 8px 0', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <span>💳</span> Redeem Voucher Code
-                        </h3>
-                        <p style={{ fontSize: '13px', color: '#64748b', margin: '0 0 16px 0' }}>Received a gift card? Enter the code below to credit the balance directly into your marketplace wallet.</p>
-                        
-                        <form onSubmit={handleRedeem} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                            <input
-                                type="text"
-                                placeholder="GIFT-XXXX-XXXX-XXXX"
-                                value={redeemCode}
-                                onChange={e => setRedeemCode(e.target.value.toUpperCase())}
-                                style={{
-                                    width: '100%',
-                                    padding: '14px',
-                                    borderRadius: '8px',
-                                    border: '1.5px solid #cbd5e1',
-                                    fontSize: '14px',
-                                    letterSpacing: '0.08em',
-                                    fontWeight: 700,
-                                    fontFamily: 'monospace',
-                                    boxSizing: 'border-box',
-                                    textAlign: 'center'
-                                }}
-                            />
-                            <button
-                                type="submit"
-                                disabled={redeeming}
-                                style={{
-                                    width: '100%',
-                                    padding: '14px 0',
-                                    borderRadius: '8px',
-                                    background: '#0f172a',
-                                    color: '#fff',
-                                    fontWeight: 800,
-                                    fontSize: '14px',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    gap: '8px'
-                                }}
-                            >
-                                {redeeming ? 'Claiming Voucher...' : 'Redeem Code to Wallet'}
-                            </button>
-                        </form>
-                    </div>
-
-                    <div style={{ marginTop: '20px', padding: '12px 16px', background: '#f8fafc', borderRadius: '10px', border: '1px dashed #cbd5e1' }}>
-                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#475569', display: 'block', marginBottom: '4px' }}>💡 Quick Tips:</span>
-                        <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '12px', color: '#64748b', lineHeight: 1.6 }}>
-                            <li>Voucher codes are case-insensitive.</li>
-                            <li>Wallet credits can be spent on any checkout order.</li>
-                            <li>Gift cards never expire!</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            {/* List Section: Purchased Cards */}
-            <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '24px', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 16px 0', color: '#0f172a' }}>Purchased Gift Cards</h3>
-                {giftCards.length > 0 ? (
-                    <div style={{ overflowX: 'auto' }}>
-                        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
-                            <thead>
-                                <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: '#64748b' }}>
-                                    <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: 800 }}>Code</th>
-                                    <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: 800 }}>Initial Value</th>
-                                    <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: 800 }}>Current Balance</th>
-                                    <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: 800 }}>Purchase Date</th>
-                                    <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: 800 }}>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {giftCards.map((card, i) => (
-                                    <tr key={card._id || i} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                                        <td style={{ padding: '14px 16px', fontFamily: 'monospace', fontWeight: 700, color: '#0f172a', letterSpacing: '0.05em' }}>
-                                            {card.code}
-                                        </td>
-                                        <td style={{ padding: '14px 16px', fontWeight: 600 }}>${card.initial_value?.toFixed(2)}</td>
-                                        <td style={{ padding: '14px 16px', fontWeight: 700, color: card.balance > 0 ? '#10b981' : '#64748b' }}>
-                                            ${card.balance?.toFixed(2)}
-                                        </td>
-                                        <td style={{ padding: '14px 16px', color: '#64748b' }}>
-                                            {new Date(card.createdAt).toLocaleDateString()}
-                                        </td>
-                                        <td style={{ padding: '14px 16px', textAlign: 'center' }}>
-                                            <span style={{
-                                                padding: '4px 8px',
-                                                borderRadius: '6px',
-                                                fontSize: '11px',
-                                                fontWeight: 800,
-                                                background: card.balance > 0 ? '#dcfce7' : '#f1f5f9',
-                                                color: card.balance > 0 ? '#15803d' : '#64748b'
-                                            }}>
-                                                {card.balance > 0 ? 'Active' : 'Redeemed'}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                ) : (
-                    <div style={{ textAlign: 'center', padding: '40px 0', border: '1.5px dashed #cbd5e1', borderRadius: '12px' }}>
-                        <span style={{ fontSize: '36px', display: 'block', marginBottom: '8px' }}>🎫</span>
-                        <p style={{ margin: '0 0 4px 0', fontWeight: 700, color: '#475569' }}>No Gift Cards Yet</p>
-                        <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Purchase a digital gift certificate above to see it here.</p>
-                    </div>
-                )}
             </div>
         </div>
     );
