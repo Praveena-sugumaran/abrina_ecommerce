@@ -1,15 +1,11 @@
 /* ─── Wishlist Container ─────────────────────────── */
 .wl-container {
-
     background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    border: 1px solid #e2e8f0;
-    padding: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
-
-    padding: 24px 24px 100px;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(13, 46, 103, 0.02);
+    border: 1.5px solid #e8edf5;
+    padding: 24px 24px 60px;
+    width: 100%;
 }
 
 .wl-header {
@@ -30,7 +26,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--primary-color);
+    background: var(--primary-color, #ff6600);
     color: #fff;
     font-size: 0.75rem;
     font-weight: 700;
@@ -61,7 +57,7 @@
 .wl-card:hover {
     box-shadow: 0 12px 32px rgba(13, 46, 103, 0.12);
     transform: translateY(-5px);
-    border-color: var(--primary-light);
+    border-color: var(--primary-color, #ff6600);
 }
 
 /* ─── Image Wrapper ───────────────────────────────── */
@@ -236,7 +232,7 @@
 
 .wl-browse-btn {
     display: inline-block;
-    background: var(--primary-color);
+    background: var(--primary-color, #ff6600);
     color: #fff;
     padding: 12px 28px;
     border-radius: 30px;
@@ -256,6 +252,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
+    width: 100%;
 }
 
 .wl-skeleton-card {
@@ -295,20 +292,12 @@
 }
 
 @keyframes wl-pulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.55;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
 }
 
 /* ─── Responsive ─────────────────────────────────── */
 @media (max-width: 600px) {
-
     .wl-grid,
     .wl-skeleton-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -319,6 +308,17 @@
         font-size: 1rem;
     }
 }
-@media (max-width: 768px) { .wl-container { padding: 16px; border-radius: 12px; } }
 
-@media (max-width: 480px) { .wl-container { padding: 12px; border-radius: 8px; } }
+@media (max-width: 768px) {
+    .wl-container {
+        padding: 16px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wl-container {
+        padding: 12px;
+        border-radius: 8px;
+    }
+}
