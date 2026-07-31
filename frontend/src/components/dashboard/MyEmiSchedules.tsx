@@ -119,8 +119,14 @@ const MyEmiSchedules = () => {
             </div>
 
             {loading ? (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-                    <div style={{ width: '40px', height: '40px', border: '3px solid #e2e8f0', borderTopColor: '#ff6600', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    {[1, 2].map(i => (
+                        <div key={i} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '24px', opacity: 0.6, animation: 'pulse 1.5s infinite' }}>
+                            <div style={{ width: '140px', height: '20px', background: '#e2e8f0', borderRadius: '6px', marginBottom: '12px' }} />
+                            <div style={{ width: '60%', height: '16px', background: '#cbd5e1', borderRadius: '6px', marginBottom: '8px' }} />
+                            <div style={{ width: '40%', height: '14px', background: '#e2e8f0', borderRadius: '6px' }} />
+                        </div>
+                    ))}
                 </div>
             ) : schedules.length === 0 ? (
                 <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '48px 24px', textAlign: 'center' }}>

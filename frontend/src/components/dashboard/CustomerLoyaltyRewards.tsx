@@ -59,8 +59,9 @@ export default function CustomerLoyaltyRewards() {
 
     if (loading) {
         return (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '300px' }}>
-                <div className="spinner-circle"></div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div style={{ height: '140px', background: 'linear-gradient(135deg, #0f172a 0%, #1e40af 100%)', borderRadius: '20px', opacity: 0.8 }} />
+                <div style={{ height: '100px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px' }} />
             </div>
         );
     }

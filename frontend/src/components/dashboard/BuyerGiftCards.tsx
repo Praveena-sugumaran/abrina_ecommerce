@@ -103,9 +103,9 @@ const BuyerGiftCards = () => {
 
     if (loading) {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '50vh', gap: '15px' }}>
-                <div style={{ width: '40px', height: '40px', border: '3px solid #f3f3f3', borderTop: '3px solid #ff6600', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-                <style dangerouslySetInnerHTML={{__html: `@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', opacity: 0.7 }}>
+                <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0', height: '220px', padding: '24px' }} />
+                <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0', height: '220px', padding: '24px' }} />
             </div>
         );
     }
