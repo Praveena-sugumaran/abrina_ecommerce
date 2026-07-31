@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       if (product.main_image.startsWith('http') || product.main_image.startsWith('data:')) {
         imageUrl = product.main_image;
       } else {
-        const baseDomain = process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/?$/, '') || 'http://localhost:5010';
+        const baseDomain = process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/?$/, '') || 'http://localhost:5011';
         const normalizedPath = product.main_image.startsWith('/') ? product.main_image : `/${product.main_image}`;
         imageUrl = normalizedPath.startsWith('/uploads/')
           ? `${baseDomain}${normalizedPath}`

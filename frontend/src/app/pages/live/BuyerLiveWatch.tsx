@@ -225,10 +225,10 @@ export default function BuyerLiveWatch({ streamId }: { streamId: string }) {
                 if (!isLocal) {
                     socketUrl = window.location.origin;
                 } else {
-                    socketUrl = (apiUrl && apiUrl.startsWith('http')) ? apiUrl.replace('/api', '') : 'http://localhost:5010';
+                    socketUrl = (apiUrl && apiUrl.startsWith('http')) ? apiUrl.replace('/api', '') : 'http://localhost:5011';
                 }
             } else {
-                socketUrl = 'http://localhost:5010';
+                socketUrl = 'http://localhost:5011';
             }
         }
 

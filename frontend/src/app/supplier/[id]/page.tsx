@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       if (company.logo.startsWith('http') || company.logo.startsWith('data:')) {
         logoUrl = company.logo;
       } else {
-        const baseDomain = process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/?$/, '') || 'http://localhost:5010';
+        const baseDomain = process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/?$/, '') || 'http://localhost:5011';
         const normalizedPath = company.logo.startsWith('/') ? company.logo : `/${company.logo}`;
         logoUrl = normalizedPath.startsWith('/uploads/')
           ? `${baseDomain}${normalizedPath}`

@@ -37,9 +37,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "next dev --webpack -p 9010",
+    "dev": "next dev --webpack -p 9011",
     "build": "next build",
-    "start": "next start --port 9010",
+    "start": "next start --port 9011",
     "lint": "next lint"
   },
   "eslintConfig": {
