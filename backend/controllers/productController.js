@@ -2310,3 +2310,95 @@ exports.searchProductByBarcode = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// @desc    Bulk upload products from CSV/Excel or JSON payload
+// @route   POST /api/products/bulk-upload
+// @access  Private (Supplier / Admin)
+exports.bulkUploadProducts = async (req, res) => {
+    try {
+        let items = [];
+        if (req.file) {
+            const workbook = XLSX.readFile(req.file.path);
+            const sheetName = workbook.SheetNames[0];
+            items = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+        } else if (Array.isArray(req.body.products)) {
+            items = req.body.products;
+        }
+
+        if (!items || items.length === 0) {
+            return res.status(400).json({ success: false, message: 'No valid product rows found in upload file or body.' });
+        }
+
+        const createdProducts = [];
+        const errors = [];
+
+        for (let i = 0; i < items.length; i++) {
+            const row = items[i];
+            try {
+                const name = row.name || row.Name || row['Product Name'];
+                const price = parseFloat(row.price || row.Price || 0);
+
+                if (!name || isNaN(price) || price <= 0) {
+                    errors.push({ row: i + 1, message: 'Product name and valid price are required.' });
+                    continue;
+                }
+
+                const stock = parseInt(row.stock || row.Stock || row.countInStock || 10, 10);
+                const newProd = new Product({
+                    user_id: req.user._id,
+                    name: String(name).trim(),
+                    description: row.description || row.Description || String(name).trim(),
+                    price,
+                    oldPrice: parseFloat(row.oldPrice || row['Old Price'] || price),
+                    stock,
+                    countInStock: stock,
+                    sku: row.sku || row.SKU || `SKU-${Date.now()}-${i}`,
+                    barcode: row.barcode || row.Barcode || `BC-${Date.now()}-${i}`,
+                    category_id: row.category_id || row['Category ID'] || null,
+                    approval_status: req.user.role === 'admin' ? 'approved' : 'pending',
+                    status: 'active'
+                });
+
+                await newProd.save();
+                createdProducts.push(newProd);
+            } catch (err) {
+                errors.push({ row: i + 1, message: err.message });
+            }
+        }
+
+        res.json({
+            success: true,
+            importedCount: createdProducts.length,
+            errorsCount: errors.length,
+            errors,
+            createdProducts
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// @desc    Export supplier products
+// @route   GET /api/products/my/export
+// @access  Private (Supplier)
+exports.exportProducts = async (req, res) => {
+    try {
+        const products = await Product.find({ user_id: req.user._id }).lean();
+        res.json({ success: true, count: products.length, products });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// @desc    Export all products for admin
+// @route   GET /api/products/admin/export
+// @access  Private (Admin)
+exports.exportAllProductsAdmin = async (req, res) => {
+    try {
+        const products = await Product.find().populate('user_id', 'first_name last_name email company_name').lean();
+        res.json({ success: true, count: products.length, products });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+

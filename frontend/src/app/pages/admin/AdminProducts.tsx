@@ -5,6 +5,8 @@ import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
 import styles from './AdminLayout.module.css';
 
+import BulkProductUploadModal from '@/components/BulkProductUploadModal';
+
 const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || '';
 
 interface Category {
@@ -46,6 +48,7 @@ const AdminProducts = () => {
     const [error, setError] = useState<string | null>(null);
     const [formMode, setFormMode] = useState<'add' | 'edit' | null>(null);
     const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+    const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
     const { siteSettings, t, user } = useAuth();
     const { showToast } = useToast();
 
@@ -210,6 +213,9 @@ const AdminProducts = () => {
                     </div>
                 </div>
                 <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                    <button className={styles['usr-export-btn']} onClick={() => setIsBulkModalOpen(true)} style={{ background: '#f8fafc', color: '#1e40af', border: '1px solid #bfdbfe' }}>
+                        📥 Bulk Import CSV
+                    </button>
                     <button className={styles['usr-export-btn']} onClick={handleExportCSV}>
                         <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         Export CSV
@@ -222,6 +228,12 @@ const AdminProducts = () => {
                     )}
                 </div>
             </div>
+
+            <BulkProductUploadModal
+                isOpen={isBulkModalOpen}
+                onClose={() => setIsBulkModalOpen(false)}
+                onSuccess={fetchProducts}
+            />
 
             {error && (
                 <div style={{ padding: '14px 20px', borderRadius: '14px', background: '#fff1f2', color: '#e11d48', fontWeight: '700', fontSize: '0.86rem' }}>

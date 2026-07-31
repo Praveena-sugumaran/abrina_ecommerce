@@ -12,7 +12,8 @@ const {
     dailyCheckIn, sendMobileOtp, verifyMobileOtp,
     sendRegisterMobileOtp, verifyRegisterMobileOtp,
     getSessions, revokeSession, revokeOtherSessions,
-    getReferrals, shareReferralCode
+    getReferrals, shareReferralCode,
+    getLoyaltyHistory, redeemLoyaltyPoints
 } = require('../controllers/authController');
 const { protect, checkPermission } = require('../middlewares/authMiddleware');
 const { uploadProfileImage, uploadIdProof } = require('../middlewares/uploadMiddleware');
@@ -29,6 +30,8 @@ router.post('/social-register', socialRegister);
 router.post('/check-in', protect, dailyCheckIn);
 router.get('/referrals', protect, getReferrals);
 router.post('/referrals/share', protect, shareReferralCode);
+router.get('/loyalty-history', protect, getLoyaltyHistory);
+router.post('/redeem-loyalty', protect, redeemLoyaltyPoints);
 
 // Social Login
 router.get('/social-urls', getSocialAuthUrls);

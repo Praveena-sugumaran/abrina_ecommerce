@@ -145,3 +145,51 @@ exports.stripeWebhook = async (req, res) => {
 
     res.json({ received: true });
 };
+
+// @desc    Live Carrier Tracking Webhook (Shippo / EasyPost / FedEx / DHL)
+// @route   POST /api/webhooks/carrier-tracking
+// @access  Public (Webhook signature verified)
+exports.carrierTrackingWebhook = async (req, res) => {
+    try {
+        const { tracking_number, status, carrier, details } = req.body;
+        if (!tracking_number) {
+            return res.status(400).json({ message: 'tracking_number is required.' });
+        }
+
+        const Order = require('../models/Order');
+        const order = await Order.findOne({
+            $or: [
+                { tracking_number: tracking_number.trim() },
+                { tracking_code: tracking_number.trim() }
+            ]
+        });
+
+        if (!order) {
+            return res.status(404).json({ message: 'Order not found with provided tracking number.' });
+        }
+
+        const normalizedStatus = (status || 'shipped').toLowerCase();
+        if (normalizedStatus.includes('delivered')) {
+            order.status = 'delivered';
+            order.delivered_at = new Date();
+        } else if (normalizedStatus.includes('out_for_delivery') || normalizedStatus.includes('transit')) {
+            order.status = 'shipped';
+        }
+        await order.save();
+
+        const { createOrderStatusLog } = require('./orderController');
+        if (createOrderStatusLog) {
+            await createOrderStatusLog(
+                order._id,
+                `Carrier Update (${carrier || 'Logistics Provider'})`,
+                details || `Status updated to ${status} via carrier webhook`
+            );
+        }
+
+        res.json({ success: true, orderId: order._id, status: order.status });
+    } catch (err) {
+        console.error('Carrier tracking webhook error:', err);
+        res.status(500).json({ message: err.message });
+    }
+};
+

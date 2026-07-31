@@ -2263,16 +2263,92 @@ exports.shareReferralCode = async (req, res) => {
         
         const { sendTemplatedMail } = require('../services/mailService');
         
-        await sendTemplatedMail('referral-invite', email, {
-            referrer_name: `${req.user.first_name} ${req.user.last_name}`,
-            site_name: siteName,
-            invite_url: inviteUrl,
-            referral_code: refCode
-        });
-        
         res.json({ success: true, message: 'Invitation email sent successfully.' });
     } catch (err) {
         console.error('shareReferralCode error:', err);
         res.status(500).json({ success: false, message: err.message });
     }
 };
+
+// @desc    Get User Loyalty Points & Transaction History
+// @route   GET /api/auth/loyalty-history
+// @access  Private
+exports.getLoyaltyHistory = async (req, res) => {
+    try {
+        const LoyaltyTransaction = require('../models/LoyaltyTransaction');
+        const transactions = await LoyaltyTransaction.find({ user: req.user._id })
+            .sort({ createdAt: -1 })
+            .lean();
+
+        const totalEarned = transactions.reduce((acc, t) => t.points > 0 ? acc + t.points : acc, 0);
+        const totalRedeemed = Math.abs(transactions.reduce((acc, t) => t.points < 0 ? acc + t.points : acc, 0));
+
+        res.json({
+            success: true,
+            balance: req.user.loyalty_points || (totalEarned - totalRedeemed),
+            totalEarned,
+            totalRedeemed,
+            transactions
+        });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+
+// @desc    Redeem Loyalty Points for Discount Coupon
+// @route   POST /api/auth/redeem-loyalty
+// @access  Private
+exports.redeemLoyaltyPoints = async (req, res) => {
+    try {
+        const { pointsToRedeem } = req.body;
+        const points = parseInt(pointsToRedeem, 10);
+        if (isNaN(points) || points < 100) {
+            return res.status(400).json({ success: false, message: 'Minimum 100 points required to redeem.' });
+        }
+
+        const user = await User.findById(req.user._id);
+        const currentPoints = user.loyalty_points || 0;
+        if (currentPoints < points) {
+            return res.status(400).json({ success: false, message: `Insufficient points. You have ${currentPoints} points.` });
+        }
+
+        // Calculate discount value: 100 points = $10 discount
+        const discountValue = Math.floor(points / 10);
+        const Coupon = require('../models/Coupon');
+        const couponCode = `REWARD-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+
+        const coupon = new Coupon({
+            code: couponCode,
+            discount_type: 'fixed',
+            discount_value: discountValue,
+            min_purchase: discountValue * 2,
+            usage_limit: 1,
+            user_id: user._id,
+            is_active: true
+        });
+        await coupon.save();
+
+        // Deduct points & log transaction
+        user.loyalty_points = currentPoints - points;
+        await user.save();
+
+        const LoyaltyTransaction = require('../models/LoyaltyTransaction');
+        await LoyaltyTransaction.create({
+            user: user._id,
+            points: -points,
+            type: 'redemption',
+            description: `Redeemed ${points} points for $${discountValue} discount coupon (${couponCode})`
+        });
+
+        res.json({
+            success: true,
+            message: `Successfully redeemed ${points} points for a $${discountValue} discount coupon!`,
+            couponCode,
+            discountValue,
+            remainingPoints: user.loyalty_points
+        });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+

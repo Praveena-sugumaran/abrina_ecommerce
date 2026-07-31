@@ -29,6 +29,7 @@ import ReferralProgram from './ReferralProgram';
 import DeviceManagement from './DeviceManagement';
 import MyEmiSchedules from './MyEmiSchedules';
 import BuyerGiftCards from './BuyerGiftCards';
+import CustomerLoyaltyRewards from './CustomerLoyaltyRewards';
 
 const BuyerDashboard = ({ tab, subtab }: { tab?: string; subtab?: string }) => {
     const { unreadTotal } = useChat();
@@ -177,6 +178,7 @@ const BuyerDashboard = ({ tab, subtab }: { tab?: string; subtab?: string }) => {
         {
             group: 'ACCOUNT', items: [
                 { id: 'wallet', label: 'My Wallet', icon: 'wallet' },
+                { id: 'loyalty', label: 'Loyalty & Rewards', icon: 'gift' },
                 { id: 'giftcards', label: 'Gift Cards', icon: 'gift' },
                 { id: 'emi', label: 'My EMI Plans', icon: 'Sub' },
                 { id: 'shipping', label: 'Addresses', icon: 'shipping' },
@@ -768,6 +770,8 @@ const BuyerDashboard = ({ tab, subtab }: { tab?: string; subtab?: string }) => {
                         <ShippingAddress />
                     ) : activeSidebar === 'wallet' ? (
                         <CustomerWallet />
+                    ) : activeSidebar === 'loyalty' ? (
+                        <CustomerLoyaltyRewards />
                     ) : activeSidebar === 'giftcards' ? (
                         <BuyerGiftCards />
                     ) : activeSidebar === 'emi' ? (
