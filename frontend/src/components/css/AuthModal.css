@@ -1,0 +1,554 @@
+/* Center overlay for popup modal */
+.auth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Modal Content Box */
+.auth-modal-content.auth-popup-card {
+    position: relative;
+    width: 820px !important;
+    height: 580px !important;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    border-radius: 28px !important;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25);
+    animation: zoomIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+    padding: 0 !important;
+    overflow: hidden;
+    margin: auto !important;
+}
+
+/* Left illustration pane matching premium design */
+.auth-popup-left-pane {
+    flex: 0 0 370px;
+    background: linear-gradient(135deg, #FFF0E6 0%, #FFEBE0 50%, #FFD6C2 100%);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+}
+
+.auth-popup-brand-row {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ff6600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.auth-popup-banner-text h3 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 16px 0 8px 0;
+    line-height: 1.25;
+}
+
+.auth-popup-banner-text p {
+    font-size: 14px;
+    color: #475569;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.auth-popup-illustration-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px 0;
+}
+
+.auth-popup-illustration-img {
+    max-width: 100%;
+    max-height: 190px;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 25px rgba(255, 102, 0, 0.12));
+}
+
+.auth-popup-safe-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 18px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+}
+
+.auth-popup-safe-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 102, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff6600;
+    flex-shrink: 0;
+}
+
+.auth-popup-safe-text h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.auth-popup-safe-text p {
+    font-size: 11px;
+    color: #64748b;
+    margin: 3px 0 0 0;
+    line-height: 1.3;
+}
+
+/* Right form panel inside centered modal */
+.auth-modal-content.auth-popup-card .auth-split-right {
+    flex: 1;
+    background: #fff;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+}
+
+.auth-modal-content.auth-popup-card .auth-split-form-box {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+/* Title & Subtitles */
+.register-title-v2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.5px;
+}
+
+.auth-protected-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 24px 0;
+    font-weight: 500;
+}
+
+/* Form controls with custom input icons */
+.auth-input-container {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.auth-input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.auth-input-with-icon {
+    padding-left: 44px !important;
+}
+
+.auth-label-with-icon {
+    left: 44px !important;
+}
+
+/* Input Fields styling */
+.float-input-wrap {
+    position: relative;
+}
+
+.float-input {
+    width: 100%;
+    height: 48px;
+    padding: 18px 16px 6px;
+    font-size: 15px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+    outline: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.float-input:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.1);
+}
+
+.float-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    font-size: 15px;
+    color: #94a3b8;
+    pointer-events: none;
+    transition: all 0.2s;
+}
+
+.float-input:focus ~ .float-label,
+.float-input:not(:placeholder-shown) ~ .float-label {
+    top: 14px;
+    font-size: 11px;
+    color: #ff6600;
+    font-weight: 600;
+}
+
+/* Labeled Standard inputs matching mockup style */
+.auth-field-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.auth-input-label {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.auth-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.auth-label-row .auth-input-label {
+    margin-bottom: 0;
+}
+
+.auth-label-row .reg-link-btn.forgot-pw-link {
+    font-size: 13px;
+    color: #ff6600 !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.auth-standard-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px 0 44px;
+    font-size: 15px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: #edf2f7; /* Soft grey/blue background tint */
+    outline: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    color: #1e293b;
+}
+
+.auth-standard-input:focus {
+    border-color: #ff6600;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.1);
+}
+
+.auth-standard-input::placeholder {
+    color: #94a3b8;
+}
+
+/* Eye toggle button in password field */
+.toggle-pw-v2 {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    z-index: 10;
+}
+
+.toggle-pw-v2:hover {
+    color: #64748b;
+}
+
+/* Submit primary button */
+.reg-btn-primary-v2 {
+    width: 100%;
+    height: 48px;
+    background: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.15);
+    margin-top: 8px;
+}
+
+.reg-btn-primary-v2:hover {
+    background: #e05300;
+    box-shadow: 0 6px 16px rgba(255, 102, 0, 0.2);
+}
+
+.reg-btn-primary-v2:disabled {
+    background: #cbd5e1;
+    color: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Divider block */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.divider span {
+    padding: 0 12px;
+    color: #94a3b8;
+}
+
+/* Footer Link styling */
+.reg-footer-text-v2 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.reg-link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.reg-link-btn:hover {
+    text-decoration: underline;
+}
+
+/* Footer layout for centered popup matching mockup */
+.auth-popup-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.auth-popup-footer p {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0;
+    font-weight: 500;
+}
+
+.auth-footer-link-btn {
+    background: none;
+    border: none;
+    color: #ff6600;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13.5px;
+    padding: 0;
+    text-decoration: none;
+    display: inline;
+}
+
+.auth-footer-link-btn:hover {
+    text-decoration: underline;
+}
+
+/* Step Progress indicator row */
+.auth-progress-steps {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.auth-progress-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+.auth-progress-step.active {
+    color: #ff6600;
+}
+
+.auth-progress-step .step-number {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+.auth-progress-step.active .step-number {
+    border-color: #ff6600;
+    color: #ff6600;
+}
+
+.step-line {
+    width: 32px;
+    height: 2px;
+    background: #cbd5e1;
+}
+
+/* Close & Back Button positions inside Centered Modal */
+.auth-modal-close-v2 {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: #f1f5f9;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 1000;
+    padding: 0;
+}
+
+.auth-modal-close-v2:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.auth-modal-back-v2 {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background: #f1f5f9;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 1000;
+    padding: 0;
+}
+
+.auth-modal-back-v2:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design for Centered Popup Modal */
+@media (max-width: 850px) {
+    .auth-modal-content.auth-popup-card {
+        width: 460px !important;
+        height: auto !important;
+        max-height: 90vh;
+    }
+    .auth-popup-left-pane {
+        display: none !important;
+    }
+    .auth-modal-content.auth-popup-card .auth-split-right {
+        padding: 40px 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-modal-content.auth-popup-card {
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100vh;
+        border-radius: 0 !important;
+    }
+}

@@ -1,0 +1,54 @@
+[
+    {
+        "_id": "664c7e6b0000000000000010",
+        "first_name": "John",
+        "last_name": "Buyer",
+        "email": "buyer@gmail.com",
+        "password": "12345678",
+        "roles": [
+            "buyer"
+        ],
+        "phone_number": "+1 555 123 4567",
+        "country_code": "US",
+        "is_verified": true,
+        "status": "active",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 5000.00,
+        "company_name": "Acme Global Sourcing",
+        "profile_image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&h=120&fit=crop&q=80"
+    },
+    {
+        "_id": "664c7e6b0000000000000011",
+        "first_name": "Sarah",
+        "last_name": "Supplier",
+        "email": "supplier@gmail.com",
+        "password": "12345678",
+        "roles": [
+            "supplier"
+        ],
+        "phone_number": "+86 138 9876 5432",
+        "country_code": "CN",
+        "is_verified": true,
+        "status": "verified",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 15250.00,
+        "company_name": "Zhenjiang Industrial Solutions Ltd.",
+        "business_type": [
+            "Manufacturer",
+            "Trading Company"
+        ],
+        "profile_image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&q=80",
+        "payout_methods": [
+            {
+                "type": "bank",
+                "bank_name": "Industrial and Commercial Bank of China",
+                "account_name": "Sarah Supplier",
+                "account_number": "6222021202003456789",
+                "swift_code": "ICBKCNBJXXX",
+                "is_default": true
+            }
+        ]
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "_id": "664c7e6b0000000000000060",
+        "buyer_id": "664c7e6b0000000000000010",
+        "supplier_id": "664c7e6b0000000000000011",
+        "order_id": "664c7e6b0000000000000040",
+        "reason": "Missing Accessories",
+        "description": "The heavy-duty air compressor arrived in perfect condition, but the package was missing the custom industrial pressure gauge hose accessory pack that was listed in the description.",
+        "status": "under_review",
+        "messages": [
+            {
+                "sender_id": "664c7e6b0000000000000010",
+                "sender_role": "buyer",
+                "message": "Hi, I received the compressor, but the gauge hose pack is missing. Can you ship this immediately or issue a partial refund?",
+                "timestamp": "2026-05-15T10:00:00.000Z"
+            },
+            {
+                "sender_id": "664c7e6b0000000000000011",
+                "sender_role": "supplier",
+                "message": "Dear John, we apologize for the oversight. It seems the pressure hose was packed in a separate small box that may have been left in our secondary warehouse. We can dispatch a replacement package today via DHL Express. Would that work?",
+                "timestamp": "2026-05-16T04:12:00.000Z"
+            }
+        ],
+        "createdAt": "2026-05-15T10:00:00.000Z",
+        "updatedAt": "2026-05-16T04:12:00.000Z"
+    }
+]

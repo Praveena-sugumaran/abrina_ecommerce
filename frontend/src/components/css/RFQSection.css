@@ -1,0 +1,425 @@
+/* ═══════════════════════════════════════════════════
+   RFQ SECTION v2 — Premium Source Smarter Banner
+   ═══════════════════════════════════════════════════ */
+
+.rfq-section {
+    padding: 60px 0;
+    background: #ffffff;
+    position: relative;
+}
+
+.rfq-inner {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 56px;
+    align-items: center;
+    background: linear-gradient(135deg, #091322 0%, #0d2857 60%, #17389a 100%);
+    border-radius: 24px;
+    padding: 52px 64px;
+    box-shadow: 0 20px 60px rgba(13, 46, 103, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative circles */
+.rfq-inner::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.18) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.rfq-inner::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: 40%;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.rfq-section::before,
+.rfq-section::after {
+    display: none;
+}
+
+/* ── Left side ── */
+.rfq-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.rfq-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 850;
+    color: var(--primary-color, #ff6600);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    background: rgba(255, 102, 0, 0.12);
+    border: 1px solid rgba(255, 102, 0, 0.25);
+    padding: 6px 14px;
+    border-radius: 50px;
+    width: fit-content;
+}
+
+.rfq-main-title {
+    font-size: 34px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 16px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.rfq-desc {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.65;
+    margin: 0 0 32px;
+    max-width: 480px;
+}
+
+/* Benefits 2×2 grid */
+.rfq-benefits {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 28px;
+}
+
+.rfq-benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.rfq-benefit-icon {
+    color: var(--primary-color, #ff6600);
+    background: rgba(255, 102, 0, 0.15);
+    border: 1px solid rgba(255, 102, 0, 0.25);
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rfq-benefit-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 4px;
+    line-height: 1.3;
+}
+
+.rfq-benefit-desc {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Right: stat card ── */
+.rfq-right {
+    position: relative;
+    z-index: 1;
+}
+
+.rfq-v2-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 36px 32px;
+    text-align: center;
+    box-shadow: 0 20px 48px rgba(15, 23, 42, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.rfq-v2-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 24px;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+}
+
+.rfq-v2-stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    background: #f8f9fb;
+    border-radius: 14px;
+    padding: 16px 8px;
+}
+
+.rfq-v2-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.rfq-v2-stat strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--primary-color, #ff6600);
+    letter-spacing: -0.5px;
+}
+
+.rfq-v2-stat span {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.rfq-v2-stat-divider {
+    width: 1px;
+    height: 32px;
+    background: #e2e8f0;
+    flex-shrink: 0;
+}
+
+.rfq-v2-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-color, #ff6600), #ff9500);
+    color: #fff;
+    padding: 16px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(255, 102, 0, 0.35);
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+}
+
+.rfq-v2-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(255, 102, 0, 0.45);
+    filter: brightness(1.05);
+}
+
+.rfq-v2-note {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+/* Form Card */
+.rfq-form-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+}
+
+.rfq-form-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #f8f9fb;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: all 0.2s;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rfq-form-close:hover {
+    background: #ef4444;
+    color: #fff;
+    border-color: #ef4444;
+}
+
+.rfq-form-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 20px;
+    letter-spacing: -0.2px;
+}
+
+.rfq-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.rfq-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rfq-field label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rfq-field input,
+.rfq-field textarea {
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: #111827;
+    outline: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    resize: vertical;
+    font-family: inherit;
+    background: #f8fafc;
+}
+
+.rfq-field input:focus,
+.rfq-field textarea:focus {
+    border-color: var(--primary-color, #ff6600);
+    box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.12);
+    background: #ffffff;
+}
+
+.rfq-error {
+    font-size: 12px;
+    color: #ef4444;
+    margin: 0;
+}
+
+.rfq-submit-btn {
+    background: linear-gradient(135deg, var(--primary-color, #ff6600), #ff9500);
+    color: #fff;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(255, 102, 0, 0.3);
+}
+
+.rfq-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.rfq-submit-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
+}
+
+.rfq-disclaimer {
+    font-size: 12px;
+    color: #94a3b8;
+    text-align: center;
+    margin: 10px 0 0;
+}
+
+.rfq-disclaimer a {
+    color: var(--primary-color, #ff6600);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Success */
+.rfq-success {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.rfq-success-icon {
+    font-size: 48px;
+    color: #10b981;
+    margin-bottom: 12px;
+}
+
+.rfq-success h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 8px;
+}
+
+.rfq-success p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 20px;
+}
+
+.rfq-view-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color, #ff6600), #ff9500);
+    color: #fff;
+    padding: 11px 26px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(255, 102, 0, 0.3);
+}
+
+.rfq-view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .rfq-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 36px 32px;
+    }
+    .rfq-main-title {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .rfq-section {
+        padding: 40px 0;
+    }
+    .rfq-inner {
+        padding: 28px 20px;
+        gap: 24px;
+    }
+    .rfq-main-title {
+        font-size: 22px;
+    }
+    .rfq-benefits {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}

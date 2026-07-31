@@ -1,0 +1,576 @@
+/* ═══════════════════════════════════════════════════════
+   ManufacturerCard  —  B2B reference-style horizontal card
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Card wrapper ─────────────────────────────────────── */
+.mc2-card {
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+    border: 1px solid #e2e6ee;
+    border-radius: 10px;
+    padding: 18px 20px;
+    gap: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    /* No overflow:hidden here — it clips the right action panel
+       when the product Swiper has many slides */
+}
+
+.mc2-card:hover {
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.09);
+    border-color: #c8d2e8;
+}
+
+/* Premium: use inset box-shadow instead of ::before + overflow:hidden */
+.mc2-card.mc2-premium {
+    border-color: #ffcc80;
+    box-shadow: inset 4px 0 0 #ff9800, 0 2px 10px rgba(255, 152, 0, 0.1);
+}
+
+/* ── LEFT section ─────────────────────────────────────── */
+.mc2-left {
+    width: 175px;
+    min-width: 175px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    padding-right: 20px;
+    border-right: 1px solid #f0f2f5;
+}
+
+/* Logo */
+.mc2-logo-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 7px;
+    border: 1px solid #e5e7eb;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.mc2-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+}
+
+.mc2-logo-placeholder {
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Company name */
+.mc2-company-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-decoration: none;
+    line-height: 1.3;
+    word-break: break-word;
+    transition: color 0.2s;
+}
+
+.mc2-company-name:hover {
+    color: #0d3580;
+    text-decoration: underline;
+}
+
+/* Verified badge */
+.mc2-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fff8e1;
+    color: var(--accent-hover);
+    border: 1px solid #ffd54f;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.mc2-verified-badge.mc2-pro {
+    background: #fff3e0;
+    color: #bf360c;
+    border-color: #ffab40;
+}
+
+/* Meta stats (years, staff, revenue) */
+.mc2-meta-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mc2-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.mc2-meta-item svg {
+    color: #888;
+    flex-shrink: 0;
+}
+
+/* Rating row */
+.mc2-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.mc2-rating-val {
+    font-size: 13px;
+    font-weight: 800;
+    color: #222;
+}
+
+.mc2-stars {
+    display: flex;
+    gap: 1px;
+}
+
+.mc2-star {
+    color: #ddd;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.mc2-star.filled {
+    color: #f5a623;
+}
+
+.mc2-star.half {
+    color: #f5a623;
+    opacity: 0.55;
+}
+
+.mc2-review-count {
+    font-size: 11px;
+    color: #999;
+}
+
+/* ── CENTER section ───────────────────────────────────── */
+.mc2-center {
+    flex: 1;
+    min-width: 0;
+    padding: 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Description */
+.mc2-description {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.mc2-description strong {
+    color: #1a1a2e;
+    font-weight: 600;
+}
+
+/* Feature tags */
+.mc2-feature-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.mc2-feat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #444;
+    font-weight: 500;
+}
+
+.mc2-feat-tag svg {
+    color: #43a047;
+    flex-shrink: 0;
+}
+
+/* ── Products Swiper ─────────────────────────────────── */
+.mc2-products-swiper-wrap {
+    position: relative;
+    width: 100%;
+    /* Side padding creates room for the custom arrow buttons */
+    padding: 0 28px;
+    box-sizing: border-box;
+}
+
+.mc2-swiper {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Custom navigation buttons — positioned at image-height center */
+.mc2-nav-btn {
+    position: absolute;
+    /* Image height = 80px, btn height = 24px → top = (80 - 24) / 2 = 28px */
+    top: 28px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d0d5dd;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.16s, border-color 0.16s, box-shadow 0.16s;
+    color: var(--clr-accent);
+    padding: 0;
+}
+
+.mc2-nav-btn:hover {
+    background: rgba(255, 106, 0, 0.08);
+    border-color: var(--clr-accent);
+    box-shadow: 0 2px 8px rgba(255, 106, 0, 0.18);
+}
+
+.mc2-nav-btn:disabled,
+.mc2-nav-btn.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+}
+
+.mc2-nav-prev {
+    left: 2px;
+}
+
+.mc2-nav-next {
+    right: 2px;
+}
+
+/* Hide old Swiper default arrows (we use custom ones) */
+.mc2-swiper .swiper-button-next,
+.mc2-swiper .swiper-button-prev {
+    display: none;
+}
+
+/* Product slide */
+.mc2-prod-slide {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Smaller image box to match reference — fixed 80px height */
+.mc2-prod-img-box {
+    width: 100%;
+    height: 80px;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.mc2-prod-slide:hover .mc2-prod-img-box {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(13, 46, 103, 0.1);
+}
+
+.mc2-prod-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+}
+
+.mc2-prod-price {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.mc2-prod-moq {
+    font-size: 10px;
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* No products placeholder */
+.mc2-no-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 22px;
+    background: #fafafa;
+    border-radius: 8px;
+    color: #bbb;
+    font-size: 12px;
+    font-style: italic;
+    border: 1px dashed #e5e7eb;
+}
+
+/* ── RIGHT section ────────────────────────────────────── */
+.mc2-right {
+    width: 155px;
+    min-width: 155px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+    border-left: 1px solid #f0f2f5;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* Buttons */
+.mc2-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+.mc2-btn-chat {
+    background: var(--clr-accent);
+    color: #fff;
+    border: 1.5px solid var(--clr-accent);
+}
+
+.mc2-btn-chat:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.25);
+}
+
+.mc2-btn-contact {
+    background: #fff;
+    color: var(--clr-accent);
+    border: 1.5px solid var(--clr-accent);
+}
+
+.mc2-btn-contact:hover {
+    background: rgba(255, 106, 0, 0.08);
+    border-color: var(--accent-hover);
+    color: var(--accent-hover);
+}
+
+/* ═══════════════════════════════════════════════════════
+   Loading skeleton
+   ═══════════════════════════════════════════════════════ */
+.mc2-skeleton {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border: 1px solid #e2e6ee;
+    border-radius: 10px;
+    padding: 18px 20px;
+    overflow: hidden;
+}
+
+.mc2-skeleton-left {
+    width: 175px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 20px;
+    border-right: 1px solid #f0f2f5;
+}
+
+.mc2-skeleton-center {
+    flex: 1;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mc2-skeleton-right {
+    width: 155px;
+    padding-left: 20px;
+    border-left: 1px solid #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.mc2-skel-block {
+    background: linear-gradient(90deg, #f0f2f5 25%, #e8eaed 50%, #f0f2f5 75%);
+    background-size: 200% 100%;
+    animation: mc2-shimmer 1.4s infinite;
+    border-radius: 6px;
+}
+
+@keyframes mc2-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+    .mc2-left {
+        width: 155px;
+        min-width: 155px;
+    }
+
+    .mc2-right {
+        width: 140px;
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 900px) {
+    .mc2-card {
+        flex-direction: column;
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .mc2-left {
+        width: 100%;
+        min-width: unset;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        padding-right: 0;
+        padding-bottom: 12px;
+        border-right: none;
+        border-bottom: 1px solid #f1f5f9;
+        overflow: hidden;
+    }
+
+    .mc2-logo-wrap {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+    }
+
+    .mc2-company-name {
+        font-size: 16px;
+        flex: 1;
+    }
+
+    .mc2-meta-stats {
+        display: none; /* Hide detailed stats in small header on mobile */
+    }
+
+    .mc2-center {
+        width: 100%;
+        padding: 0;
+        gap: 10px;
+    }
+
+    .mc2-description {
+        font-size: 13.5px;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .mc2-feature-tags {
+        gap: 8px;
+    }
+
+    .mc2-feat-tag {
+        font-size: 11.5px;
+    }
+
+    .mc2-right {
+        width: 100%;
+        min-width: unset;
+        flex-direction: row;
+        padding-left: 0;
+        padding-top: 12px;
+        border-left: none;
+        border-top: 1px solid #f1f5f9;
+        gap: 8px;
+    }
+
+    .mc2-btn {
+        flex: 1;
+        height: 38px;
+        font-size: 13px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mc2-card {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .mc2-products-swiper-wrap {
+        padding: 0;
+        margin: 0 -4px;
+    }
+
+    .mc2-prod-img-box {
+        height: 90px; /* Slightly larger on very small screens for visibility */
+    }
+
+    .mc2-prod-price {
+        font-size: 11.5px;
+    }
+
+    .mc2-prod-moq {
+        font-size: 9.5px;
+    }
+}

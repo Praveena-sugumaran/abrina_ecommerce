@@ -1,0 +1,291 @@
+System,Base URL,Category,Method,Endpoint,Description
+Product Catalog,https://b2b.sangvish.com,Products,POST,/api/ai/search,Create / submit a new ai
+Product Catalog,https://b2b.sangvish.com,Products,POST,/api/ai/refine,Create / submit a new ai
+Product Catalog,https://b2b.sangvish.com,Products,GET,/api/ai/history,Get list of ai records
+Product Catalog,https://b2b.sangvish.com,Products,GET,/api/ai/usage,Get list of ai records
+Product Catalog,https://b2b.sangvish.com,Products,DELETE,/api/ai/history/:id,Delete ai by ID
+Product Catalog,https://b2b.sangvish.com,Products,POST,/api/ai/chatbot,Create / submit a new ai
+Product Catalog,https://b2b.sangvish.com,Products,GET,/api/ai/recommendations,Get list of ai records
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/send-otp,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/verify-otp,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/register,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/login,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/forgot-password,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/reset-password,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/social-register,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/social-urls,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/google/callback,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/facebook/callback,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/linkedin/callback,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/profile,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,PUT,/api/auth/update-profile,Update auth by ID
+User Authentication,https://b2b.sangvish.com,Auth & Session,PUT,/api/auth/update-security,Update auth by ID
+User Authentication,https://b2b.sangvish.com,Auth & Session,PUT,/api/auth/change-password,Update auth by ID
+User Authentication,https://b2b.sangvish.com,Auth & Session,DELETE,/api/auth/delete-account,Delete auth by ID
+User Authentication,https://b2b.sangvish.com,Auth & Session,PUT,/api/auth/update-profile-image,Update auth by ID
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/wishlist,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/wishlist/toggle,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/become-supplier,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/stats,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/supplier/stats,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/countries,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/languages,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/states/:countryCode,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/user-info/:id,Get auth details by ID
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/currencies,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/business-types,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/admin/users,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/admin/users,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,PUT,/api/auth/admin/users/:id/status,Update auth by ID
+User Authentication,https://b2b.sangvish.com,Auth & Session,DELETE,/api/auth/admin/users/:id,Delete auth by ID
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/supplier/wallet,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/supplier/withdraw,Create / submit a new auth
+User Authentication,https://b2b.sangvish.com,Auth & Session,GET,/api/auth/supplier/payout-methods,Get list of auth records
+User Authentication,https://b2b.sangvish.com,Auth & Session,POST,/api/auth/supplier/payout-methods,Create / submit a new auth
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,POST,/api/billing-address,Create / submit a new billingaddress
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,GET,/api/billing-address,Get list of billingaddress records
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,PUT,/api/billing-address/:id,Update billingaddress by ID
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,DELETE,/api/billing-address/:id,Delete billingaddress by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/campaign,Create / submit a new campaign
+Common Backend,https://b2b.sangvish.com,General,GET,/api/campaign,Get list of campaign records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/campaign/:id,Get campaign details by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/campaign/:id,Delete campaign by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/campaign/track/:referral_code,Create / submit a new campaign
+Common Backend,https://b2b.sangvish.com,General,GET,/api/category,Get list of category records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/category,Create / submit a new category
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/category/:id,Update category by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/category/:id,Delete category by ID
+Messenger Server,https://b2b.sangvish.com,Real-time Messaging,GET,/api/chat/conversations,Get list of chat records
+Messenger Server,https://b2b.sangvish.com,Real-time Messaging,GET,/api/chat/messages/:otherUserId,Get list of chat records
+Messenger Server,https://b2b.sangvish.com,Real-time Messaging,POST,/api/chat/messages,Create / submit a new chat
+Messenger Server,https://b2b.sangvish.com,Real-time Messaging,PUT,/api/chat/messages/:conversationId/read,Update chat by ID
+Messenger Server,https://b2b.sangvish.com,Real-time Messaging,POST,/api/chat/upload,Create / submit a new chat
+Messenger Server,https://b2b.sangvish.com,Real-time Messaging,POST,/api/chat/translate,Create / submit a new chat
+Customer Experience,https://b2b.sangvish.com,User Interactions,GET,/api/cms,Get list of cms records
+Customer Experience,https://b2b.sangvish.com,User Interactions,GET,/api/cms/:slug,Get list of cms records
+Customer Experience,https://b2b.sangvish.com,User Interactions,POST,/api/cms,Create / submit a new cms
+Customer Experience,https://b2b.sangvish.com,User Interactions,DELETE,/api/cms/:id,Delete cms by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/commission,Get list of commission records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/commission,Create / submit a new commission
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/commission/:id,Update commission by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/commission/:id,Delete commission by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/commission/calculate,Create / submit a new commission
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/languages,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/currencies,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/countries,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/states/:countryId,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/business-types,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/footer-sections,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/shipping-rules,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/trust-items,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/partners,Get list of common records
+Common Settings,https://b2b.sangvish.com,Global Options,POST,/api/common/shipping/calculate,Create / submit a new common
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/common/payout-methods,Get list of common records
+Company Catalog,https://b2b.sangvish.com,Supplier Directory,GET,/api/company/profile,Get list of company records
+Company Catalog,https://b2b.sangvish.com,Supplier Directory,POST,/api/company/profile,Create / submit a new company
+Company Catalog,https://b2b.sangvish.com,Supplier Directory,PUT,/api/company/profile,Update company by ID
+Company Catalog,https://b2b.sangvish.com,Supplier Directory,GET,/api/company/search,Get list of company records
+Company Catalog,https://b2b.sangvish.com,Supplier Directory,GET,/api/company/locations,Get list of company records
+Company Catalog,https://b2b.sangvish.com,Supplier Directory,GET,/api/company/supplier/:id,Get company details by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/coupon,Create / submit a new coupon
+Common Backend,https://b2b.sangvish.com,General,GET,/api/coupon,Get list of coupon records
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/coupon/:id,Delete coupon by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/coupon/public,Get list of coupon records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/coupon/validate,Create / submit a new coupon
+Common Backend,https://b2b.sangvish.com,General,POST,/api/coupon/applicable,Create / submit a new coupon
+Common Backend,https://b2b.sangvish.com,General,GET,/api/crm/leads,Get list of crm records
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/crm/leads/:id,Update crm by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/crm/leads/:id,Delete crm by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/crm/auto-reply,Get list of crm records
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/crm/auto-reply,Update crm by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/customization,Create / submit a new customization
+Common Backend,https://b2b.sangvish.com,General,GET,/api/customization,Get list of customization records
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/customization/:id,Update customization by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/customization/admin/all,Get list of customization records
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/customization/admin/:id,Delete customization by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/dispute,Create / submit a new dispute
+Common Backend,https://b2b.sangvish.com,General,GET,/api/dispute/my-disputes,Get list of dispute records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/dispute/:id/message,Create / submit a new dispute
+Common Backend,https://b2b.sangvish.com,General,GET,/api/dispute/admin/all,Get list of dispute records
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/dispute/:id/resolve,Update dispute by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/enquiry,Create / submit a new enquiry
+Common Backend,https://b2b.sangvish.com,General,GET,/api/enquiry,Get list of enquiry records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/enquiry/bulk,Create / submit a new enquiry
+Common Backend,https://b2b.sangvish.com,General,POST,/api/enquiry/:id/reply,Create / submit a new enquiry
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/enquiry/:id/close,Update enquiry by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/enquiry/admin/all,Get list of enquiry records
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/enquiry/admin/:id,Delete enquiry by ID
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/hero-slides,Get list of heroslide records
+Common Settings,https://b2b.sangvish.com,Global Options,POST,/api/hero-slides,Create / submit a new heroslide
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/hero-slides/all,Get list of heroslide records
+Common Settings,https://b2b.sangvish.com,Global Options,PUT,/api/hero-slides/:id,Update heroslide by ID
+Common Settings,https://b2b.sangvish.com,Global Options,DELETE,/api/hero-slides/:id,Delete heroslide by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/inquiry,Create / submit a new inquiry
+Common Backend,https://b2b.sangvish.com,General,GET,/api/inquiry,Get list of inquiry records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/inquiry/:id,Get inquiry details by ID
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/inquiry/:id,Update inquiry by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/notification,Get list of notification records
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/notification/read-all,Update notification by ID
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/notification/:id/read,Update notification by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/order/checkout-quote/:quoteId,Create / submit a new order
+Common Backend,https://b2b.sangvish.com,General,POST,/api/order/create-checkout-session,Create / submit a new order
+Common Backend,https://b2b.sangvish.com,General,POST,/api/order/verify-session,Create / submit a new order
+Common Backend,https://b2b.sangvish.com,General,POST,/api/order/verify-razorpay,Create / submit a new order
+Common Backend,https://b2b.sangvish.com,General,POST,/api/order/verify-paypal,Create / submit a new order
+Common Backend,https://b2b.sangvish.com,General,GET,/api/order/my-orders,Get list of order records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/order/supplier-orders,Get list of order records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/order/admin/all,Get list of order records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/order/:id,Get order details by ID
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/order/:id/status,Update order by ID
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/order/:id/confirm-delivery,Update order by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/order/admin/clear-pending,Delete order by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/order/admin/:id,Delete order by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product,Get list of product records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/product/search-image,Create / submit a new product
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product/worldwide-search,Get list of product records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product/top-ranking,Get list of product records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product/:id,Get product details by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product/my/products,Get list of product records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product/my/export,Get list of product records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/product/bulk-upload,Create / submit a new product
+Common Backend,https://b2b.sangvish.com,General,POST,/api/product/upload-single,Create / submit a new product
+Common Backend,https://b2b.sangvish.com,General,POST,/api/product/upload-media,Create / submit a new product
+Common Backend,https://b2b.sangvish.com,General,POST,/api/product,Create / submit a new product
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/product/:id,Update product by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/product/:id,Delete product by ID
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/product/:id/toggle-showcase,Update product by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product/ai-sourcing,Get list of product records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/product/:id/request-sample,Create / submit a new product
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product/admin/all,Get list of product records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/product/admin/export,Get list of product records
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/product/:id/approve,Update product by ID
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/product/:id/reject,Update product by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/review/product/:productId,Get list of review records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/review,Create / submit a new review
+Common Backend,https://b2b.sangvish.com,General,GET,/api/review/my-reviews,Get list of review records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/review/:id/report,Create / submit a new review
+Common Backend,https://b2b.sangvish.com,General,GET,/api/review/supplier/my-products,Get list of review records
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/review/:id/reply,Update review by ID
+Common Backend,https://b2b.sangvish.com,General,GET,/api/review/admin/all,Get list of review records
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/review/admin/:id/toggle-hide,Update review by ID
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/review/admin/:id,Update review by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/review/admin/:id,Delete review by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/review/admin/:id/reply,Delete review by ID
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,GET,/api/rfq,Get list of rfq records
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,POST,/api/rfq,Create / submit a new rfq
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,GET,/api/rfq/my-rfqs,Get list of rfq records
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,GET,/api/rfq/:id,Get rfq details by ID
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,POST,/api/rfq/:id/quote,Create / submit a new rfq
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,GET,/api/rfq/:id/quotes,Get rfq details by ID
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,PUT,/api/rfq/quote/:quoteId/status,Update rfq by ID
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,PUT,/api/rfq/quote/:quoteId/negotiate,Update rfq by ID
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,GET,/api/rfq/my-quotes,Get list of rfq records
+RFQ & Negotiations,https://b2b.sangvish.com,Sourcing & RFQ,PUT,/api/rfq/:id/boost,Update rfq by ID
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,POST,/api/shipping-address,Create / submit a new shippingaddress
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,GET,/api/shipping-address,Get list of shippingaddress records
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,PUT,/api/shipping-address/:id,Update shippingaddress by ID
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,DELETE,/api/shipping-address/:id,Delete shippingaddress by ID
+Checkout & Transactions,https://b2b.sangvish.com,Orders & Address,PUT,/api/shipping-address/:id/set-default,Update shippingaddress by ID
+Billing Engine,https://b2b.sangvish.com,Sub-plans,GET,/api/subscription-plans,Get list of subscriptionplan records
+Billing Engine,https://b2b.sangvish.com,Sub-plans,POST,/api/subscription-plans,Create / submit a new subscriptionplan
+Billing Engine,https://b2b.sangvish.com,Sub-plans,PUT,/api/subscription-plans/:id,Update subscriptionplan by ID
+Billing Engine,https://b2b.sangvish.com,Sub-plans,DELETE,/api/subscription-plans/:id,Delete subscriptionplan by ID
+Billing Engine,https://b2b.sangvish.com,Sub-plans,POST,/api/subscription-plans/purchase/:id,Create / submit a new subscriptionplan
+Billing Engine,https://b2b.sangvish.com,Sub-plans,POST,/api/subscription-plans/verify-session,Create / submit a new subscriptionplan
+Billing Engine,https://b2b.sangvish.com,Sub-plans,POST,/api/subscription-plans/verify-razorpay,Create / submit a new subscriptionplan
+Billing Engine,https://b2b.sangvish.com,Sub-plans,POST,/api/subscription-plans/verify-paypal,Create / submit a new subscriptionplan
+Supplier Dashboard,https://b2b.sangvish.com,Supplier Operations,GET,/api/supplier/stats,Get list of supplier records
+Common Backend,https://b2b.sangvish.com,General,GET,/api/tax,Get list of tax records
+Common Backend,https://b2b.sangvish.com,General,POST,/api/tax,Create / submit a new tax
+Common Backend,https://b2b.sangvish.com,General,POST,/api/tax/calculate,Create / submit a new tax
+Common Backend,https://b2b.sangvish.com,General,GET,/api/tax/:id,Get tax details by ID
+Common Backend,https://b2b.sangvish.com,General,PUT,/api/tax/:id,Update tax by ID
+Common Backend,https://b2b.sangvish.com,General,DELETE,/api/tax/:id,Delete tax by ID
+Common Backend,https://b2b.sangvish.com,General,POST,/api/webhook/stripe,Create / submit a new webhook
+Customer Experience,https://b2b.sangvish.com,User Interactions,GET,/api/wishlist,Get list of wishlist records
+Customer Experience,https://b2b.sangvish.com,User Interactions,POST,/api/wishlist/toggle/:productId,Create / submit a new wishlist
+Customer Experience,https://b2b.sangvish.com,User Interactions,POST,/api/wishlist/:productId,Create / submit a new wishlist
+Customer Experience,https://b2b.sangvish.com,User Interactions,DELETE,/api/wishlist/:productId,Delete wishlist by ID
+Customer Experience,https://b2b.sangvish.com,User Interactions,GET,/api/wishlist/check/:productId,Get list of wishlist records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/worldwide/countries,Get list of worldwide records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/worldwide,Get list of worldwide records
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/worldwide/admin/hubs,Get list of worldwide records
+Common Settings,https://b2b.sangvish.com,Global Options,POST,/api/worldwide/admin/hubs,Create / submit a new worldwide
+Common Settings,https://b2b.sangvish.com,Global Options,PUT,/api/worldwide/admin/hubs/:id,Update worldwide by ID
+Common Settings,https://b2b.sangvish.com,Global Options,DELETE,/api/worldwide/admin/hubs/:id,Delete worldwide by ID
+Common Settings,https://b2b.sangvish.com,Global Options,GET,/api/worldwide/admin/rankings,Get list of worldwide records
+Common Settings,https://b2b.sangvish.com,Global Options,POST,/api/worldwide/admin/rankings,Create / submit a new worldwide
+Common Settings,https://b2b.sangvish.com,Global Options,PUT,/api/worldwide/admin/rankings/:id,Update worldwide by ID
+Common Settings,https://b2b.sangvish.com,Global Options,DELETE,/api/worldwide/admin/rankings/:id,Delete worldwide by ID
+Admin Backend,https://b2b.sangvish.com,Auth & Dashboard,GET,/api/admin/stats,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Product Moderation,GET,/api/admin/products,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Product Moderation,PUT,/api/admin/products/:id/approve,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Product Moderation,PUT,/api/admin/products/:id/reject,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Product Moderation,DELETE,/api/admin/products/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,KYC & Verification,GET,/api/admin/companies,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Auth & Dashboard,PUT,/api/admin/companies/:id/verify,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,KYC & Verification,POST,/api/admin/companies/:id/factory-audit,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,System Settings,GET,/api/admin/payment-settings,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,System Settings,PUT,/api/admin/payment-settings,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Auth & Dashboard,GET,/api/admin/social-login,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Auth & Dashboard,PUT,/api/admin/social-login,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/audit-logs,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/risk-alerts,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,System Settings,GET,/api/admin/site-settings,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,System Settings,PUT,/api/admin/site-settings,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/database-backup,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/dummy-data/status,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Admin Operations,POST,/api/admin/dummy-data/import,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Admin Operations,POST,/api/admin/dummy-data/cleanup,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/dummy-data/logs,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,System Settings,GET,/api/admin/email-settings,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,System Settings,PUT,/api/admin/email-settings,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/menu,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,User Management,GET,/api/admin/roles,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/countries,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Admin Operations,POST,/api/admin/countries,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Admin Operations,PUT,/api/admin/countries/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,DELETE,/api/admin/countries/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,POST,/api/admin/countries/seed,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Logistics Config,GET,/api/admin/states,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Logistics Config,POST,/api/admin/states,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Logistics Config,PUT,/api/admin/states/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Logistics Config,DELETE,/api/admin/states/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/footer-sections,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Admin Operations,POST,/api/admin/footer-sections,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Admin Operations,PUT,/api/admin/footer-sections/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,DELETE,/api/admin/footer-sections/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/notifications,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,GET,/api/admin/withdraw-requests,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,GET,/api/admin/payout-methods,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,GET,/api/admin/payout-settings,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,PUT,/api/admin/payout-settings/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,DELETE,/api/admin/payout-settings/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,POST,/api/admin/payout-settings/seed,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,PUT,/api/admin/withdraw-requests/:id/approve,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,PUT,/api/admin/withdraw-requests/:id/decline,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/business-types,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Admin Operations,POST,/api/admin/business-types,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Admin Operations,PUT,/api/admin/business-types/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,DELETE,/api/admin/business-types/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,System Settings,GET,/api/admin/languages,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,System Settings,POST,/api/admin/languages,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,System Settings,PUT,/api/admin/languages/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,System Settings,DELETE,/api/admin/languages/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/currencies,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Admin Operations,POST,/api/admin/currencies,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Admin Operations,PUT,/api/admin/currencies/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,DELETE,/api/admin/currencies/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,Logistics Config,GET,/api/admin/shipping-rules,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,Logistics Config,POST,/api/admin/shipping-rules,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,Logistics Config,PUT,/api/admin/shipping-rules/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,Logistics Config,DELETE,/api/admin/shipping-rules/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,System Settings,GET,/api/admin/email-templates,Get list of admin records
+Admin Backend,https://b2b.sangvish.com,System Settings,GET,/api/admin/email-templates/:id,Get admin details by ID
+Admin Backend,https://b2b.sangvish.com,System Settings,POST,/api/admin/email-templates,Create / submit a new admin
+Admin Backend,https://b2b.sangvish.com,System Settings,PUT,/api/admin/email-templates/:id,Update admin by ID
+Admin Backend,https://b2b.sangvish.com,System Settings,DELETE,/api/admin/email-templates/:id,Delete admin by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,GET,/api/admin/homepage-sections,Get list of homepagesection records
+Admin Backend,https://b2b.sangvish.com,Finance & Orders,PUT,/api/admin/homepage-sections/order,Update homepagesection by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,PUT,/api/admin/homepage-sections/:id/toggle,Update homepagesection by ID
+Admin Backend,https://b2b.sangvish.com,Admin Operations,PUT,/api/admin/homepage-sections/:id,Update homepagesection by ID

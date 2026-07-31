@@ -1,0 +1,511 @@
+.worldwide-container {
+    background: #f8f9fa;
+    padding-bottom: 60px;
+}
+
+
+.ww-nav-section {
+    background: #fff;
+    padding: 10px 50px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+    .ww-nav-section {
+        padding: 0;
+    }
+}
+
+.ww-countries-swiper-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    /* Space for the buttons within container */
+}
+
+.ww-countries-swiper {
+    flex: 1;
+    padding: 20px 10px;
+    /* Increased vertical padding to avoid shadow clipping on active circle */
+    overflow: hidden;
+}
+
+.ww-country-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -10px 0 20px 10px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+    z-index: 10;
+}
+
+.ww-country-nav-btn:hover {
+    background: #f8f8f8;
+    color: #333;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.ww-country-nav-btn.next {
+    right: 0;
+}
+
+.ww-country-nav-btn.prev {
+    left: 0;
+}
+
+.ww-country-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    min-width: 80px;
+    transition: transform 0.2s;
+}
+
+.ww-country-item:hover {
+    transform: translateY(-2px);
+}
+
+.ww-flag-circle {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    /* Ensures it stays a perfect circle and is not squeezed */
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 0 0 2px transparent, 0 0 0 3px transparent;
+}
+
+@media (max-width: 768px) {
+    .ww-flag-circle {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.ww-country-item.active .ww-flag-circle {
+    border-color: #fff;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #111;
+}
+
+.ww-flag-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.ww-global-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #002159;
+    /* Matching primary navy blue */
+}
+
+.ww-country-item span {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    margin-top: -2px;
+}
+
+.ww-country-item.active span {
+    color: #111;
+    font-weight: 700;
+}
+
+/* Global Industry Hubs */
+.ww-section {
+    margin-top: 48px;
+    padding: 0 28px;
+}
+
+.ww-section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #333;
+    letter-spacing: -0.5px;
+}
+
+.ww-hubs-swiper-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.ww-hub-nav-btn {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 10;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.ww-hub-nav-btn:hover {
+    background: #f8f8f8;
+    transform: scale(1.1);
+}
+
+.ww-hub-nav-btn.prev {
+    left: -22px;
+}
+
+.ww-hub-nav-btn.next {
+    right: -22px;
+}
+
+.ww-hubs-swiper {
+    width: 100%;
+}
+
+.ww-hub-slide {
+    width: 386px !important;
+    /* 1160 - (2*20) / 3 approx */
+    height: auto;
+}
+
+.ww-hub-card {
+    display: flex;
+    gap: 12px;
+    height: 300px;
+    /* Fixed height for consistency */
+}
+
+.ww-hub-main-box {
+    flex: 2;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: #eee;
+}
+
+.ww-hub-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ww-hub-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: #fff;
+}
+
+.ww-hub-region {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.ww-hub-region img {
+    width: 16px;
+    height: 12px;
+    object-fit: contain;
+}
+
+.ww-hub-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.ww-hub-desc {
+    font-size: 13px;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.ww-hub-side-images {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+}
+
+.ww-hub-side-box {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.ww-hub-side-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ww-empty-side {
+    background: #f3f4f6 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Ranking Section */
+.ww-ranking-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.ww-rank-category-group {
+    margin-bottom: 48px;
+}
+
+.ww-rank-group-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 24px;
+    padding-left: 14px;
+    border-left: 5px solid #002159;
+    /* Navy primary */
+    line-height: 1;
+}
+
+.ww-rank-column {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.ww-rank-country {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.ww-rank-country img {
+    width: 18px;
+    height: 12px;
+}
+
+.ww-rank-divider {
+    height: 1px;
+    background: #eee;
+    margin-bottom: 16px;
+}
+
+.ww-rank-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ww-rank-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ww-rank-num {
+    font-weight: 700;
+    color: #333;
+    font-size: 16px;
+    min-width: 24px;
+}
+
+.ww-rank-img-box {
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f8f8;
+}
+
+.ww-rank-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ww-rank-info {
+    flex: 1;
+}
+
+.ww-rank-score-label {
+    font-size: 11px;
+    color: #999;
+}
+
+.ww-rank-score-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #002159;
+    /* Primary navy */
+}
+
+/* Product Inspiration */
+.ww-inspiration-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+.ww-insp-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+}
+
+.ww-insp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.ww-insp-img-box {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    background: #f8f8f8;
+}
+
+.ww-insp-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ww-insp-name {
+    font-size: 13px;
+    height: 36px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.ww-insp-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.ww-insp-moq {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.ww-insp-supplier {
+    font-size: 11px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ww-insp-supplier img {
+    width: 14px;
+    height: 10px;
+}
+
+@media (max-width: 1024px) {
+    .ww-hub-slide {
+        width: 48% !important;
+    }
+
+    .ww-ranking-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ww-inspiration-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .ww-hub-slide {
+        width: 100% !important;
+    }
+
+    .ww-ranking-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ww-inspiration-grid {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+
+    .ww-section-title {
+        text-align: center;
+    }
+
+    .ww-rank-category-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ww-rank-group-title {
+        border-left: none;
+        padding-left: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 450px) {
+    .worldwide-container {
+        padding-top: 52px !important;
+    }
+}

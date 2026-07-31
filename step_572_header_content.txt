@@ -1,0 +1,129 @@
+Created At: 2026-06-24T11:49:56Z
+Completed At: 2026-06-24T11:49:56Z
+File Path: `file:///e:/aliexpress/frontend/src/components/js/Header.tsx`
+Total Lines: 1309
+Total Bytes: 100373
+Showing lines 1030 to 1150
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1030:                         {/* Categories Dropdown Wrapper */}
+1031:                         <div
+1032:                             className="premia-all-categories-wrapper"
+1033:                             onMouseEnter={() => (typeof window !== 'undefined' ? window.innerWidth : 768) > 768 && setIsMenuOpen(true)}
+1034:                             onMouseLeave={() => (typeof window !== 'undefined' ? window.innerWidth : 768) > 768 && setIsMenuOpen(false)}
+1035:                             onClick={() => (typeof window !== 'undefined' ? window.innerWidth : 768) <= 768 && setIsMenuOpen(!isMenuOpen)}
+1036:                         >
+1037:                             <button className="premia-all-categories-btn">
+1038:                                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+1039:                                 <span>All Categories</span>
+1040:                             </button>
+1041: 
+1042:                             {isMenuOpen && (
+1043:                                 <div className="mega-menu premia-mega-menu">
+1044:                                     <div className="mega-menu-container d-flex">
+1045:                                         <div className="mega-menu-left">
+1046:                                             <ul className="category-list">
+1047:                                                 <li
+1048:                                                     className={`category-item d-flex align-center gap-2 ${!activeCategory ? 'active' : ''}`}
+1049:                                                     onMouseEnter={() => setActiveCategory(null)}
+1050:                                                 >
+1051:                                                     <div className="cat-icon-wrapper">
+1052:                                                         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+1053:                                                     </div>
+1054:                                                     <span className="cat-title-text">Categories for you</span>
+1055:                                                 </li>
+1056:                                                 {categories.map(cat => (
+1057:                                                     <li
+1058:                                                         key={cat._id}
+1059:                                                         className={`category-item d-flex align-center gap-2 ${activeCategory?._id === cat._id ? 'active' : ''}`}
+1060:                                                         onMouseEnter={() => setActiveCategory(cat)}
+1061:                                                         onClick={() => {
+1062:                                                             navigate.push(`/search?category_id=${cat._id}`);
+1063:                                                             setIsMenuOpen(false);
+1064:                                                         }}
+1065:                                                     >
+1066:                                                         <div className="cat-icon-wrapper">
+1067:                                                             <img src={getImgUrl(cat.image)} alt="" className="cat-menu-img" onError={(e) => (e.target as HTMLImageElement).src = 'https://cdn-icons-png.flaticon.com/512/711/711707.png'} />
+1068:                                                         </div>
+1069:                                                         <span className="cat-title-text">{cat.title}</span>
+1070:                                                     </li>
+1071:                                                 ))}
+1072:                                             </ul>
+1073:                                         </div>
+1074:                                         <div className="mega-menu-right">
+1075:                                             <div className="mega-menu-scroll-area">
+1076:                                                 <div className="mega-category-section">
+1077:                                                     <div className="mega-menu-title-row">
+1078:                                                         <h4 className="active-cat-title category-title">
+1079:                                                             {activeCategory ? activeCategory.title : 'Featured Categories'}
+1080:                                                         </h4>
+1081:                                                         <Link href={activeCategory ? `/search?category_id=${activeCategory._id}` : '/search'} className="browse-link-alibaba view-all-link">View all &gt;</Link>
+1082:                                                     </div>
+1083:                                                     <div className="subcategory-grid">
+1084:                                                         {activeCategory ? (
+1085:                                                             activeCategory.children && activeCategory.children.length > 0 ? (
+1086:                                                                 activeCategory.children.map((sub: Category) => (
+1087:                                                                     <div key={sub._id} className="subcategory-group-circular">
+1088:                                                                         <Link
+1089:                                                                             href={`/search?category_id=${sub._id}`}
+1090:                                                                             className="subcategory-circular-link"
+1091:                                                                             onClick={() => setIsMenuOpen(false)}
+1092:                                                                         >
+1093:                                                                             <div className="sub-cat-circle-img">
+1094:                                                                                 <img
+1095:                                                                                     src={getImgUrl(sub.image)}
+1096:                                                                                     alt={sub.title}
+1097:                                                                                     onError={(e) => {
+1098:                                                                                         (e.target as HTMLImageElement).src = 'https://cdn-icons-png.flaticon.com/512/711/711707.png';
+1099:                                                                                     }}
+1100:                                                                                 />
+1101:                                                                             </div>
+1102:                                                                             <span className="subcategory-circular-title">{sub.title}</span>
+1103:                                                                         </Link>
+1104:                                                                     </div>
+1105:                                                                 ))
+1106:                                                             ) : (
+1107:                                                                 <div className="no-subcategories" style={{ gridColumn: '1 / -1' }}>
+1108:                                                                     <p>Explore all products in {activeCategory.title}</p>
+1109:                                                                 </div>
+1110:                                                             )
+1111:                                                         ) : (
+1112:                                                             categories.slice(0, 10).map((parent: Category) => (
+1113:                                                                 parent.children && parent.children.slice(0, 1).map((sub: Category) => (
+1114:                                                                     <div key={sub._id} className="subcategory-group-circular">
+1115:                                                                         <Link
+1116:                                                                             href={`/search?category_id=${sub._id}`}
+1117:                                                                             className="subcategory-circular-link"
+1118:                                                                             onClick={() => setIsMenuOpen(false)}
+1119:                                                                         >
+1120:                                                                             <div className="sub-cat-circle-img">
+1121:                                                                                 <img src={getImgUrl(sub.image)} alt={sub.title} onError={(e) => {
+1122:                                                                                     (e.target as HTMLImageElement).src = 'https://cdn-icons-png.flaticon.com/512/711/711707.png';
+1123:                                                                                 }} />
+1124:                                                                             </div>
+1125:                                                                             <span className="subcategory-circular-title">{sub.title}</span>
+1126:                                                                         </Link>
+1127:                                                                     </div>
+1128:                                                                 ))
+1129:                                                             ))
+1130:                                                         )}
+1131:                                                     </div>
+1132:                                                 </div>
+1133:                                             </div>
+1134:                                         </div>
+1135:                                     </div>
+1136:                                 </div>
+1137:                             )}
+1138:                         </div>
+1139: 
+1140:                         {/* Navigation Links */}
+1141:                         <div className="premia-nav-links">
+1142:                             {(() => {
+1143:                                 const rootLinks = headerLinks.filter((link: any) => !link.parent);
+1144:                                 const getChildren = (parentId: string) => {
+1145:                                     return headerLinks.filter((link: any) => {
+1146:                                         const pId = link.parent?._id || link.parent;
+1147:                                         return pId === parentId;
+1148:                                     });
+1149:                                 };
+1150:                                 return rootLinks.map((link: any) => {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

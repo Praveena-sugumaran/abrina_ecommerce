@@ -1,0 +1,652 @@
+/* ── Step-by-step flow ── */
+
+.rfq-step-card {
+    flex: 1;
+}
+
+.rfq-progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.rfq-progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.rfq-progress-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e8e8e8;
+    color: #999;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.rfq-progress-step.active .rfq-progress-circle {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.rfq-progress-step.current .rfq-progress-circle {
+    box-shadow: 0 0 0 3px var(--primary-color);
+}
+
+.rfq-progress-label {
+    font-size: 11px;
+    color: #999;
+    white-space: nowrap;
+}
+
+.rfq-progress-step.active .rfq-progress-label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.rfq-progress-line {
+    flex: 1;
+    height: 2px;
+    background: #e8e8e8;
+    margin: 0 8px;
+    margin-bottom: 18px;
+    transition: background 0.3s ease;
+    min-width: 40px;
+}
+
+.rfq-progress-line.active {
+    background: var(--primary-color);
+}
+
+/* Step body */
+.rfq-step-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.rfq-step-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.25rem;
+}
+
+.rfq-step-subtitle {
+    margin: -0.75rem 0 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.rfq-step-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Product search autocomplete */
+.rfq-search-wrap {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+.rfq-search-input {
+    width: 100%;
+    padding: 0.85rem 2.5rem 0.85rem 1rem;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.rfq-search-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+.rfq-search-input.has-suggestions {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
+}
+
+.rfq-search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.rfq-search-clear:hover {
+    color: #666;
+}
+
+.rfq-suggestions {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1.5px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    z-index: 9999;
+    max-height: 280px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.rfq-suggestion-item {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.rfq-suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.rfq-suggestion-item:hover {
+    background: #f0f4ff;
+    color: var(--primary-color);
+}
+
+
+/* ── Page background ── */
+.rfq-page-bg {
+    padding: 3rem 1rem;
+    background-color: #f4f7f9;
+    min-height: calc(100vh - 80px);
+}
+
+/* ── Container ── */
+.rfq-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ── Row ── */
+.rfq-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* ── col-7 (left: form) ── */
+.rfq-col-7 {
+    flex: 0 0 calc(58.333% - 1rem);
+    max-width: calc(58.333% - 1rem);
+    min-width: 0;
+}
+
+/* ── col-5 (right: sidebar) ── */
+.rfq-col-5 {
+    flex: 0 0 calc(41.667% - 1rem);
+    max-width: calc(41.667% - 1rem);
+    min-width: 0;
+}
+
+@media (max-width: 1200px) {
+    .rfq-page-bg {
+        padding: 0 !important;
+    }
+
+    .rfq-container {
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .rfq-col-7,
+    .rfq-col-5 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    .rfq-form-card {
+        border-radius: 0 !important;
+        padding: 1.5rem 1rem !important;
+    }
+
+    .rfq-how-to {
+        width: 100% !important;
+        position: static !important;
+        box-sizing: border-box !important;
+        margin-bottom: 2.5rem !important;
+    }
+
+    .rfq-form-card {
+        padding: 1.5rem !important;
+        box-sizing: border-box !important;
+    }
+
+    .rfq-step-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .rfq-btn-cancel,
+    .rfq-btn-submit {
+        flex: 1 !important;
+        height: 40px !important;
+        padding: 0 12px !important;
+        font-size: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        border-radius: 8px !important;
+    }
+
+    .rfq-progress-bar {
+        gap: 0 !important;
+        justify-content: space-between !important;
+    }
+
+    .rfq-progress-step {
+        flex: 1 !important;
+        text-align: center !important;
+        gap: 4px !important;
+    }
+
+    .rfq-progress-label {
+        white-space: normal !important;
+        word-break: break-word !important;
+        line-height: 1.2 !important;
+        font-size: 11px !important;
+        text-align: center !important;
+        display: block !important;
+    }
+
+    .rfq-progress-line {
+        min-width: 15px !important;
+        margin: 0 4px 18px !important;
+        flex: 0.5 !important;
+    }
+
+    .rfq-suggestions {
+        left: 0 !important;
+        right: 0 !important;
+        width: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    .rfq-suggestion-item {
+        white-space: normal !important;
+        word-break: break-word !important;
+        line-height: 1.4 !important;
+        font-size: 14px !important;
+        padding: 12px 16px !important;
+    }
+}
+
+/* ── "How to use RFQ" sidebar ── */
+.rfq-how-to {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    position: sticky;
+    top: 90px;
+}
+
+.rfq-how-to-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.rfq-how-to-icon {
+    background: #e8701a;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 4px 7px;
+    border-radius: 5px;
+    line-height: 1.2;
+}
+
+.rfq-how-to-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.rfq-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.rfq-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+}
+
+.rfq-step-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f4f7f9;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rfq-step-content strong {
+    display: block;
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+}
+
+.rfq-step-content p {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.rfq-how-to-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: #f0f4ff;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.rfq-how-to-tip svg {
+    flex-shrink: 0;
+    color: var(--primary-color);
+    margin-top: 2px;
+}
+
+.rfq-form-card {
+    background: #ffffff;
+    width: 100%;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.rfq-form-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.rfq-form-header h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.rfq-form-header p {
+    color: #666;
+    font-size: 1rem;
+}
+
+.rfq-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rfq-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.rfq-field-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.rfq-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.rfq-ai-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.2);
+}
+
+.rfq-ai-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+    filter: brightness(1.1);
+}
+
+.rfq-ai-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+    background: #ccc;
+    box-shadow: none;
+}
+
+.rfq-field-group input,
+.rfq-field-group select,
+.rfq-field-group textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.rfq-field-group input:focus,
+.rfq-field-group select:focus,
+.rfq-field-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.rfq-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.rfq-alert-error {
+    background-color: #fff1f0;
+    border: 1px solid #ffa39e;
+    color: #cf1322;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.rfq-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.rfq-btn-cancel {
+    background: #f0f2f5;
+    color: #666;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.rfq-btn-submit {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.8rem 2.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.rfq-btn-submit:hover {
+    filter: brightness(0.9);
+}
+
+.rfq-btn-submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+    .rfq-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+.rfq-file-upload {
+    position: relative;
+}
+
+.rfq-file-upload input {
+    display: none;
+}
+
+.rfq-file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.rfq-file-label:hover {
+    border-color: var(--primary-color);
+    background-color: #f9fbff;
+}
+
+.rfq-file-label span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.rfq-file-label small {
+    color: #999;
+}
+
+.rfq-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.rfq-preview-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.rfq-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rfq-preview-item button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.rfq-preview-item button:hover {
+    background: rgba(255, 0, 0, 0.7);
+}
+
+@media (max-width: 450px) {
+    .rfq-page-bg {
+        padding-top: 52px !important;
+    }
+}

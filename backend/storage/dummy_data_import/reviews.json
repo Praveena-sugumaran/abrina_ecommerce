@@ -1,0 +1,13 @@
+[
+    {
+        "_id": "664c7e6b0000000000000070",
+        "buyer_id": "664c7e6b0000000000000010",
+        "supplier_id": "664c7e6b0000000000000011",
+        "product_id": "664c7e6b0000000000000030",
+        "order_id": "664c7e6b0000000000000040",
+        "rating": 5,
+        "comment": "Outstanding heavy-duty compressor! Built like a tank, extremely quiet compared to our previous 10HP system, and the supplier provided exceptional setup assistance.",
+        "createdAt": "2026-05-15T09:00:00.000Z",
+        "updatedAt": "2026-05-15T09:00:00.000Z"
+    }
+]

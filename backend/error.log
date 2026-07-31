@@ -1,0 +1,128 @@
+2026-06-16T07:10:47.014Z | PUT /api/products/664c7e6b0000000000000035 | Error: File too large
+Stack: MulterError: File too large
+    at abortWithCode (E:\b2b_purchase_code\backend\node_modules\multer\lib\make-middleware.js:101:22)
+    at FileStream.<anonymous> (E:\b2b_purchase_code\backend\node_modules\multer\lib\make-middleware.js:211:11)
+    at FileStream.emit (node:events:524:28)
+    at SBMH.ssCb [as _cb] (E:\b2b_purchase_code\backend\node_modules\busboy\lib\types\multipart.js:479:32)
+    at feed (E:\b2b_purchase_code\backend\node_modules\streamsearch\lib\sbmh.js:248:10)
+    at SBMH.push (E:\b2b_purchase_code\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (E:\b2b_purchase_code\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at Writable.write (node:internal/streams/writable:510:10)
+
+2026-06-16T07:11:16.361Z | PUT /api/products/664c7e6b0000000000000035 | Error: Request aborted
+Stack: Error: Request aborted
+    at IncomingMessage.<anonymous> (E:\b2b_purchase_code\backend\node_modules\multer\lib\make-middleware.js:118:28)
+    at IncomingMessage.emit (node:events:524:28)
+    at IncomingMessage._destroy (node:_http_incoming:221:10)
+    at _destroy (node:internal/streams/destroy:121:10)
+    at IncomingMessage.destroy (node:internal/streams/destroy:83:5)
+    at abortIncoming (node:_http_server:796:9)
+    at socketOnClose (node:_http_server:790:3)
+    at Socket.emit (node:events:536:35)
+    at TCP.<anonymous> (node:net:343:12)
+
+2026-06-16T07:15:04.362Z | PUT /api/products/664c7e6b0000000000000035 | Error: File too large
+Stack: MulterError: File too large
+    at abortWithCode (E:\b2b_purchase_code\backend\node_modules\multer\lib\make-middleware.js:101:22)
+    at FileStream.<anonymous> (E:\b2b_purchase_code\backend\node_modules\multer\lib\make-middleware.js:211:11)
+    at FileStream.emit (node:events:524:28)
+    at SBMH.ssCb [as _cb] (E:\b2b_purchase_code\backend\node_modules\busboy\lib\types\multipart.js:479:32)
+    at feed (E:\b2b_purchase_code\backend\node_modules\streamsearch\lib\sbmh.js:248:10)
+    at SBMH.push (E:\b2b_purchase_code\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (E:\b2b_purchase_code\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at Writable.write (node:internal/streams/writable:510:10)
+
+2026-06-16T07:18:39.828Z | PUT /api/products/664c7e6b0000000000000035 | Error: File too large
+Stack: MulterError: File too large
+    at abortWithCode (E:\b2b_purchase_code\backend\node_modules\multer\lib\make-middleware.js:101:22)
+    at FileStream.<anonymous> (E:\b2b_purchase_code\backend\node_modules\multer\lib\make-middleware.js:211:11)
+    at FileStream.emit (node:events:524:28)
+    at SBMH.ssCb [as _cb] (E:\b2b_purchase_code\backend\node_modules\busboy\lib\types\multipart.js:479:32)
+    at feed (E:\b2b_purchase_code\backend\node_modules\streamsearch\lib\sbmh.js:248:10)
+    at SBMH.push (E:\b2b_purchase_code\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (E:\b2b_purchase_code\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at Writable.write (node:internal/streams/writable:510:10)
+
+2026-06-16T07:23:29.822Z | PUT /api/products/664c7e6b0000000000000035 | Error: Request aborted
+Stack: Error: Request aborted
+    at IncomingMessage.<anonymous> (E:\b2b_purchase_code\backend\node_modules\multer\lib\make-middleware.js:118:28)
+    at IncomingMessage.emit (node:events:524:28)
+    at IncomingMessage._destroy (node:_http_incoming:221:10)
+    at _destroy (node:internal/streams/destroy:121:10)
+    at IncomingMessage.destroy (node:internal/streams/destroy:83:5)
+    at abortIncoming (node:_http_server:796:9)
+    at socketOnClose (node:_http_server:790:3)
+    at Socket.emit (node:events:536:35)
+    at TCP.<anonymous> (node:net:343:12)
+
+2026-06-24T09:47:00.678Z | PUT /api/admin/site-settings | Error: request entity too large
+Stack: PayloadTooLargeError: request entity too large
+    at readStream (E:\aliexpress\backend\node_modules\raw-body\index.js:163:17)
+    at getRawBody (E:\aliexpress\backend\node_modules\raw-body\index.js:116:12)
+    at read (E:\aliexpress\backend\node_modules\body-parser\lib\read.js:113:3)
+    at jsonParser (E:\aliexpress\backend\node_modules\body-parser\lib\types\json.js:88:5)
+    at Layer.handleRequest (E:\aliexpress\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\aliexpress\backend\node_modules\router\index.js:342:13)
+    at E:\aliexpress\backend\node_modules\router\index.js:297:9
+    at processParams (E:\aliexpress\backend\node_modules\router\index.js:582:12)
+    at next (E:\aliexpress\backend\node_modules\router\index.js:291:5)
+    at E:\aliexpress\backend\node_modules\express-rate-limit\dist\index.cjs:942:7
+
+2026-06-24T09:47:35.298Z | PUT /api/admin/site-settings | Error: request entity too large
+Stack: PayloadTooLargeError: request entity too large
+    at readStream (E:\aliexpress\backend\node_modules\raw-body\index.js:163:17)
+    at getRawBody (E:\aliexpress\backend\node_modules\raw-body\index.js:116:12)
+    at read (E:\aliexpress\backend\node_modules\body-parser\lib\read.js:113:3)
+    at jsonParser (E:\aliexpress\backend\node_modules\body-parser\lib\types\json.js:88:5)
+    at Layer.handleRequest (E:\aliexpress\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\aliexpress\backend\node_modules\router\index.js:342:13)
+    at E:\aliexpress\backend\node_modules\router\index.js:297:9
+    at processParams (E:\aliexpress\backend\node_modules\router\index.js:582:12)
+    at next (E:\aliexpress\backend\node_modules\router\index.js:291:5)
+    at E:\aliexpress\backend\node_modules\express-rate-limit\dist\index.cjs:942:7
+
+2026-06-24T09:48:05.274Z | PUT /api/admin/site-settings | Error: request entity too large
+Stack: PayloadTooLargeError: request entity too large
+    at readStream (E:\aliexpress\backend\node_modules\raw-body\index.js:163:17)
+    at getRawBody (E:\aliexpress\backend\node_modules\raw-body\index.js:116:12)
+    at read (E:\aliexpress\backend\node_modules\body-parser\lib\read.js:113:3)
+    at jsonParser (E:\aliexpress\backend\node_modules\body-parser\lib\types\json.js:88:5)
+    at Layer.handleRequest (E:\aliexpress\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\aliexpress\backend\node_modules\router\index.js:342:13)
+    at E:\aliexpress\backend\node_modules\router\index.js:297:9
+    at processParams (E:\aliexpress\backend\node_modules\router\index.js:582:12)
+    at next (E:\aliexpress\backend\node_modules\router\index.js:291:5)
+    at E:\aliexpress\backend\node_modules\express-rate-limit\dist\index.cjs:942:7
+
+2026-07-10T08:03:24.095Z | POST /api/reviews/upload-media | Error: Invalid file type!
+Stack: Error: Invalid file type!
+    at fileFilter (E:\aliexpress\backend\middlewares\uploadMiddleware.js:180:16)
+    at wrappedFileFilter (E:\aliexpress\backend\node_modules\multer\index.js:45:7)
+    at Multipart.<anonymous> (E:\aliexpress\backend\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (E:\aliexpress\backend\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (E:\aliexpress\backend\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (E:\aliexpress\backend\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (E:\aliexpress\backend\node_modules\streamsearch\lib\sbmh.js:248:10)
+    at SBMH.push (E:\aliexpress\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (E:\aliexpress\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+
+2026-07-10T08:03:34.556Z | POST /api/reviews/upload-media | Error: Invalid file type!
+Stack: Error: Invalid file type!
+    at fileFilter (E:\aliexpress\backend\middlewares\uploadMiddleware.js:180:16)
+    at wrappedFileFilter (E:\aliexpress\backend\node_modules\multer\index.js:45:7)
+    at Multipart.<anonymous> (E:\aliexpress\backend\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (E:\aliexpress\backend\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (E:\aliexpress\backend\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (E:\aliexpress\backend\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (E:\aliexpress\backend\node_modules\streamsearch\lib\sbmh.js:248:10)
+    at SBMH.push (E:\aliexpress\backend\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (E:\aliexpress\backend\node_modules\busboy\lib\types\multipart.js:567:19)
+

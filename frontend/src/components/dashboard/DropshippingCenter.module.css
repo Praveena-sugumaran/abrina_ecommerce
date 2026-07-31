@@ -1,0 +1,635 @@
+/* ─── Redesigned Supplier Dropshipping Center Styles ─── */
+
+.container {
+
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(13, 46, 103, 0.06);
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid #f1f5f9;
+    font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+    color: #1e293b;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    border-bottom: 1px solid #f1f5f9;
+    background: #fff;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.titleSection h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.titleSection p {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 4px 0 0;
+    line-height: 1.5;
+}
+
+/* Premium Analytics Stats Row */
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 20px 32px;
+    background: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+    gap: 16px;
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-right: 1px solid #f1f5f9;
+    padding-right: 16px;
+}
+
+.statItem:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.statIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.statInfo {
+    min-width: 0;
+}
+
+.statLabel {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.statValue {
+    margin: 2px 0 0;
+    font-size: 20px;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+
+/* Search and Filter Toolbar */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    gap: 16px;
+}
+
+.tabs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    background: transparent;
+    border: none;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.tab:hover {
+    color: #0f172a;
+}
+
+.tab.active {
+    color: var(--primary-color, #ff6a00);
+    font-weight: 700;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-color, #ff6a00);
+    border-radius: 3px 3px 0 0;
+}
+
+.searchWrap {
+    position: relative;
+    width: 280px;
+    margin: 12px 0;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px 14px 10px 40px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #0f172a;
+    outline: none;
+    transition: all 0.2s;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.searchInput:focus {
+    border-color: var(--primary-color, #ff6a00);
+    box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.1);
+}
+
+/* Orders List */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    background: #fafbfc;
+}
+
+/* Order Card */
+.card {
+    background: #ffffff;
+    border: 1.5px solid #e8edf5;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 24px rgba(13, 46, 103, 0.05);
+}
+
+/* Card Header */
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.cardHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.idBadge {
+    font-size: 12px;
+    font-weight: 800;
+    color: #475569;
+    background: #e2e8f0;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+}
+
+.dateText {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.protocolBadge {
+    background: #fff7ed;
+    color: #d97706;
+    border: 1px solid #fef3c7;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cardHeaderRight {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.statusBadge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.statusBadge.pending { background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; }
+.statusBadge.confirmed { background: #eff6ff; color: #2563eb; border: 1px solid #dbeafe; }
+.statusBadge.processing { background: #f5f3ff; color: #7c3aed; border: 1px solid #ede9fe; }
+.statusBadge.shipped { background: #ecfdf5; color: #059669; border: 1px solid #d1fae5; }
+.statusBadge.out_for_delivery { background: #fef3c7; color: #d97706; border: 1px solid #fef3c7; }
+.statusBadge.delivered { background: #f0fdf4; color: #16a34a; border: 1px solid #dcfce7; }
+.statusBadge.cancelled { background: #fef2f2; color: #dc2626; border: 1px solid #fee2e2; }
+
+.priceText {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+/* Card Grid Body */
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 20px;
+}
+
+/* Address Block */
+.addressBlock h4 {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.addressDetails {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #475569;
+}
+
+.addressName {
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.addressPhone {
+    font-weight: 700;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+/* Blind Shipping Protocol Alert */
+.protocolAlert {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.alertBox {
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.alertIcon {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.alertText {
+    font-size: 11.5px;
+    color: #991b1b;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+/* Buyer Note Box */
+.noteBox {
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-radius: 10px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.noteTitle {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #b45309;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.noteContent {
+    font-size: 12px;
+    color: #78350f;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* Items List Block */
+.itemsBlock {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 0 20px 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.itemsBlock h4 {
+    margin: 0 0 10px;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.itemsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.itemRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.itemLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.itemImage {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.itemMeta {
+    min-width: 0;
+}
+
+.itemName {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.itemVariant {
+    margin: 1px 0 0;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.itemPrice {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #475569;
+    flex-shrink: 0;
+}
+
+/* Actions Bar */
+.actionsBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding: 12px 20px;
+    background: #fafbfc;
+}
+
+/* Buttons */
+.btnPrimary {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #fff;
+}
+
+.btnPrimary:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.btnGhost {
+    padding: 8px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #fff;
+    color: #475569;
+    transition: all 0.2s ease;
+}
+
+.btnGhost:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #1e293b;
+}
+
+/* Empty State Styles */
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.emptyIconWrap {
+    width: 64px;
+    height: 64px;
+    background: #fff5eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--primary-color, #ff6a00);
+    box-shadow: 0 6px 16px rgba(255, 106, 0, 0.1);
+    font-size: 28px;
+}
+
+.emptyState h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 6px;
+}
+
+.emptyState p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Loading/Spinner */
+.spinnerWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    gap: 12px;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color, #ff6a00);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Rules */
+@media (max-width: 1024px) {
+    .statsRow {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 16px 24px;
+    }
+    
+    .statItem {
+        border-right: none;
+    }
+
+    .toolbar {
+        padding: 0 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 20px;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 20px;
+        gap: 12px;
+    }
+
+    .searchWrap {
+        width: 100%;
+    }
+
+    .statsRow {
+        grid-template-columns: 1fr;
+        padding: 16px 20px;
+        gap: 12px;
+    }
+
+    .statItem {
+        padding-right: 0;
+    }
+    
+    .cardHeader {
+        padding: 14px 16px;
+    }
+    
+    .cardGrid {
+        padding: 16px;
+    }
+    
+    .itemsBlock {
+        margin: 0 16px 16px;
+    }
+    
+    .actionsBar {
+        padding: 12px 16px;
+    }
+}
+
+@media (max-width: 768px) { .container { padding: 16px; border-radius: 12px; } }
+
+@media (max-width: 480px) { .container { padding: 12px; border-radius: 8px; } }

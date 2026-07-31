@@ -1,0 +1,51 @@
+/* Empty file currently - Tailwind handles almost all styles. */
+/* Just providing a slight animation for the modal entrance */
+
+.booking-modal-overlay {
+    backdrop-filter: blur(2px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.booking-modal-content {
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Hide scrollbar for Webkit but keep scroll capability */
+.booking-modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.booking-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.booking-modal-body::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 10px;
+}
+
+.booking-modal-body::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
+}

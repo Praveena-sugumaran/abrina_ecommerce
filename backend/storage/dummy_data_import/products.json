@@ -1,0 +1,658 @@
+[
+    {
+        "_id": "664c7e6b0000000000000030",
+        "name": "Industrial Heavy Duty Air Compressor 10HP for Manufacturing",
+        "description": "High pressure tank air compressor. Low noise technology. Includes 2 years warranty and on-site technical support.",
+        "category": "664c7e6b0000000000000001",
+        "sku": "ZJ-AC110",
+        "moq": 2,
+        "unit": "Sets",
+        "main_price": 1200,
+        "oldPrice": 1550,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000030_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000030_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000030_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000030_sub_2.jpg"
+        ],
+        "tags": [
+            "Machinery",
+            "Industrial",
+            "Air Compressor"
+        ],
+        "section": "Top Deals",
+        "price_tiers": [
+            {
+                "min_quantity": 2,
+                "max_quantity": 9,
+                "price": 1200
+            },
+            {
+                "min_quantity": 10,
+                "max_quantity": 49,
+                "price": 1080
+            },
+            {
+                "min_quantity": 50,
+                "price": 960
+            }
+        ],
+        "countInStock": 500,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.8,
+        "numReviews": 24
+    },
+    {
+        "_id": "664c7e6b0000000000000031",
+        "name": "Professional Vertical CNC Machining Center VMC-850",
+        "description": "Precision high-speed CNC milling and machining center for metal parts. Equipped with advanced Siemens controller system.",
+        "category": "664c7e6b0000000000000001",
+        "sku": "ZJ-CNC850",
+        "moq": 1,
+        "unit": "Sets",
+        "main_price": 24500,
+        "oldPrice": 32000,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000031_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000031_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000031_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000031_sub_2.jpg"
+        ],
+        "tags": [
+            "CNC",
+            "Metalwork",
+            "Machinery"
+        ],
+        "section": "Top Ranking",
+        "price_tiers": [
+            {
+                "min_quantity": 1,
+                "max_quantity": 2,
+                "price": 24500
+            },
+            {
+                "min_quantity": 3,
+                "price": 22000
+            }
+        ],
+        "countInStock": 20,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.9,
+        "numReviews": 12
+    },
+    {
+        "_id": "664c7e6b0000000000000032",
+        "name": "400W Monocrystalline PV Solar Panel for Household System",
+        "description": "High-efficiency monocrystalline solar panels. TUV & CE certified. Heavy load and extreme weather resistant.",
+        "category": "664c7e6b0000000000000002",
+        "sku": "ZJ-SP400W",
+        "moq": 50,
+        "unit": "Pieces",
+        "main_price": 85.5,
+        "oldPrice": 120,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000032_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000032_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000032_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000032_sub_2.jpg"
+        ],
+        "tags": [
+            "Solar",
+            "Energy",
+            "Panel"
+        ],
+        "section": "Top Deals",
+        "price_tiers": [
+            {
+                "min_quantity": 50,
+                "max_quantity": 249,
+                "price": 85.5
+            },
+            {
+                "min_quantity": 250,
+                "max_quantity": 999,
+                "price": 76.95
+            },
+            {
+                "min_quantity": 1000,
+                "price": 68.4
+            }
+        ],
+        "countInStock": 10000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.7,
+        "numReviews": 45
+    },
+    {
+        "_id": "664c7e6b0000000000000033",
+        "name": "Full Color Indoor P2.5 LED Video Wall Stage Screen",
+        "description": "High-resolution indoor LED display panel. Ultra-slim cabinet, fast setup for corporate events and stages.",
+        "category": "664c7e6b0000000000000002",
+        "sku": "ZJ-LEDV25",
+        "moq": 10,
+        "unit": "sqm",
+        "main_price": 450,
+        "oldPrice": 650,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000033_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000033_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000033_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000033_sub_2.jpg"
+        ],
+        "tags": [
+            "LED",
+            "Display",
+            "Advertising"
+        ],
+        "section": "New Arrivals",
+        "price_tiers": [
+            {
+                "min_quantity": 10,
+                "max_quantity": 49,
+                "price": 450
+            },
+            {
+                "min_quantity": 50,
+                "price": 405
+            }
+        ],
+        "countInStock": 2000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.6,
+        "numReviews": 18
+    },
+    {
+        "_id": "664c7e6b0000000000000034",
+        "name": "Wholesale Modern Ergonomic Mesh Office Chair",
+        "description": "Premium breathable mesh chair. High durability gas cylinder, 3D adjustable armrests, and dynamic lumbar support.",
+        "category": "664c7e6b0000000000000003",
+        "sku": "ZJ-CH402",
+        "moq": 100,
+        "unit": "Pieces",
+        "main_price": 32.8,
+        "oldPrice": 48,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000034_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000034_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000034_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000034_sub_2.jpg"
+        ],
+        "tags": [
+            "Furniture",
+            "Office",
+            "Chair"
+        ],
+        "section": "Top Ranking",
+        "price_tiers": [
+            {
+                "min_quantity": 100,
+                "max_quantity": 499,
+                "price": 32.8
+            },
+            {
+                "min_quantity": 500,
+                "price": 29.5
+            }
+        ],
+        "countInStock": 5000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.8,
+        "numReviews": 89
+    },
+    {
+        "_id": "664c7e6b0000000000000035",
+        "name": "Custom Logo 100% Cotton Heavyweight Mens Blank T-Shirt",
+        "description": "Premium 240gsm cotton blanks. Available in 20 colors. Custom brand screen-printing and high-definition embroidery options.",
+        "category": "664c7e6b0000000000000004",
+        "sku": "ZJ-TS001",
+        "moq": 100,
+        "unit": "Pieces",
+        "main_price": 4.25,
+        "oldPrice": 8.5,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000035_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000035_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000035_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000035_sub_2.jpg"
+        ],
+        "tags": [
+            "Clothing",
+            "Cotton",
+            "Tshirt"
+        ],
+        "section": "Top Deals",
+        "price_tiers": [
+            {
+                "min_quantity": 100,
+                "max_quantity": 499,
+                "price": 4.25
+            },
+            {
+                "min_quantity": 500,
+                "max_quantity": 1999,
+                "price": 3.8
+            },
+            {
+                "min_quantity": 2000,
+                "price": 3.4
+            }
+        ],
+        "countInStock": 50000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.9,
+        "numReviews": 132
+    },
+    {
+        "_id": "664c7e6b0000000000000036",
+        "name": "Universal Premium Leather Car Seat Covers Set",
+        "description": "Waterproof PU leather full set car seat covers. Airbag compatible.",
+        "category": "664c7e6b0000000000000007",
+        "sku": "ZJ-AC001",
+        "moq": 10,
+        "unit": "Sets",
+        "main_price": 45,
+        "oldPrice": 65,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000036_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000036_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000036_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000036_sub_2.jpg"
+        ],
+        "tags": [
+            "Automotive",
+            "Interior",
+            "Seat Cover"
+        ],
+        "section": "Top Deals",
+        "price_tiers": [
+            {
+                "min_quantity": 10,
+                "max_quantity": 49,
+                "price": 45
+            },
+            {
+                "min_quantity": 50,
+                "price": 38
+            }
+        ],
+        "countInStock": 2000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.5,
+        "numReviews": 34
+    },
+    {
+        "_id": "664c7e6b0000000000000037",
+        "name": "Adjustable Dumbbell Set 52.5 lbs",
+        "description": "Adjustable weights dumbbell for home gym fitness. 15 weight settings.",
+        "category": "664c7e6b0000000000000008",
+        "sku": "ZJ-DB052",
+        "moq": 5,
+        "unit": "Pairs",
+        "main_price": 89,
+        "oldPrice": 120,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000037_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000037_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000037_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000037_sub_2.jpg"
+        ],
+        "tags": [
+            "Fitness",
+            "Gym",
+            "Weights"
+        ],
+        "section": "Top Ranking",
+        "price_tiers": [
+            {
+                "min_quantity": 5,
+                "max_quantity": 19,
+                "price": 89
+            },
+            {
+                "min_quantity": 20,
+                "price": 75
+            }
+        ],
+        "countInStock": 500,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.9,
+        "numReviews": 112
+    },
+    {
+        "_id": "664c7e6b0000000000000038",
+        "name": "Custom Printed Corrugated Shipping Boxes",
+        "description": "Eco-friendly recyclable cardboard mailing boxes with custom logo printing.",
+        "category": "664c7e6b0000000000000009",
+        "sku": "ZJ-PB001",
+        "moq": 500,
+        "unit": "Pieces",
+        "main_price": 0.45,
+        "oldPrice": 0.65,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000038_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000038_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000038_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000038_sub_2.jpg"
+        ],
+        "tags": [
+            "Packaging",
+            "Custom",
+            "Box"
+        ],
+        "section": "New Arrivals",
+        "price_tiers": [
+            {
+                "min_quantity": 500,
+                "max_quantity": 4999,
+                "price": 0.45
+            },
+            {
+                "min_quantity": 5000,
+                "price": 0.35
+            }
+        ],
+        "countInStock": 100000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.7,
+        "numReviews": 56
+    },
+    {
+        "_id": "664c7e6b0000000000000039",
+        "name": "Digital Non-Contact Infrared Thermometer",
+        "description": "Medical grade forehead thermometer with LCD display and fever alarm.",
+        "category": "664c7e6b000000000000000a",
+        "sku": "ZJ-MT001",
+        "moq": 100,
+        "unit": "Pieces",
+        "main_price": 8.5,
+        "oldPrice": 15,
+        "main_image": "/uploads/products/prod_664c7e6b0000000000000039_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b0000000000000039_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000039_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b0000000000000039_sub_2.jpg"
+        ],
+        "tags": [
+            "Medical",
+            "Thermometer",
+            "Health"
+        ],
+        "section": "Top Deals",
+        "price_tiers": [
+            {
+                "min_quantity": 100,
+                "max_quantity": 999,
+                "price": 8.5
+            },
+            {
+                "min_quantity": 1000,
+                "price": 6.8
+            }
+        ],
+        "countInStock": 10000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.6,
+        "numReviews": 89
+    },
+    {
+        "_id": "664c7e6b000000000000003a",
+        "name": "Bluetooth 5.3 True Wireless Earbuds TWS",
+        "description": "Noise cancelling wireless earphones with charging case. 24h playtime.",
+        "category": "664c7e6b0000000000000002",
+        "sku": "ZJ-TWS01",
+        "moq": 50,
+        "unit": "Pieces",
+        "main_price": 12,
+        "oldPrice": 25,
+        "main_image": "/uploads/products/prod_664c7e6b000000000000003a_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b000000000000003a_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003a_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003a_sub_2.jpg"
+        ],
+        "tags": [
+            "Electronics",
+            "Audio",
+            "Earbuds"
+        ],
+        "section": "New Arrivals",
+        "price_tiers": [
+            {
+                "min_quantity": 50,
+                "max_quantity": 499,
+                "price": 12
+            },
+            {
+                "min_quantity": 500,
+                "price": 9.5
+            }
+        ],
+        "countInStock": 5000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.4,
+        "numReviews": 210
+    },
+    {
+        "_id": "664c7e6b000000000000003b",
+        "name": "Stainless Steel Double Wall Vacuum Insulated Water Bottle",
+        "description": "500ml vacuum flask. Keeps drinks cold for 24h, hot for 12h. Custom logo acceptable.",
+        "category": "664c7e6b0000000000000003",
+        "sku": "ZJ-WB500",
+        "moq": 100,
+        "unit": "Pieces",
+        "main_price": 3.8,
+        "oldPrice": 6.5,
+        "main_image": "/uploads/products/prod_664c7e6b000000000000003b_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b000000000000003b_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003b_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003b_sub_2.jpg"
+        ],
+        "tags": [
+            "Home",
+            "Kitchen",
+            "Bottle"
+        ],
+        "section": "Top Ranking",
+        "price_tiers": [
+            {
+                "min_quantity": 100,
+                "max_quantity": 999,
+                "price": 3.8
+            },
+            {
+                "min_quantity": 1000,
+                "price": 3.2
+            }
+        ],
+        "countInStock": 20000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.8,
+        "numReviews": 145
+    },
+    {
+        "_id": "664c7e6b000000000000003c",
+        "name": "Organic Vitamin C Serum for Face with Hyaluronic Acid",
+        "description": "Anti-aging facial serum. Private label OEM/ODM welcome. 30ml.",
+        "category": "664c7e6b0000000000000005",
+        "sku": "ZJ-VC30",
+        "moq": 200,
+        "unit": "Bottles",
+        "main_price": 1.5,
+        "oldPrice": 3.5,
+        "main_image": "/uploads/products/prod_664c7e6b000000000000003c_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b000000000000003c_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003c_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003c_sub_2.jpg"
+        ],
+        "tags": [
+            "Beauty",
+            "Skincare",
+            "Serum"
+        ],
+        "section": "Top Deals",
+        "price_tiers": [
+            {
+                "min_quantity": 200,
+                "max_quantity": 999,
+                "price": 1.5
+            },
+            {
+                "min_quantity": 1000,
+                "price": 1.1
+            }
+        ],
+        "countInStock": 50000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.7,
+        "numReviews": 320
+    },
+    {
+        "_id": "664c7e6b000000000000003d",
+        "name": "Brushless Cordless Impact Wrench 20V Max",
+        "description": "High torque power tool for automotive repair and construction.",
+        "category": "664c7e6b0000000000000006",
+        "sku": "ZJ-IW20V",
+        "moq": 10,
+        "unit": "Sets",
+        "main_price": 55,
+        "oldPrice": 85,
+        "main_image": "/uploads/products/prod_664c7e6b000000000000003d_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b000000000000003d_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003d_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003d_sub_2.jpg"
+        ],
+        "tags": [
+            "Tools",
+            "Hardware",
+            "Power Tool"
+        ],
+        "section": "New Arrivals",
+        "price_tiers": [
+            {
+                "min_quantity": 10,
+                "max_quantity": 99,
+                "price": 55
+            },
+            {
+                "min_quantity": 100,
+                "price": 45
+            }
+        ],
+        "countInStock": 1500,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.8,
+        "numReviews": 75
+    },
+    {
+        "_id": "664c7e6b000000000000003e",
+        "name": "Womens Seamless Yoga Set Workout Activewear",
+        "description": "2 piece gym clothing set. High waist leggings and sports bra. Breathable fabric.",
+        "category": "664c7e6b0000000000000004",
+        "sku": "ZJ-YG02",
+        "moq": 50,
+        "unit": "Sets",
+        "main_price": 8.9,
+        "oldPrice": 18,
+        "main_image": "/uploads/products/prod_664c7e6b000000000000003e_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b000000000000003e_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003e_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003e_sub_2.jpg"
+        ],
+        "tags": [
+            "Apparel",
+            "Sportswear",
+            "Yoga"
+        ],
+        "section": "Top Ranking",
+        "price_tiers": [
+            {
+                "min_quantity": 50,
+                "max_quantity": 499,
+                "price": 8.9
+            },
+            {
+                "min_quantity": 500,
+                "price": 7.5
+            }
+        ],
+        "countInStock": 10000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.9,
+        "numReviews": 254
+    },
+    {
+        "_id": "664c7e6b000000000000003f",
+        "name": "kurti",
+        "description": "Elegant women's cotton kurti, breathable traditional designer ethnic wear tunic perfect for all occasions.",
+        "category": "664c7e6b0000000000000004",
+        "sku": "ZJ-KT001",
+        "moq": 1,
+        "unit": "Pieces",
+        "main_price": 83.5,
+        "oldPrice": 120,
+        "main_image": "/uploads/products/prod_664c7e6b000000000000003f_main.jpg",
+        "images": [
+            "/uploads/products/prod_664c7e6b000000000000003f_sub_0.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003f_sub_1.jpg",
+            "/uploads/products/prod_664c7e6b000000000000003f_sub_2.jpg"
+        ],
+        "tags": [
+            "Apparel",
+            "Kurti",
+            "Women",
+            "Ethnic Wear"
+        ],
+        "section": "New Arrivals",
+        "price_tiers": [
+            {
+                "min_quantity": 1,
+                "max_quantity": 9,
+                "price": 83.5
+            },
+            {
+                "min_quantity": 10,
+                "price": 75
+            }
+        ],
+        "countInStock": 2000,
+        "status": "active",
+        "approval_status": "approved",
+        "supplier": "664c7e6b0000000000000011",
+        "rating": 4.7,
+        "numReviews": 35
+    }
+]

@@ -1,0 +1,230 @@
+# AliExpress-style B2C Marketplace Feature Status
+
+This document lists the status of features in the **AliExpress-style B2C marketplace** project based on the codebase analysis (specifically from [FeaturesList.tsx](file:///e:/aliexpress/frontend/src/app/pages/FeaturesList.tsx) and relevant backend/frontend structures).
+
+---
+
+## Summary of Status
+* **Total Features Listed**: 100
+* **Completed (Live)**: 78
+* **Pending (Roadmap)**: 22
+
+---
+
+## 1. Customer Features
+
+| Feature Group | Feature | Status | Codebase Context / Implementation |
+| :--- | :--- | :--- | :--- |
+| **Authentication** | User Registration | **Completed** | Live onboarding for buyers and sellers; handled by [Register.tsx](file:///e:/aliexpress/frontend/src/app/pages/Register.tsx). |
+| | Login/Logout | **Completed** | Fully functional secure session management; handled by [Login.tsx](file:///e:/aliexpress/frontend/src/app/pages/Login.tsx) & [authRoutes.js](file:///e:/aliexpress/backend/routes/authRoutes.js). |
+| | OTP Login / Verification | **Completed** | OTP codes generated and sent to email; supported by [OtpVerification.js](file:///e:/aliexpress/backend/models/OtpVerification.js). |
+| | Social Login (Google, Facebook) | **Completed** | Integrated via OAuth; handled by [SocialRegister.tsx](file:///e:/aliexpress/frontend/src/app/pages/SocialRegister.tsx) & [SocialLogin.js](file:///e:/aliexpress/backend/models/SocialLogin.js). |
+| | Forgot Password | **Completed** | Secure password reset flows handled via verification links in `authRoutes.js`. |
+| | Email Verification | **Completed** | Handled during onboarding to verify the user's authenticity. |
+| **Home Page** | Hero Banner Slider | **Completed** | Configurable homepage banners; backend routes in [heroSlideRoutes.js](file:///e:/aliexpress/backend/routes/heroSlideRoutes.js). |
+| | Flash Deals | **Completed** | Live deals with countdown timers; managed via [saleCampaignRoutes.js](file:///e:/aliexpress/backend/routes/saleCampaignRoutes.js). |
+| | Today's Deals / Daily Deals | **Completed** | Revolving promotions updating every 24 hours. |
+| | Featured Products | **Completed** | Admin-promoted showcase products visible on the home page. |
+| | New Arrivals | **Completed** | Filtered sections display recently added items. |
+| | Best Sellers | **Completed** | Automatically sorted by order quantity/volume. |
+| | Recommended Products | **Completed** | Personalized suggestions displayed on the client dashboard. |
+| | Recently Viewed | **Completed** | Saved locally in the client's browser local storage. |
+| | Trending Categories | **Completed** | Displays top-performing category items. |
+| | Brand Showcase | **Completed** | Brands section filtering items by manufacturer. |
+| **Product Browsing** | Category Listing | **Completed** | Multi-level category hierarchy; handled by [Categories.tsx](file:///e:/aliexpress/frontend/src/app/pages/Categories.tsx). |
+| | Subcategory Listing | **Completed** | Recursive subcategory listing. |
+| | Product Search | **Completed** | Keyword indexing, tags, and category search in [Search.tsx](file:///e:/aliexpress/frontend/src/app/pages/Search.tsx). |
+| | Voice Search | **Completed** | Speech-to-text voice recognition input in the main search bar. |
+| | Search Suggestions | **Completed** | Auto-suggestions showing related products as the user types. |
+| | Product Filters | **Completed** | Refine results by rating, price, MOQ, brand, and country in search. |
+| | Product Sorting | **Completed** | Sort by price, rating, order count, and date. |
+| | Product Comparison | **Completed** | Side-by-side spec comparisons of chosen products. |
+| **Product Details** | Multiple Images | **Completed** | Carousel view for multiple product images in [ProductDetail.tsx](file:///e:/aliexpress/frontend/src/app/pages/ProductDetail.tsx). |
+| | Image Zoom | **Completed** | Interactive product image hover-zoom. |
+| | Product Video | **Pending (Roadmap)** | Video showcase features are planned but not yet implemented. |
+| | Product Variants (Color, Size) | **Completed** | Fully supported dynamic variant selector updating SKU and price. |
+| | Specifications | **Completed** | Detailed technical specification tables. |
+| | Description | **Completed** | Rich text formatting descriptions. |
+| | Stock Availability | **Completed** | Real-time stock counts checked from inventories. |
+| | Shipping Information | **Completed** | Integrated shipping rules, charges, and timelines. |
+| | Seller Information | **Completed** | Displays rating, followers count, and response times of the merchant. |
+| | Product Reviews | **Completed** | Ratings and text feedback left by buyers. |
+| | Customer Q&A | **Completed** | Product discussion board on detail views via [productQaRoutes.js](file:///e:/aliexpress/backend/routes/productQaRoutes.js). |
+| | Similar Products | **Completed** | Automated recommendations matching tags of the current product. |
+| | Frequently Bought Together | **Pending (Roadmap)** | Cross-selling recommendation bundle panels. |
+| **Shopping Features** | Add to Cart | **Completed** | Add, edit, remove, and group items by supplier in [Cart.tsx](file:///e:/aliexpress/frontend/src/app/pages/Cart.tsx). |
+| | Buy Now | **Completed** | Direct checkout routing bypassing the cart page. |
+| | Save for Later / Wishlist | **Completed** | Wishlist tracking via [wishlistRoutes.js](file:///e:/aliexpress/backend/routes/wishlistRoutes.js). |
+| | Coupon Apply | **Completed** | Apply discounts to the cart at checkout. |
+| | Promo Code | **Completed** | Admin/Seller coupon promotional codes. |
+| | Gift Card | **Pending (Roadmap)** | Digital gift cards and coupon credit allocations are planned. |
+| | Shipping Calculator | **Completed** | Dynamic calculation of shipping fees based on location/weight. |
+| **Checkout** | Address Management | **Completed** | Manage shipping address books in [shippingAddressRoutes.js](file:///e:/aliexpress/backend/routes/shippingAddressRoutes.js). |
+| | Multiple Delivery Addresses| **Completed** | Save multiple addresses for different delivery destinations. |
+| | Shipping Method Selection | **Completed** | Choose between Standard, Express, or Sea logistics. |
+| | Payment Gateway Integration| **Completed** | Seamless payment integrations (Stripe, Razorpay, PayPal). |
+| | Cash on Delivery | **Completed** | Support for Cash on Delivery checkout method. |
+| | Wallet Payment | **Completed** | In-platform digital wallet balance deduction. |
+| | Order Summary | **Completed** | Clean breakdown of items, shipping, tax, discounts, and total. |
+| | Tax Calculation | **Completed** | Automatic calculations via regional Tax Rules. |
+| | Invoice Download | **Completed** | Invoice PDF generation and download link. |
+| **Orders** | Order History | **Completed** | Lifetime purchase dashboard showing chronological order list. |
+| | Order Tracking | **Completed** | Real-time shipping milestones tracked chronologically. |
+| | Cancel Order | **Completed** | Cancel unpaid orders directly. |
+| | Return Request | **Completed** | Submit refund/return claims via [disputeRoutes.js](file:///e:/aliexpress/backend/routes/disputeRoutes.js). |
+| | Refund Request | **Completed** | Return funds to wallet/card upon resolution approval. |
+| | Exchange Request | **Pending (Roadmap)** | Explicit replacement/exchange workflows are not yet implemented. |
+| | Reorder | **Completed** | Re-add products from a past order directly to the cart. |
+| | Download Invoice | **Completed** | Downloadable invoices for completed transactions. |
+| **User Dashboard** | Profile Management | **Completed** | Edit password, avatar, and contact info. |
+| | Address Book | **Completed** | Add, edit, and select default shipping addresses. |
+| | Wishlist | **Completed** | Quick access to favorited items. |
+| | Coupons | **Completed** | View active, used, and expired coupons. |
+| | Reward Points | **Completed** | Track loyalty rewards history and points balance. |
+| | Wallet | **Completed** | View balance, add credits, and see past transaction histories. |
+| | Notifications | **Completed** | Real-time platform notifications on orders/messages. |
+| | Recently Viewed | **Completed** | Chronological log of viewed products. |
+| | Reviews | **Completed** | History of ratings and comments given. |
+| | Support Tickets | **Completed** | Customer support ticket listings and details. |
+
+---
+
+## 2. Seller Features
+
+| Feature Group | Feature | Status | Codebase Context / Implementation |
+| :--- | :--- | :--- | :--- |
+| **Seller Registration**| Apply as Seller | **Completed** | Form to submit corporate manufacturer registration in [SellerRegister.tsx](file:///e:/aliexpress/frontend/src/app/pages/SellerRegister.tsx). |
+| | KYC Verification | **Completed** | License upload and corporate identity verification inputs. |
+| | Store Approval | **Completed** | Verification checklist managed by platform Admins. |
+| **Seller Dashboard**| Sales Overview | **Completed** | Dashboard charts showing gross sales and revenue. |
+| | Revenue Analytics | **Completed** | Analytics regarding monthly performance. |
+| | Orders | **Completed** | Seller-side list of orders requiring dispatch or details. |
+| | Inventory | **Completed** | Live updates of stock levels per variant. |
+| | Customers | **Completed** | Store followers list and customer message history. |
+| | Performance Metrics | **Completed** | Statistics regarding store rating, click rate, and conversions. |
+| **Product Management** | Add/Edit/Delete Product | **Completed** | Complete seller CRUD for catalog items in [productRoutes.js](file:///e:/aliexpress/backend/routes/productRoutes.js). |
+| | Bulk Upload | **Completed** | CSV-based category and bulk product import flows. |
+| | Product Images & Variants | **Completed** | Multi-angle images and multi-option dynamic variants configuration. |
+| | Inventory Management | **Completed** | Adjust available quantities and SKU limits. |
+| | SKU Management | **Completed** | Unique SKU generator and tracking per variant. |
+| **Order Management** | Accept & Process Orders | **Completed** | Mark orders as accepted, dispatch, and track progress. |
+| | Print Shipping Label | **Completed** | Generates labels and invoices for the dispatch team. |
+| | Ship Orders & Track | **Completed** | Add shipping service name and tracking code numbers. |
+| | Order History | **Completed** | Archives of all past completed or cancelled sales. |
+| **Promotions** | Discount Offers & Coupons | **Completed** | Admin/Seller coupon creation tools in [couponRoutes.js](file:///e:/aliexpress/backend/routes/couponRoutes.js). |
+| | Flash Sale Participation | **Completed** | Submit products to upcoming platform flash sales campaigns. |
+| | Bundle Offers | **Completed** | Set up group discounts for buying bundles. |
+| **Reviews** | View & Reply to Reviews | **Completed** | Check buyer ratings and post replies to address feedback. |
+| **Seller Wallet** | Earnings & Balances | **Completed** | Keep track of net earnings from completed orders. |
+| | Withdraw Money | **Completed** | Payout request portal to transfer earnings to linked accounts. |
+| | Transaction History | **Completed** | Detailed balance logs. |
+
+---
+
+## 3. Admin Features
+
+| Feature Group | Feature | Status | Codebase Context / Implementation |
+| :--- | :--- | :--- | :--- |
+| **Dashboard** | Total Users / Sellers / Orders | **Completed** | Live counters and graphs in admin homepage dashboard views. |
+| **User Management** | Customers & Sellers | **Completed** | Ban, modify, or update permissions of users. |
+| | Admin Roles / Permissions | **Completed** | Multi-role backend authorization via [Permission.js](file:///e:/aliexpress/backend/models/Permission.js) & [Role.js](file:///e:/aliexpress/backend/models/Role.js). |
+| **Product Management** | Categories & Subcategories | **Completed** | Add, edit, or delete department hierarchies. |
+| | Brands & Products | **Completed** | System-wide product approvals, listing adjustments, and brands moderation. |
+| | Reviews Moderation | **Completed** | Delete inappropriate reviews or ratings. |
+| **Seller Management** | Seller/KYC Approval | **Completed** | Approve/Reject merchant credentials. |
+| | Commission Management | **Completed** | Set global or category-specific platform margins in [CommissionRule.js](file:///e:/aliexpress/backend/models/CommissionRule.js). |
+| **Order Management** | All Orders & Shipments | **Completed** | Track state of every package and verify logistics. |
+| | Disputes & Refunds | **Completed** | Moderate claims, process returns, and authorize refunds. |
+| **Marketing** | Homepage Banners | **Completed** | Admin dashboard management for Hero banner slides. |
+| | Flash Sales & Coupons | **Completed** | Define site-wide coupon campaigns and flash deal timers. |
+| | Push Notifications | **Pending (Roadmap)** | In-app/Push campaigns dispatch panels are planned. |
+| | Email Campaigns | **Pending (Roadmap)** | Bulk newsletter tool is on the roadmap. |
+| **CMS** | Pages & Static Content | **Completed** | Edit layout modules, FAQ, About Us, Privacy Policy, and Terms. |
+| **Finance** | Gateway & Wallet Settings | **Completed** | Manage API keys for Stripe/Razorpay and oversee payouts. |
+| **Reports** | Analytics Reporting | **Completed** | Detailed CSV and chart exports of sales and site usage. |
+| **Settings** | General Configurations | **Completed** | Edit currency lists, active languages, and tax parameters. |
+| | SMS Settings | **Pending (Roadmap)** | Twilio or alternative SMS gateway setup routes are planned. |
+
+---
+
+## 4. Marketing Features
+
+* **Daily Deals**: **Completed** (Supported via revolving 24h promotions)
+* **Flash Sale**: **Completed** (Supported via timer countdown campaigns)
+* **Coupons**: **Completed** (Live in checkouts and seller/admin panels)
+* **Referral Program**: **Completed** (Share referral links to earn loyalty points)
+* **Reward Points**: **Completed** (Points accumulated on checkouts and daily check-ins)
+* **Affiliate Program**: **Completed** (Partners earn commissions via referral/affiliate links)
+* **Newsletter Subscription**: **Pending (Roadmap)** (Planned footer/modal subscriptions)
+* **Push Notifications**: **Pending (Roadmap)** (Browser push notifications roadmap item)
+* **Personalized Recommendations**: **Completed** (Live in homepage recommendation blocks)
+* **Recently Viewed Products**: **Completed** (Saves products locally for fast recall)
+* **Abandoned Cart Recovery**: **Pending (Roadmap)** (Not implemented)
+
+---
+
+## 5. Customer Support
+
+* **Live Chat**: **Completed** (Direct chat channels between buyers and sellers)
+* **Chat with Seller**: **Completed** (Accessible from product detail views)
+* **AI Chatbot**: **Completed** (Interactive automated FAQ assistance chatbot)
+* **Help Center & FAQ**: **Completed** (Searchable help page content)
+* **Raise Ticket**: **Completed** (Submit formal queries to the admin/support team)
+* **Complaint Management**: **Completed** (Handled via disputes & refunds workflows)
+
+---
+
+## 6. Shipping Features
+
+* **Multiple Shipping Partners**: **Completed** (Logistics selection during checkout)
+* **Real-Time Tracking**: **Completed** (Order tracking showing detailed history logs)
+* **Estimated Delivery Date**: **Completed** (Displays delivery ETA days based on method selected)
+* **Shipping Charges**: **Completed** (Calculated based on weight/destination zones)
+* **Free Shipping Offers**: **Completed** (Free shipping threshold rule system)
+* **International Shipping**: **Completed** (Global shipping addresses and country options)
+* **Delivery Status Updates**: **Completed** (Track milestone changes)
+
+---
+
+## 7. Payment Features
+
+* **Credit/Debit Cards**: **Completed** (Stripe & Razorpay integrated)
+* **UPI**: **Completed** (Razorpay integrated)
+* **Net Banking**: **Completed** (Stripe & Razorpay integrated)
+* **Wallet**: **Completed** (Direct balance checkouts)
+* **EMI**: **Pending (Roadmap)** (See details in implementation plan document [emi payment](file:///e:/aliexpress/emi%20payment))
+* **Cash on Delivery**: **Completed** (Available at checkout)
+* **PayPal**: **Completed** (Paypal SDK supported)
+* **Stripe / Razorpay**: **Completed** (Gateways active)
+* **PhonePe / Google Pay**: **Completed** (UPI/Razorpay integration routes)
+
+---
+
+## 8. AI Features
+
+* **AI Product Recommendations**: **Completed** (Personalized product recommendation algorithms)
+* **AI Search Suggestions**: **Completed** (Auto-completes and search keywords assistance)
+* **AI Chat Assistant (Sourcing)**: **Completed** (Fully functional AI assistant page at [AiSourcing.tsx](file:///e:/aliexpress/frontend/src/app/pages/AiSourcing.tsx))
+* **Smart Product Tags**: **Completed** (AI generates tagging descriptors)
+* **Personalized Home Page**: **Completed** (Tailored homepage listings)
+* **AI Fraud Detection**: **Completed** (Checks duplicate signups and flags suspicious actions)
+
+---
+
+## 9. Advanced Features
+
+* **Multi-Vendor Marketplace**: **Completed** (Core multi-merchant structure)
+* **Multi-Language**: **Completed** (24 languages supported)
+* **Multi-Currency**: **Completed** (Live currency conversion switcher)
+* **PWA Support**: **Pending (Roadmap)** (Planned offline/app shell)
+* **Mobile Responsive**: **Completed** (Premium responsive mobile experience)
+* **Dark Mode**: **Completed** (Supported in dashboards and layout theme toggles)
+* **QR Code Sharing**: **Pending (Roadmap)** (Planned detail page sharing shortcuts)
+* **Product Comparison**: **Completed** (Compare specs of selected items side-by-side)
+* **Product Reviews with Images / Video**: **Pending (Roadmap)** (Only text/star feedback is implemented; media reviews are planned)
+* **Seller Ratings**: **Completed** (Supplier scores shown on cards and searches)
+* **Save for Later**: **Completed** (Wishlist quick-saves)
+* **Back in Stock Notifications**: **Pending (Roadmap)** (Planned email triggers)
+* **Low Stock Alerts**: **Completed** (Stock limits disable add-to-cart clicks)
+* **Gift Wrapping**: **Pending (Roadmap)** (Planned checkout gift wrap choices)
+* **Gift Messages**: **Pending (Roadmap)** (Gift message card option is planned)

@@ -1,0 +1,267 @@
+.productCard {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 2px 8px -1px rgba(15, 23, 42, 0.01);
+}
+
+.productCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 10px 10px -5px rgba(15, 23, 42, 0.03);
+    border-color: rgba(255, 102, 0, 0.25);
+}
+
+/* Rank Badge */
+.rankBadge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 950;
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+}
+
+.rank-1 {
+    background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%); /* Gold */
+    box-shadow: 0 4px 12px rgba(255, 165, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.rank-2 {
+    background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%); /* Silver */
+    box-shadow: 0 4px 12px rgba(148, 163, 184, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.rank-3 {
+    background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); /* Bronze */
+    box-shadow: 0 4px 12px rgba(180, 83, 9, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Image Container */
+.imgContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.imgLink {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.productImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #ffffff;
+    padding: 0px;
+    transition: transform 0.4s ease;
+    box-sizing: border-box;
+}
+
+.productCard:hover .productImg {
+    transform: scale(1.08);
+}
+
+/* Badges */
+.discountBadge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #ff3d00 0%, #ff8c00 100%);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 850;
+    padding: 3px 8px;
+    border-radius: 6px;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(255, 61, 0, 0.25);
+}
+
+.discountBadge.hasRank {
+    left: 46px;
+}
+
+/* Wishlist Button */
+.wishlistBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.wishlistBtn:hover {
+    transform: scale(1.1);
+    color: #ef4444;
+    background: #ffffff;
+}
+
+.wishlistBtn.active {
+    background: #fef2f2;
+    color: #ef4444;
+    border-color: #fca5a5;
+}
+
+/* Quick View Overlay Button */
+.quickViewBtn {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    opacity: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.imgContainer:hover .quickViewBtn {
+    bottom: 12px;
+    opacity: 1;
+}
+
+.quickViewBtn:hover {
+    background: #0f172a;
+    transform: translateX(-50%) scale(1.05);
+}
+
+/* Info Section */
+.infoContainer {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.titleLink {
+    text-decoration: none;
+}
+
+.productName {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+    height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: color 0.15s ease;
+}
+
+.productCard:hover .productName {
+    color: var(--primary-color, #ff6600);
+}
+
+/* Rating */
+.ratingRow {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.stars {
+    display: flex;
+    gap: 1px;
+    font-size: 11px;
+}
+
+.starFilled {
+    color: #fbbf24;
+}
+
+.starEmpty {
+    color: #cbd5e1;
+}
+
+.ratingCount {
+    font-size: 11.5px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Prices */
+.priceRow {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.prices {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.currentPrice {
+    font-size: 16px;
+    font-weight: 800;
+    color: #000000;
+}
+
+.oldPrice {
+    font-size: 12px;
+    color: #94a3b8;
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+.soldLabel {
+    font-size: 11.5px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.moqRow {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 500;
+    margin-top: 4px;
+}

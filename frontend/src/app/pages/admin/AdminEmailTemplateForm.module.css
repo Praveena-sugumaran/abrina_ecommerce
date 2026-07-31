@@ -1,0 +1,643 @@
+/* ═══════════════════════════════════════════════════
+   Admin Email Template Form — Responsive Styles
+   ═══════════════════════════════════════════════════ */
+
+/* ── Container ── */
+.aetf-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* ── Page Header ── */
+.aetf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.aetf-title-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.aetf-btn-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.aetf-btn-back:hover {
+    color: var(--primary, var(--primary-color));
+}
+
+.aetf-title-box h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 950;
+    color: #0f172a;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+/* ── Editor / Preview Toggle ── */
+.aetf-header-actions {
+    display: flex;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 6px;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.aetf-btn-tab {
+    padding: 8px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: none;
+    color: #64748b;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.aetf-btn-tab.active {
+    background: #ffffff;
+    color: var(--primary, var(--primary-color));
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ── Main 2-Column Grid ── */
+.aetf-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+    align-items: start;
+}
+
+/* ── Content Column ── */
+.aetf-content-col {
+    min-width: 0;
+}
+
+/* ── Side Column ── */
+.aetf-side-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* ── Cards ── */
+.aetf-form-card,
+.aetf-preview-card,
+.aetf-side-card,
+.aetf-actions-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f1f5f9;
+    padding: 30px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* ── Form Rows ── */
+.aetf-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.aetf-form-group {
+    margin-bottom: 24px;
+}
+
+.aetf-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: #334155;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.aetf-label span {
+    color: #ef4444;
+}
+
+/* ── Inputs ── */
+.aetf-input,
+.aetf-textarea,
+.aetf-select {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 15px;
+    color: #0f172a;
+    font-weight: 600;
+    outline: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.aetf-input:focus,
+.aetf-textarea:focus,
+.aetf-select:focus {
+    background: #ffffff;
+    border-color: var(--primary, var(--primary-color));
+    box-shadow: 0 0 0 4px rgba(13, 46, 103, 0.1);
+}
+
+.aetf-textarea {
+    min-height: 400px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.6;
+}
+
+/* ── Preview Card ── */
+.aetf-preview-card {
+    min-height: 600px;
+}
+
+.aetf-preview-header {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 24px;
+}
+
+.aetf-preview-header span {
+    color: #64748b;
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.aetf-preview-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #334155;
+}
+
+/* ── Side Column: Placeholders ── */
+.aetf-side-card-header {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.aetf-side-card-body p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.aetf-add-ph-box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: stretch;
+}
+
+.aetf-add-ph-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.aetf-add-ph-box button {
+    flex-shrink: 0;
+    background: var(--primary, var(--primary-color));
+    color: white;
+    border: none;
+    padding: 0 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+}
+
+.aetf-add-ph-box button:hover {
+    opacity: 0.9;
+}
+
+.aetf-ph-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.aetf-ph-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 8px;
+}
+
+.aetf-ph-item span {
+    font-family: monospace;
+    cursor: pointer;
+    color: var(--primary, var(--primary-color));
+    word-break: break-all;
+    flex: 1;
+    min-width: 0;
+}
+
+.aetf-ph-item button {
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0 4px;
+}
+
+.aetf-empty-ph {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+    padding: 20px 0;
+}
+
+/* ── Actions Card ── */
+.aetf-actions-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+}
+
+.aetf-btn-save {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+    color: #fff;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.22);
+    padding: 0 20px;
+    white-space: nowrap;
+}
+
+.aetf-btn-save:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255, 106, 0, 0.3);
+}
+
+.aetf-btn-save:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.aetf-btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #64748b;
+    height: 42px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0 20px;
+    white-space: nowrap;
+}
+
+.aetf-btn-cancel:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #334155;
+}
+
+/* ── Alerts ── */
+.aetf-alert {
+    padding: 16px 24px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.aetf-alert.success {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.aetf-alert.error {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — TABLET (≤1024px)
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .aetf-container {
+        padding: 20px;
+    }
+
+    .aetf-main-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .aetf-side-col {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .aetf-side-card {
+        flex: 1;
+        min-width: 280px;
+    }
+
+    .aetf-actions-card {
+        flex: 1;
+        min-width: 280px;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .aetf-btn-save,
+    .aetf-btn-cancel {
+        flex: 1;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤768px)
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    /* Container */
+    .aetf-container {
+        padding: 0 0 60px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Header — stack vertically */
+    .aetf-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 16px 20px;
+        margin-bottom: 0;
+        gap: 16px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .aetf-title-box h1 {
+        font-size: 22px;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+    }
+
+    .aetf-btn-back {
+        font-size: 13px;
+    }
+
+    /* Toggle tabs — full width, equal columns */
+    .aetf-header-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .aetf-btn-tab {
+        padding: 10px 12px;
+        font-size: 13px;
+        border-radius: 7px;
+    }
+
+    /* Main grid — single column, no gaps between sections */
+    .aetf-main-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 16px;
+        margin-top: 16px;
+    }
+
+    /* Side column — stack vertically */
+    .aetf-side-col {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Cards — full-width, no horizontal margin */
+    .aetf-form-card,
+    .aetf-preview-card,
+    .aetf-side-card,
+    .aetf-actions-card {
+        padding: 18px 16px;
+        border-radius: 14px;
+        width: 100%;
+        margin: 0;
+    }
+
+    /* Form rows — single column */
+    .aetf-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .aetf-form-group {
+        margin-bottom: 18px;
+    }
+
+    /* Inputs — more touch-friendly padding */
+    .aetf-input,
+    .aetf-select {
+        padding: 13px 14px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    /* Textarea — shorter on mobile */
+    .aetf-textarea {
+        min-height: 200px;
+        padding: 13px 14px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    /* Labels */
+    .aetf-label {
+        font-size: 11px;
+    }
+
+    /* Placeholder input row */
+    .aetf-add-ph-box {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .aetf-add-ph-box input {
+        padding: 10px 12px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+
+    .aetf-add-ph-box button {
+        padding: 0 16px;
+        font-size: 13px;
+        border-radius: 8px;
+        height: 42px;
+    }
+
+    /* Actions card — keep buttons side by side */
+    .aetf-actions-card {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .aetf-btn-save,
+    .aetf-btn-cancel {
+        height: 44px;
+        font-size: 13px;
+        border-radius: 10px;
+        width: auto;
+    }
+
+    .aetf-btn-save {
+        flex: 1;
+    }
+
+    /* Preview */
+    .aetf-preview-card {
+        min-height: auto;
+    }
+
+    .aetf-preview-header {
+        font-size: 15px;
+        padding-bottom: 14px;
+        margin-bottom: 16px;
+    }
+
+    .aetf-preview-body {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    /* Side card header */
+    .aetf-side-card-header {
+        font-size: 14px;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+    }
+
+    .aetf-side-card-body p {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+
+    /* Placeholder item */
+    .aetf-ph-item {
+        padding: 8px 10px;
+        font-size: 12px;
+        border-radius: 7px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE (≤480px)
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+    .aetf-title-box h1 {
+        font-size: 19px;
+    }
+
+    .aetf-main-grid {
+        padding: 0 12px;
+        gap: 14px;
+        margin-top: 14px;
+    }
+
+    .aetf-form-card,
+    .aetf-preview-card,
+    .aetf-side-card,
+    .aetf-actions-card {
+        padding: 16px 14px;
+        border-radius: 12px;
+    }
+
+    .aetf-input,
+    .aetf-select,
+    .aetf-textarea {
+        padding: 11px 12px;
+        font-size: 14px;
+    }
+
+    .aetf-btn-save,
+    .aetf-btn-cancel {
+        height: 46px;
+        font-size: 13px;
+    }
+}

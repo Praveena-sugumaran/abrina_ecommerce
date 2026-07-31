@@ -1,0 +1,327 @@
+/* ===== Featured Suppliers ===== */
+.featured-suppliers-section {
+    padding: 48px 0;
+    background: #ffffff;
+}
+
+.fs-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.fs-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 4px;
+    letter-spacing: -0.3px;
+}
+
+.fs-subtitle {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.fs-view-all {
+    background: #fff;
+    border: 1.5px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.fs-view-all:hover {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(13, 46, 103, 0.2);
+}
+
+/* Grid */
+.fs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+/* Card */
+.fs-card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+    padding: 20px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    height: 100%;
+}
+
+.fs-card:hover {
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+    border-color: rgba(255, 102, 0, 0.15);
+    transform: translateY(-6px);
+}
+
+/* Card Header */
+.fs-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+}
+
+.fs-brand-logo-wrap {
+    flex-shrink: 0;
+}
+
+.fs-logo,
+.fs-logo-fallback {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--clr-primary), color-mix(in srgb, var(--clr-primary) 55%, #1a4a9c));
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fs-brand-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    margin-top: 4px;
+    padding-right: 85px;
+    /* Leave space for verified badge */
+}
+
+.fs-company-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fs-location {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.fs-verified-badge {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    background: #e6f9ed;
+    color: #10b981;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.fs-verified-badge.fs-pro {
+    background: #fff8eb;
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+/* Tags */
+.fs-business-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    min-height: 24px;
+    /* reserve space for up to 2 lines */
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.fs-tag-pill {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+/* Divider */
+.fs-card-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 16px 0;
+    width: 100%;
+}
+
+/* Stats */
+.fs-stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.fs-stat-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+}
+
+.fs-stat-label {
+    font-size: 10px;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.fs-stat-val {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.fs-stat-sep {
+    width: 1px;
+    height: 24px;
+    background: #e2e8f0;
+}
+
+/* Footer / Button */
+.fs-card-footer {
+    margin-top: auto;
+}
+
+.fs-view-profile-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-color, #ff6600) 0%, #ff8c00 100%);
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+}
+
+.fs-card:hover .fs-view-profile-btn {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 102, 0, 0.35);
+}
+
+/* Skeleton */
+.fs-skeletons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.fs-skeleton {
+    height: 180px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .fs-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .fs-skeletons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+
+    .fs-grid,
+    .fs-skeletons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .fs-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .fs-grid,
+    .fs-skeletons {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-suppliers-section {
+        padding: 28px 0;
+    }
+
+    .fs-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+    }
+
+    .fs-title {
+        font-size: 18px;
+    }
+
+    .fs-card {
+        padding: 14px;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}

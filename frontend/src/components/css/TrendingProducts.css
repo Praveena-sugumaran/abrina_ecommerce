@@ -1,0 +1,168 @@
+/* ===== Trending Premium Section ===== */
+.trending-premium-section {
+    padding: 32px 0 64px;
+    background: #ffffff;
+}
+
+.tp-block {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    transition: box-shadow 0.3s ease;
+}
+
+.tp-block:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Red marked sections in user image - assuming they want a clean border but inspired by the highlight */
+.tp-block.tp-full {
+    width: 100%;
+}
+
+.tp-split-row {
+    display: flex;
+    gap: 24px;
+}
+
+.tp-half {
+    flex: 1;
+}
+
+.tp-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.tp-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 4px;
+    letter-spacing: -0.5px;
+}
+
+.tp-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.tp-arrow-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    transition: all 0.2s;
+}
+
+.tp-header:hover .tp-arrow-btn {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+/* Grids */
+.tp-grid-6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.tp-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+/* Card */
+.tp-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.tp-img-wrap {
+    background: #fdfdfd;
+    border-radius: 12px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid #f9fafb;
+}
+
+.tp-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.tp-card:hover .tp-img-wrap img {
+    transform: scale(1.08);
+}
+
+.tp-info {
+    padding: 0 4px;
+}
+
+.tp-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #111;
+    margin: 0 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.tp-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.tp-moq {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Skeletons */
+.tp-skeleton {
+    aspect-ratio: 1/1.4;
+    background: #f3f4f6;
+    border-radius: 12px;
+    animation: tp-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes tp-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .tp-grid-6 { grid-template-columns: repeat(3, 1fr); }
+    .tp-split-row { flex-direction: column; }
+}
+
+@media (max-width: 640px) {
+    .tp-grid-6 { grid-template-columns: repeat(2, 1fr); }
+    .tp-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .tp-block { padding: 16px; }
+    .tp-title { font-size: 18px; }
+}

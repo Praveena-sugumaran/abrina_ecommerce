@@ -1,0 +1,418 @@
+.container {
+    padding: 28px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 32px 36px;
+    background: linear-gradient(
+        135deg,
+        var(--primary-color, #0f172a) 0%,
+        color-mix(in srgb, var(--primary-color, #0f172a) 88%, black) 50%,
+        var(--primary-color, #0f172a) 100%
+    );
+    border-radius: 22px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+}
+
+.welcomeText h1 {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 4px;
+    letter-spacing: -0.5px;
+}
+
+.welcomeText p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Stats Section */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.statCard {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.statIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.statBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.statLabel {
+    font-size: 0.82rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.statValue {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-top: 4px;
+}
+
+.statProgressCard {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+}
+
+@media (max-width: 1024px) {
+    .statProgressCard {
+        grid-column: span 1;
+    }
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.progressLabel {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.progressPercent {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary-color, #0f172a);
+}
+
+.progressBarContainer {
+    width: 100%;
+    height: 12px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--clr-accent, #ff6600) 0%, #fb923c 100%);
+    border-radius: 6px;
+    transition: width 0.6s ease-in-out;
+}
+
+/* Filters Section */
+.filtersCard {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 20px 24px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+}
+
+.searchWrapper {
+    flex: 1;
+    min-width: 280px;
+    position: relative;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border-radius: 12px;
+    border: 1.5px solid #e2e8f0;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+    border-color: var(--clr-accent, #ff6600);
+}
+
+.searchIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.selectInput {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1.5px solid #e2e8f0;
+    font-size: 0.88rem;
+    color: #475569;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+    min-width: 180px;
+}
+
+.selectInput:focus {
+    border-color: var(--clr-accent, #ff6600);
+}
+
+/* Features Table Section */
+.tableCard {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+}
+
+.tableHeader {
+    padding: 24px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.tableHeader h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0;
+}
+
+.tableHeader p {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 4px 0 0;
+}
+
+.tableWrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    padding: 16px 24px;
+    background: #f8fafc;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.table td {
+    padding: 16px 24px;
+    font-size: 0.88rem;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tr:hover td {
+    background-color: #f8fafc;
+}
+
+.featureName {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.categoryBadge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.statusCompleted {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.statusPending {
+    background: #ffedd5;
+    color: #9a3412;
+    border: 1px solid #fed7aa;
+}
+
+.statusDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.statusCompleted .statusDot {
+    background: #22c55e;
+}
+
+.statusPending .statusDot {
+    background: #f97316;
+}
+
+.notesCell {
+    color: #64748b;
+    font-size: 0.82rem;
+    max-width: 420px;
+    line-height: 1.4;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 64px 24px;
+    color: #64748b;
+}
+
+.emptyState svg {
+    margin-bottom: 16px;
+    color: #cbd5e1;
+}
+
+.emptyState h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #475569;
+    margin: 0 0 4px;
+}
+
+.emptyState p {
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Dark mode theme compatibility overrides */
+:global(.dark) .statCard {
+    background: #1e293b;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+:global(.dark) .statValue {
+    color: #f8fafc;
+}
+
+:global(.dark) .progressBarContainer {
+    background: #334155;
+}
+
+:global(.dark) .progressPercent {
+    color: #fff;
+}
+
+:global(.dark) .filtersCard {
+    background: #1e293b;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+:global(.dark) .searchInput {
+    background: #0f172a;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+:global(.dark) .selectInput {
+    background: #0f172a;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+:global(.dark) .tableCard {
+    background: #1e293b;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+:global(.dark) .tableHeader {
+    border-bottom-color: #334155;
+}
+
+:global(.dark) .tableHeader h3 {
+    color: #f8fafc;
+}
+
+:global(.dark) .table th {
+    background: #0f172a;
+    border-bottom-color: #334155;
+}
+
+:global(.dark) .table td {
+    color: #cbd5e1;
+    border-bottom-color: #334155;
+}
+
+:global(.dark) .table tr:hover td {
+    background-color: #1e293b;
+}
+
+:global(.dark) .featureName {
+    color: #fff;
+}
+
+:global(.dark) .categoryBadge {
+    background: #334155;
+    color: #cbd5e1;
+}

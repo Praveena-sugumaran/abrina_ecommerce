@@ -1,0 +1,50 @@
+[
+    {
+        "_id": "664c7e6b0000000000000020",
+        "user_id": "664c7e6b0000000000000011",
+        "company_name": "Zhenjiang Industrial Solutions Ltd.",
+        "business_type": "Manufacturer, Trading Company",
+        "country": "China",
+        "address": "Building 7, High-Tech Industrial Park, Zhenjiang, Jiangsu Province",
+        "website": "https://zhenjiang-industrial.com",
+        "description": "We are a premier global manufacturer and exporter specializing in heavy machinery, consumer electronics, and custom manufacturing solutions. Established in 2012, we hold ISO9001 and TUV certifications.",
+        "logo": "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop&q=80",
+        "verification_status": "verified"
+    },
+    {
+        "_id": "664c7e6b0000000000000021",
+        "user_id": "664c7e6b0000000000000012",
+        "company_name": "Michael Global Trading Co.",
+        "business_type": "Trading Company",
+        "country": "China",
+        "address": "Floor 12, World Trade Center, Shanghai",
+        "website": "https://michael-trading.com",
+        "description": "Global trading company specializing in cross-border B2B supply chain solutions.",
+        "logo": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&h=200&fit=crop&q=80",
+        "verification_status": "verified"
+    },
+    {
+        "_id": "664c7e6b0000000000000022",
+        "user_id": "664c7e6b0000000000000013",
+        "company_name": "David Fast Logistics & Manufacturing",
+        "business_type": "Manufacturer, Logistics",
+        "country": "China",
+        "address": "Logistics Park A, Shenzhen",
+        "website": "https://david-logistics.com",
+        "description": "Fast manufacturing and robust logistics covering air and sea freight worldwide.",
+        "logo": "https://images.unsplash.com/photo-1566933293069-b55c7f326dd4?w=200&h=200&fit=crop&q=80",
+        "verification_status": "verified"
+    },
+    {
+        "_id": "664c7e6b0000000000000023",
+        "user_id": "664c7e6b0000000000000014",
+        "company_name": "Jessica Wholesale Supplies Ltd.",
+        "business_type": "Wholesaler, Distributor",
+        "country": "China",
+        "address": "Building 2, Wholesale Market District, Guangzhou",
+        "website": "https://jessica-wholesale.com",
+        "description": "Top distributor of bulk merchandise across diverse product categories.",
+        "logo": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=200&h=200&fit=crop&q=80",
+        "verification_status": "verified"
+    }
+]

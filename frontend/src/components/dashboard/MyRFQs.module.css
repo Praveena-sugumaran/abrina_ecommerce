@@ -1,0 +1,370 @@
+.my-rfqs-container {
+
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.my-rfqs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.my-rfqs-header h2 {
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    color: #666;
+}
+
+.rfq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.rfq-list-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.rfq-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.rfq-item-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.rfq-status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.rfq-status.active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.rfq-status.closed {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.rfq-status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.rfq-item-details {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.detail-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #888;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.rfq-item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.view-quotes-btn {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 6px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.view-quotes-btn:hover {
+    background-color: #fff5eb;
+}
+
+.rfq-quotes-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #ccc;
+}
+
+.quotes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.quote-card {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quote-supplier {
+    font-size: 15px;
+}
+
+.quote-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.quote-delivery,
+.quote-note {
+    font-size: 13px;
+    color: #555;
+}
+
+.contact-supplier-btn {
+    margin-top: auto;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contact-supplier-btn:hover {
+    background-color: #0a234f;
+}
+
+/* RFQ Modal Styles */
+.rfq-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.rfq-modal-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.rfq-modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.rfq-form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.rfq-form-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #444;
+}
+
+.rfq-form-group input,
+.rfq-form-group textarea {
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.rfq-form-group input:focus,
+.rfq-form-group textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.rfq-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.rfq-cancel-btn {
+    padding: 10px 20px;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.rfq-submit-btn {
+    padding: 10px 20px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.rfq-submit-btn:hover {
+    background: #09214d;
+}
+
+/* ── Responsive: Tablet (≤ 768px) ──────────────────────── */
+@media (max-width: 768px) {
+    .my-rfqs-container {
+        padding: 14px;
+    }
+
+    .my-rfqs-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .my-rfqs-header h2 {
+        font-size: 18px;
+    }
+
+    .rfq-item-details {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .detail-col {
+        min-width: 100px;
+    }
+
+    .rfq-item-actions {
+        flex-wrap: wrap;
+    }
+
+    .view-quotes-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Quote card action row: wrap so buttons don't overflow */
+    .quote-card>div:last-child {
+        flex-wrap: wrap;
+    }
+
+    .quote-card>div:last-child button {
+        font-size: 12px !important;
+        padding: 8px 6px !important;
+    }
+
+    /* Modal: full width on mobile */
+    .rfq-modal-content {
+        max-width: calc(100vw - 32px) !important;
+        margin: 0 16px;
+        padding: 18px;
+    }
+
+    .rfq-modal-actions {
+        flex-direction: column-reverse;
+        gap: 8px;
+    }
+
+    .rfq-cancel-btn,
+    .rfq-submit-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ── Responsive: Mobile (≤ 480px) ──────────────────────── */
+@media (max-width: 480px) {
+    .rfq-list-item {
+        padding: 14px;
+    }
+
+    .rfq-item-header h3 {
+        font-size: 15px;
+    }
+
+    .rfq-status {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
+    .rfq-item-header {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .detail-col {
+        flex: 1 1 calc(50% - 10px);
+    }
+
+    /* Keep quote price info from overflowing */
+    .quote-card>div:nth-child(2) {
+        flex-wrap: wrap;
+        gap: 10px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    /* TABLET VIEW */
+}
+
+@media (max-width: 768px) {
+    /* MOBILE VIEW */
+}
+
+
+@media (max-width: 768px) { .my-rfqs-container { padding: 16px; border-radius: 12px; } }
+
+@media (max-width: 480px) { .my-rfqs-container { padding: 12px; border-radius: 8px; } }

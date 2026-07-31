@@ -1,0 +1,638 @@
+/* ═══════════════════════════════════════════════════
+   FEATURED SELECTIONS v2 — Premium Panel Layout
+   ═══════════════════════════════════════════════════ */
+
+/* ── Wrapper ── */
+.fs2-wrapper {
+    padding: 40px 0 40px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Panel (white card) ── */
+.fs2-panel {
+    background: #ffffff;
+    border: 1px solid #eef0f6;
+    border-radius: 18px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.fs2-panel::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+/* ── Panel Header ── */
+.fs2-panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    gap: 16px;
+}
+
+.fs2-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.fs2-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary-color, #ff6600);
+    margin-bottom: 3px;
+}
+
+.fs2-section-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+.fs2-section-sub {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin: 4px 0 0;
+    font-weight: 400;
+}
+
+.fs2-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #f8f9fb;
+    border: 1.5px solid #e2e8f0;
+    padding: 7px 16px;
+    border-radius: 50px;
+    color: #334155;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.fs2-view-btn:hover {
+    background: var(--primary-color, #ff6600);
+    color: #fff;
+    border-color: var(--primary-color, #ff6600);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.25);
+}
+
+/* ═══════════════════════════════════════
+   TOP DEALS GRID (6 cards)
+   ═══════════════════════════════════════ */
+.fs2-deals-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.fs2-deal-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eef0f6;
+    background: #fafbff;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.fs2-deal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(255, 102, 0, 0.1);
+    border-color: rgba(255, 102, 0, 0.25);
+}
+
+.fs2-deal-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.fs2-deal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #ffffff;
+    padding: 10px;
+    transition: transform 0.45s ease;
+}
+
+.fs2-deal-card:hover .fs2-deal-img {
+    transform: scale(1.1);
+}
+
+.fs2-deal-info {
+    padding: 10px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: #fff;
+    flex: 1;
+}
+
+.fs2-deal-name {
+    font-size: 0.7rem;
+    color: #475569;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.fs2-deal-price {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+.fs2-deal-moq {
+    font-size: 0.65rem;
+    color: #b0b8c8;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   DUAL ROW (Top Ranking + New Arrivals)
+   ═══════════════════════════════════════ */
+.fs2-dual-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Mini 4-col grid */
+.fs2-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.fs2-mini-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 12px;
+    padding: 8px;
+    border: 1px solid #eef0f6;
+    background: #fafbff;
+    transition: all 0.3s ease;
+}
+
+.fs2-mini-card:hover {
+    border-color: rgba(255, 102, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.1);
+    background: #fff;
+    transform: translateY(-4px);
+}
+
+.fs2-mini-img-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.fs2-mini-img-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #ffffff;
+    padding: 6px;
+    transition: transform 0.4s ease;
+}
+
+.fs2-mini-card:hover .fs2-mini-img-wrap img {
+    transform: scale(1.08);
+}
+
+.fs2-mini-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 2px;
+}
+
+.fs2-mini-price {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.3px;
+}
+
+.fs2-mini-moq {
+    font-size: 0.68rem;
+    color: #b0b8c8;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   PROMO BANNER
+   ═══════════════════════════════════════ */
+.fs2-promo-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0d2e67 60%, #1e3a8a 100%);
+    border-radius: 20px;
+    padding: 36px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(13, 46, 103, 0.2);
+}
+
+.fs2-promo-banner::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.fs2-promo-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: 120px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.fs2-promo-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+    max-width: 65%;
+}
+
+.fs2-promo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-color, #ff6600);
+    background: rgba(255, 102, 0, 0.15);
+    border: 1px solid rgba(255, 102, 0, 0.3);
+    padding: 4px 12px;
+    border-radius: 50px;
+    width: fit-content;
+}
+
+.fs2-promo-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.fs2-promo-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.fs2-promo-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.fs2-promo-stat {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.fs2-promo-stat strong {
+    color: var(--primary-color, #ff6600);
+    margin-right: 3px;
+    font-size: 0.85rem;
+}
+
+.fs2-promo-dot {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 18px;
+}
+
+.fs2-promo-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-color, #ff6600);
+    color: #fff;
+    padding: 15px 32px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.fs2-promo-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 102, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+/* ═══════════════════════════════════════
+   RFQ BANNER
+   ═══════════════════════════════════════ */
+.fs2-rfq-banner {
+    background: linear-gradient(135deg, #0a1628 0%, #0d2e67 60%, #1e3a8a 100%);
+    border-radius: 20px;
+    padding: 36px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 12px 32px rgba(13, 46, 103, 0.15);
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.fs2-rfq-banner::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.fs2-rfq-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 65%;
+    position: relative;
+    z-index: 1;
+}
+
+.fs2-rfq-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-color, #ff6600);
+    margin-bottom: 2px;
+    background: rgba(255, 102, 0, 0.12);
+    border: 1px solid rgba(255, 102, 0, 0.25);
+    padding: 3px 10px;
+    border-radius: 50px;
+}
+
+.fs2-rfq-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: -0.4px;
+    line-height: 1.2;
+}
+
+.fs2-rfq-desc {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.fs2-rfq-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.fs2-rfq-stat-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.fs2-rfq-stat-pill strong {
+    color: var(--primary-color, #ff6600);
+    margin-right: 3px;
+}
+
+.fs2-rfq-dot {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 18px;
+}
+
+.fs2-rfq-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--primary-color, #ff6600), #ff8c00);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(255, 102, 0, 0.35);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.fs2-rfq-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(255, 102, 0, 0.45);
+    filter: brightness(1.05);
+}
+
+/* ── Skeleton bars ── */
+.fs2-sk-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f8f9fb;
+    border: 1px solid #eef0f6;
+}
+
+.fs2-sk-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #ececec;
+    display: block;
+}
+
+.fs2-sk-bar {
+    display: block;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 1280px) {
+    .fs2-deals-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .fs2-promo-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .fs2-deals-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .fs2-dual-row {
+        grid-template-columns: 1fr;
+    }
+
+    .fs2-mini-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .fs2-promo-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+    }
+
+    .fs2-promo-left {
+        max-width: 100%;
+        align-items: center;
+    }
+
+    .fs2-promo-stats {
+        justify-content: center;
+    }
+
+    .fs2-rfq-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px;
+    }
+
+    .fs2-rfq-left {
+        max-width: 100%;
+        align-items: center;
+    }
+
+    .fs2-rfq-stats {
+        justify-content: center;
+    }
+
+    .fs2-rfq-banner::before {
+        width: 100%;
+        height: 4px;
+        bottom: auto;
+        right: 0;
+        border-radius: 4px 4px 0 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .fs2-panel {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .fs2-deals-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .fs2-mini-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .fs2-promo-title {
+        font-size: 1.2rem;
+    }
+
+    .fs2-rfq-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fs2-deals-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .fs2-promo-banner,
+    .fs2-rfq-banner {
+        padding: 20px 16px;
+    }
+}

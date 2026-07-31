@@ -1,0 +1,312 @@
+[
+    {
+        "_id": "664c7e6b0000000000000001",
+        "title": "Machinery & Equipment",
+        "slug": "machinery",
+        "icon": "fa-cogs",
+        "description": "Industrial machines, tools, and heavy equipment.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000001.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000002",
+        "title": "Electronics & Accessories",
+        "slug": "electronics",
+        "icon": "fa-plug",
+        "description": "Wholesale consumer electronics and components.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000002.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000003",
+        "title": "Home & Garden",
+        "slug": "home-garden",
+        "icon": "fa-home",
+        "description": "Furniture, lights, and kitchenware in bulk.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000003.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000004",
+        "title": "Apparel & Textiles",
+        "slug": "apparel",
+        "icon": "fa-tshirt",
+        "description": "Clothing, fabrics, and wholesale textiles.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000004.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000005",
+        "title": "Beauty & Personal Care",
+        "slug": "beauty",
+        "icon": "fa-sparkles",
+        "description": "Wholesale skincare and cosmetic supplies.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000005.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000006",
+        "title": "Industrial Tools",
+        "slug": "tools",
+        "icon": "fa-wrench",
+        "description": "Professional tools and manufacturing equipment.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000006.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000007",
+        "title": "Automotive Parts",
+        "slug": "automotive",
+        "icon": "fa-car",
+        "description": "Auto accessories, vehicle tools, and wholesale parts.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000007.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000008",
+        "title": "Sports & Entertainment",
+        "slug": "sports",
+        "icon": "fa-futbol",
+        "description": "Fitness equipment, outdoor gear, and sporting goods.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000008.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000009",
+        "title": "Packaging & Printing",
+        "slug": "packaging",
+        "icon": "fa-box-open",
+        "description": "Custom boxes, sustainable packaging, and printing services.",
+        "image": "/uploads/categories/cat_664c7e6b0000000000000009.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b000000000000000a",
+        "title": "Health & Medical",
+        "slug": "health",
+        "icon": "fa-heartbeat",
+        "description": "Medical devices, healthcare supplies, and wellness products.",
+        "image": "/uploads/categories/cat_664c7e6b000000000000000a.jpg",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000101",
+        "title": "CNC & Laser Machines",
+        "slug": "cnc-laser-machines",
+        "description": "Computer numerical control cutting and milling machinery.",
+        "image": "/uploads/categories/cat_ext_construction-building-machinery_1774933439604.jpg",
+        "parent": "664c7e6b0000000000000001",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000102",
+        "title": "Generators & Power Alternators",
+        "slug": "generators-power-alternators",
+        "description": "Industrial power generation and electric alternators.",
+        "image": "/uploads/categories/cat_ext_construction-building-machinery_1774933439604.jpg",
+        "parent": "664c7e6b0000000000000001",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000201",
+        "title": "Smartphones & Tablets",
+        "slug": "smartphones-tablets",
+        "description": "Mobile phones, computing tablets, and accessories.",
+        "image": "/uploads/categories/cat_ext_consumer-electronics_1774933417802.jpg",
+        "parent": "664c7e6b0000000000000002",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000202",
+        "title": "Audio & Headphones",
+        "slug": "audio-headphones",
+        "description": "True wireless earbuds, headphones, and home audio systems.",
+        "image": "/uploads/categories/cat_ext_consumer-electronics_1774933417802.jpg",
+        "parent": "664c7e6b0000000000000002",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000301",
+        "title": "Modern Furniture",
+        "slug": "modern-furniture",
+        "description": "Sofas, armchairs, office desks, and minimalist tables.",
+        "image": "/uploads/categories/cat_ext_furniture_1774933443270.jpg",
+        "parent": "664c7e6b0000000000000003",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000302",
+        "title": "Kitchenware & Cookware",
+        "slug": "kitchenware-cookware",
+        "description": "Wholesale pans, cutlery, and kitchen accessories.",
+        "image": "/uploads/categories/cat_ext_furniture_1774933443270.jpg",
+        "parent": "664c7e6b0000000000000003",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000401",
+        "title": "Men's Clothing",
+        "slug": "mens-clothing",
+        "description": "T-shirts, shirts, trousers, and outer garments for men.",
+        "image": "/uploads/categories/cat_ext_apparel-accessories_1774933415876.jpg",
+        "parent": "664c7e6b0000000000000004",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000402",
+        "title": "Women's Clothing",
+        "slug": "womens-clothing",
+        "description": "Dresses, activewear, kurtis, and shirts for women.",
+        "image": "/uploads/categories/cat_ext_apparel-accessories_1774933415876.jpg",
+        "parent": "664c7e6b0000000000000004",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000501",
+        "title": "Skin Care & Serums",
+        "slug": "skin-care-serums",
+        "description": "Organic face oils, anti-aging moisturizers, and sheet masks.",
+        "image": "/uploads/categories/cat_ext_beauty_1774933426664.jpg",
+        "parent": "664c7e6b0000000000000005",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000502",
+        "title": "Cosmetics & Makeup",
+        "slug": "cosmetics-makeup",
+        "description": "Professional makeup kits, foundations, lipsticks, and brushes.",
+        "image": "/uploads/categories/cat_ext_beauty_1774933426664.jpg",
+        "parent": "664c7e6b0000000000000005",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000601",
+        "title": "Power Tools & Drills",
+        "slug": "power-tools-drills",
+        "description": "Cordless impact wrenches, drills, saws, and batteries.",
+        "image": "/uploads/categories/cat_ext_tools-hardware_1774933454983.jpg",
+        "parent": "664c7e6b0000000000000006",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000602",
+        "title": "Hand Tool Sets",
+        "slug": "hand-tool-sets",
+        "description": "Professional socket wrenches, screwdrivers, and organizers.",
+        "image": "/uploads/categories/cat_ext_tools-hardware_1774933454983.jpg",
+        "parent": "664c7e6b0000000000000006",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000701",
+        "title": "Wheels & Brake Systems",
+        "slug": "wheels-brake-systems",
+        "description": "High performance alloy rims, calipers, and brake discs.",
+        "image": "/uploads/categories/cat_ext_vehicle-parts-accessories_1774933450771.jpg",
+        "parent": "664c7e6b0000000000000007",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000702",
+        "title": "Auto Electronics",
+        "slug": "auto-electronics",
+        "description": "Dashboard cameras, GPS navigation, and car audio systems.",
+        "image": "/uploads/categories/cat_ext_vehicle-parts-accessories_1774933450771.jpg",
+        "parent": "664c7e6b0000000000000007",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000801",
+        "title": "Fitness & Gym Equipment",
+        "slug": "fitness-gym-equipment",
+        "description": "Hex dumbbells, sports water bottles, and resistance bands.",
+        "image": "/uploads/categories/cat_ext_sportswear-outdoor-apparel_1774933419559.jpg",
+        "parent": "664c7e6b0000000000000008",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000802",
+        "title": "Outdoor & Camping Gear",
+        "slug": "outdoor-camping-gear",
+        "description": "Hiking backpacks, tactical lights, and waterproof tents.",
+        "image": "/uploads/categories/cat_ext_sportswear-outdoor-apparel_1774933419559.jpg",
+        "parent": "664c7e6b0000000000000008",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000901",
+        "title": "Custom Shipping Boxes",
+        "slug": "custom-shipping-boxes",
+        "description": "Corrugated packaging boxes and logo branded mailers.",
+        "image": "/uploads/categories/cat_ext_packaging-printing_1774933430043.jpg",
+        "parent": "664c7e6b0000000000000009",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000902",
+        "title": "Eco-friendly Packaging",
+        "slug": "eco-friendly-packaging",
+        "description": "Biodegradable paper bags, compostable mailers, and wraps.",
+        "image": "/uploads/categories/cat_ext_packaging-printing_1774933430043.jpg",
+        "parent": "664c7e6b0000000000000009",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000a01",
+        "title": "Medical Devices & Equipment",
+        "slug": "medical-devices-equipment",
+        "description": "Infrared thermometers, clinical stethoscopes, and monitors.",
+        "image": "/uploads/categories/cat_ext_health-medical_1774933432659.jpg",
+        "parent": "664c7e6b000000000000000a",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    },
+    {
+        "_id": "664c7e6b0000000000000a02",
+        "title": "Supplements & Wellness",
+        "slug": "supplements-wellness",
+        "description": "Vitamin tablets, organic wellness supplements, and protein powders.",
+        "image": "/uploads/categories/cat_ext_health-medical_1774933432659.jpg",
+        "parent": "664c7e6b000000000000000a",
+        "level": 1,
+        "status": "active",
+        "isPublished": true
+    }
+]

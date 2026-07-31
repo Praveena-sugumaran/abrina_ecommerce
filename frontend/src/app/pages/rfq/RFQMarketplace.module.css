@@ -1,0 +1,322 @@
+.marketplaceBg {
+    background-color: #f4f7f9;
+    min-height: calc(100vh - 80px);
+    padding: 3rem 1rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+    color: #666;
+    margin: 0;
+}
+
+.filterGroup .select {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fff;
+    cursor: pointer;
+    min-width: 250px;
+}
+
+.loading, .error, .empty {
+    text-align: center;
+    padding: 3rem;
+    background: #fff;
+    border-radius: 12px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.rfqList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rfqCard {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: relative;
+    border: 1px solid #eee;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rfqCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.rfqCard.promoted {
+    border: 2px solid #ff7a00;
+}
+
+.promotedBadge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #ff7a00;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(255,122,0,0.3);
+}
+
+.rfqCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.rfqTitle {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.rfqQuantity {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    background: #f0f4ff;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+.rfqMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.rfqMeta strong {
+    color: #333;
+}
+
+.rfqDescription {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    background: #fafafa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #ddd;
+}
+
+.rfqFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.buyerInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: #e8701a;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.country {
+    color: #888;
+    margin-left: 5px;
+    font-size: 0.85rem;
+}
+
+.quoteBtn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.quoteBtn:hover {
+    background: #0a2452;
+}
+
+.quotedBtn {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: not-allowed;
+}
+
+/* Modal Styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    padding: 1rem;
+}
+
+.modalContent {
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.modalHeader h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #1a1a1a;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.closeBtn:hover {
+    color: #333;
+}
+
+.modalForm {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.row {
+    display: flex;
+    gap: 1rem;
+}
+
+.row > div {
+    flex: 1;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.formGroup input, .formGroup textarea {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.formGroup input:focus, .formGroup textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cancelBtn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background: #f0f2f5;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+}
+
+.submitBtn {
+    padding: 0.8rem 2rem;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.submitBtn:hover {
+    background: #0a2452;
+}
+
+@media (max-width: 450px) {
+    .marketplaceBg {
+        padding-top: 52px !important;
+    }
+}
+

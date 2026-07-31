@@ -1,0 +1,135 @@
+.admin-withdrawals-container {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.admin-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    z-index: 9999;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.admin-toast.error { background: #ef4444; }
+
+.page-header {
+    margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.page-header p {
+    color: #64748b;
+    margin: 4px 0 0;
+    font-weight: 500;
+}
+
+.admin-table-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.admin-payout-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-payout-table th {
+    background: #f8fafc;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-payout-table td {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.supplier-id-box, .bank-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.supplier-name, .bank-name {
+    font-weight: 800;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+.supplier-email, .supplier-company, .bank-acc, .bank-swift {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.date-box, .amount-box {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.status-tag {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-tag.pending { background: #fffbeb; color: #d97706; }
+.status-tag.approved { background: #f0fdf4; color: #16a34a; }
+.status-tag.declined { background: #fef2f2; color: #ef4444; }
+
+.action-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.approve-btn, .decline-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.approve-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.approve-btn:hover { background: #1e40af; }
+
+.decline-btn {
+    background: white;
+    color: #ef4444;
+    border: 1px solid #fee2e2;
+}
+
+.decline-btn:hover { background: #fef2f2; }
+
+.text-right { text-align: right; }

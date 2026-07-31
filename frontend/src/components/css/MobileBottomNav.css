@@ -1,0 +1,512 @@
+/* ═══════════════════════════════════════════════
+   MobileBottomNav.css — Bottom Nav + My Alibaba Sheet
+   ═══════════════════════════════════════════════ */
+
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 2000;
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.mobile-bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #666;
+    flex: 1;
+    min-width: 0;
+    max-width: 72px;
+    transition: all 0.2s ease;
+    padding: 0 2px;
+}
+
+/* Button version of nav-item (for My Alibaba) */
+.mobile-bottom-nav .nav-item-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.mobile-bottom-nav .nav-item .nav-icon {
+    position: relative;
+    margin-bottom: 2px;
+}
+
+.mobile-bottom-nav .nav-item span {
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.mobile-bottom-nav .nav-item.active {
+    color: var(--primary);
+}
+
+.mobile-bottom-nav .nav-item.active .nav-icon svg {
+    stroke: var(--primary);
+}
+
+.mobile-bottom-nav .nav-item .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: #ff4d4f;
+    color: #fff;
+    font-size: 10px;
+    min-width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 0 4px;
+    box-shadow: 0 0 0 2px #fff;
+}
+
+/* Hide on desktop */
+@media (min-width: 1281px) {
+    .mobile-bottom-nav {
+        display: none;
+    }
+}
+
+/* Add padding to body to prevent content being covered by nav */
+@media (max-width: 1280px) {
+    body {
+        padding-bottom: 60px;
+    }
+
+    /* Hide header profile trigger pill on mobile — use bottom nav instead */
+    .user-profile-trigger {
+        display: none !important;
+    }
+
+    .user-profile-dropdown-container {
+        display: none !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   My Alibaba Slide-up Sheet (WhatsApp style)
+   ═══════════════════════════════════════════════ */
+
+/* Backdrop overlay */
+.myalibaba-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2998;
+    animation: overlayFadeIn 0.25s ease;
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide-up sheet */
+.myalibaba-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 22px 22px 0 0;
+    z-index: 2999;
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 72px);
+    /* clear bottom nav */
+    scrollbar-width: none;
+}
+
+.myalibaba-sheet::-webkit-scrollbar {
+    display: none;
+}
+
+.myalibaba-sheet.open {
+    transform: translateY(0);
+}
+
+/* Only show on mobile */
+@media (min-width: 1281px) {
+
+    .myalibaba-sheet,
+    .myalibaba-overlay {
+        display: none;
+    }
+}
+
+/* Drag handle */
+.myalibaba-handle {
+    width: 44px;
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    margin: 12px auto 0;
+}
+
+/* Back header */
+.myalibaba-back-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 20px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.2px;
+}
+
+.myalibaba-back-btn svg {
+    stroke: var(--primary);
+}
+
+/* Profile section */
+.myalibaba-profile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 52px 20px 16px;
+    border-bottom: 1px solid #f0f4f8;
+}
+
+.myalibaba-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, #1a4a9e 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: -0.5px;
+}
+
+.myalibaba-user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.myalibaba-user-name {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.myalibaba-user-email {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+}
+
+/* Menu list */
+.myalibaba-menu-list {
+    padding: 8px 0;
+}
+
+.myalibaba-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #f8fafc;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;
+}
+
+.myalibaba-menu-item:active,
+.myalibaba-menu-item:hover {
+    background: #f5f8ff;
+}
+
+.myalibaba-menu-item.active {
+    background: #eef2ff;
+}
+
+.myalibaba-menu-item.active .myalibaba-menu-label {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.myalibaba-menu-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #f0f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--primary);
+}
+
+.myalibaba-menu-item.active .myalibaba-menu-icon {
+    background: var(--primary);
+    color: #fff;
+}
+
+.myalibaba-menu-label {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.myalibaba-menu-badge {
+    min-width: 20px;
+    height: 20px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+.myalibaba-menu-badge-text {
+    background: #10b981;
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 900;
+    padding: 2px 7px;
+    border-radius: 8px;
+    letter-spacing: 0.03em;
+}
+
+.myalibaba-chevron {
+    color: #cbd5e0;
+    flex-shrink: 0;
+}
+
+/* Login prompt for unauthenticated users */
+.myalibaba-login-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 52px 32px 32px;
+    text-align: center;
+}
+
+.myalibaba-login-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.myalibaba-login-prompt h3 {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #1a1a2e;
+    margin: 0 0 8px;
+}
+
+.myalibaba-login-prompt p {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.myalibaba-login-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--primary) 0%, #1a4a9e 100%);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+.myalibaba-login-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+/* Mini avatar in bottom nav for logged in users */
+.nav-avatar-mini {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, #1a4a9e 100%);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.3px;
+    border: 2px solid color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+/* Section title */
+.myalibaba-section {
+    padding: 16px 20px 8px;
+}
+
+.myalibaba-section-title {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #94a3b8;
+    margin-bottom: 12px;
+}
+
+/* Role cards */
+.myalibaba-role-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.myalibaba-role-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 2px solid #e2e8f0;
+    background: #fff;
+    text-align: left;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 100%;
+    text-decoration: none;
+}
+
+.myalibaba-role-card:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.myalibaba-role-card.active {
+    border-color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 3%, transparent);
+}
+
+.myalibaba-role-card.start-selling {
+    border-style: dashed;
+    border-color: #4f46e5;
+    background: rgba(79, 70, 229, 0.02);
+}
+
+.myalibaba-role-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 2px;
+}
+
+.myalibaba-role-desc {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.myalibaba-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Sign out */
+.myalibaba-signout-wrap {
+    padding: 12px 20px 24px;
+    border-top: 1px solid #f1f5f9;
+    margin-top: 8px;
+}
+
+.myalibaba-signout-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #475569;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.2s;
+}
+
+.myalibaba-signout-btn:hover {
+    color: #ef4444;
+}
+
+.myalibaba-signout-btn svg {
+    color: #94a3b8;
+    transition: color 0.2s;
+}
+
+.myalibaba-signout-btn:hover svg {
+    color: #ef4444;
+}

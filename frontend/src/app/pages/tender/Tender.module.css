@@ -1,0 +1,215 @@
+/* ── Tender module styles ── */
+
+.tender-page-bg {
+    padding: 3rem 1rem;
+    background-color: #f4f7f9;
+    min-height: calc(100vh - 80px);
+}
+
+.tender-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.tender-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.tender-col-7 {
+    flex: 0 0 calc(58.333% - 1rem);
+    max-width: calc(58.333% - 1rem);
+    min-width: 0;
+}
+
+.tender-col-5 {
+    flex: 0 0 calc(41.667% - 1rem);
+    max-width: calc(41.667% - 1rem);
+    min-width: 0;
+}
+
+.tender-form-card {
+    background: #ffffff;
+    width: 100%;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.tender-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.tender-field-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.tender-field-group input,
+.tender-field-group select,
+.tender-field-group textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.tender-field-group input:focus,
+.tender-field-group select:focus,
+.tender-field-group textarea:focus {
+    border-color: var(--primary-color, #ff6600);
+    outline: none;
+}
+
+.flex-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.tender-btn-submit {
+    background: var(--primary-color, #ff6600);
+    color: #fff;
+    padding: 0.8rem 2.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tender-btn-submit:hover {
+    filter: brightness(0.9);
+}
+
+.tender-btn-submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.tender-btn-cancel {
+    background: #f0f2f5;
+    color: #666;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.tender-alert-error {
+    background-color: #fff1f0;
+    border: 1px solid #ffa39e;
+    color: #cf1322;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* ── Live Auction Styles ── */
+.timer-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0d2e67 100%);
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.timer-box {
+    display: flex;
+    gap: 0.5rem;
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.timer-unit {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+}
+
+.lowest-bid-highlight {
+    background: #fff8f5;
+    border: 1.5px solid #ff6600;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bid-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.bid-table th, .bid-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.bid-table th {
+    background: #f8fafc;
+    font-weight: 700;
+    color: #475569;
+}
+
+.bid-table tr:hover {
+    background: #f8fafc;
+}
+
+.winning-row {
+    background: #f0fdf4 !important;
+}
+
+.badge-winner {
+    background: #10b981;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.award-btn {
+    background: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.award-btn:hover {
+    background: #172554;
+}
+
+@media (max-width: 900px) {
+    .tender-col-7,
+    .tender-col-5 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}

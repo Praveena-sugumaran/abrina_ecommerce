@@ -1,0 +1,55 @@
+[
+    {
+        "_id": "664c7e6b0000000000000050",
+        "user_id": "664c7e6b0000000000000010",
+        "type": "credit",
+        "amount": 10000.00,
+        "currency": "USD",
+        "status": "completed",
+        "description": "Wallet top-up via Bank Deposit",
+        "createdAt": "2026-05-09T08:00:00.000Z",
+        "updatedAt": "2026-05-09T08:05:00.000Z"
+    },
+    {
+        "_id": "664c7e6b0000000000000051",
+        "user_id": "664c7e6b0000000000000010",
+        "order_id": "664c7e6b0000000000000040",
+        "type": "payment",
+        "amount": 2550.00,
+        "currency": "USD",
+        "status": "completed",
+        "description": "Payment for Order #664c7e6b0000000000000040",
+        "createdAt": "2026-05-10T10:05:00.000Z",
+        "updatedAt": "2026-05-10T10:05:00.000Z"
+    },
+    {
+        "_id": "664c7e6b0000000000000052",
+        "user_id": "664c7e6b0000000000000011",
+        "order_id": "664c7e6b0000000000000040",
+        "type": "credit",
+        "amount": 2550.00,
+        "currency": "USD",
+        "status": "completed",
+        "description": "Earnings for Order #664c7e6b0000000000000040",
+        "createdAt": "2026-05-10T10:05:00.000Z",
+        "updatedAt": "2026-05-10T10:05:00.000Z"
+    },
+    {
+        "_id": "664c7e6b0000000000000053",
+        "user_id": "664c7e6b0000000000000011",
+        "type": "withdraw",
+        "amount": 500.00,
+        "currency": "USD",
+        "status": "pending",
+        "description": "Supplier withdrawal request to ICBC bank",
+        "payout_method_type": "bank",
+        "bank_details": {
+            "bank_name": "Industrial and Commercial Bank of China",
+            "account_name": "Sarah Supplier",
+            "account_number": "6222021202003456789",
+            "swift_code": "ICBKCNBJXXX"
+        },
+        "createdAt": "2026-05-18T10:00:00.000Z",
+        "updatedAt": "2026-05-18T10:00:00.000Z"
+    }
+]

@@ -1,0 +1,19 @@
+1.In withdrawal request, the status such as declined option is not fully visible. 
+2.Portrait and Landscape View : In revenue analytics, extra space is left in the right side.
+3.Portrait View : In tax management section, when edit tax button is clicked, the marked text is not aligned correctly.
+Landscape View : When edit tax button is clicked, the form opens from the middle instead starting from the begining of the page. user needs to scroll manually to view initial fields.
+4.Landscape View :  In CMS page,When edit button is clicked, the form opens from the middle instead starting from the begining of the page. user needs to scroll manually to view initial fields.
+5.In hero banner section, the marked text is not aligned correctly and unable to scroll to right side.
+6.In footer management , the marked  text is not aligned correctly.
+7.Portait View : In subscription plan section, when new plan button is clicked, the marked  text is not aligned correctly.
+
+Landscape View : In subscription plan section, when edit button is clicked, the slide toggle for recommended option in visibility & control section is too closely aligned within the box and the drop down symbol in terms & duration section is not aligned correctly. 
+8.Landscape View : In the Logistics Rule section, when a country is selected in the Edit or Create New Logistics Rule form, it is sometimes displayed outside the layout.
+9.Landscape View : In the state section , when a country is selected in the Edit , add state form or filter option, it is sometimes displayed outside the layout.
+10.In business type section, when add business type button is clicked, "save business type" button is not fully visible.
+11.In the settings section, all the text are not aligned correctly.
+https://prnt.sc/Q1ydV4poQZlN  https://prnt.sc/dYyGog56VLlD
+12.Portrait View : In email templates section, when edit email template button is clicked, the textfield for slug and internal description are too closely aligned within the box.
+
+Landscape View : When view inquiry button is clicked in preview section , popup message is displaying. But it is not fully visible.
+13.Portrait and Landscape View : For all the sections, the popup message is showing behind the form and sometimes not visible.

@@ -1,0 +1,373 @@
+/* Voice Search overlay styles */
+.vs-overlay-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #f8fafc;
+}
+
+.vs-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 12, 22, 0.7);
+    backdrop-filter: blur(12px) saturate(190%);
+}
+
+.vs-modal {
+    position: relative;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(37, 99, 235, 0.15);
+    border-radius: 24px;
+    width: 90%;
+    max-width: 540px;
+    padding: 32px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    animation: vsModalShow 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes vsModalShow {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.vs-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #94a3b8;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.vs-close-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.vs-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Mic animation styles */
+.vs-mic-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.vs-mic-circle-glow {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.vs-mic-circle {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    z-index: 2;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vs-mic-circle:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.45);
+}
+
+.vs-mic-circle-glow.listening .vs-mic-circle {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+}
+
+.vs-mic-pulse-wave {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.vs-mic-circle-glow.listening .vs-mic-pulse-wave {
+    border: 2px solid #ef4444;
+    animation: vsPulseWave 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.vs-mic-circle-glow.listening .vs-mic-pulse-wave.ring1 {
+    animation-delay: 0s;
+}
+
+.vs-mic-circle-glow.listening .vs-mic-pulse-wave.ring2 {
+    animation-delay: 0.8s;
+}
+
+@keyframes vsPulseWave {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.7);
+        opacity: 0;
+    }
+}
+
+.vs-status-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: #94a3b8;
+    text-align: center;
+    min-height: 24px;
+}
+
+.vs-command-msg {
+    color: #10b981;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    animation: vsPulseOpacity 1s infinite alternate;
+}
+
+@keyframes vsPulseOpacity {
+    from {
+        opacity: 0.7;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.vs-error-msg {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Transcript Box */
+.vs-transcript-container {
+    width: 100%;
+    min-height: 100px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.vs-transcript-text {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.vs-final-text {
+    color: #f8fafc;
+}
+
+.vs-interim-text {
+    color: #64748b;
+    font-style: italic;
+}
+
+.vs-placeholder-text {
+    color: #475569;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Language Selection Section */
+.vs-lang-selector {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vs-section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    margin: 0;
+}
+
+.vs-lang-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.vs-lang-chip {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #94a3b8;
+    padding: 8px 16px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.vs-lang-chip:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+}
+
+.vs-lang-chip.active {
+    background: rgba(37, 99, 235, 0.15);
+    border-color: #2563eb;
+    color: #3b82f6;
+    box-shadow: 0 0 12px rgba(37, 99, 235, 0.15);
+}
+
+/* Voice Commands Helper Section */
+.vs-commands-helper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vs-commands-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.vs-command-item {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.vs-command-item code {
+    font-family: 'JetBrains Mono', Courier, monospace;
+    color: #f59e0b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.vs-command-item span {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Responsive bottom sheet for mobile devices */
+@media (max-width: 480px) {
+    .vs-modal {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 24px 24px 0 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        padding: 24px 20px;
+        animation: vsMobileSheetShow 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes vsMobileSheetShow {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .vs-close-btn {
+        top: 16px;
+        right: 16px;
+    }
+
+    .vs-mic-circle-glow {
+        width: 80px;
+        height: 80px;
+    }
+
+    .vs-mic-circle {
+        width: 68px;
+        height: 68px;
+    }
+
+    .vs-mic-pulse-wave {
+        width: 68px;
+        height: 68px;
+    }
+
+    .vs-transcript-container {
+        min-height: 80px;
+    }
+
+    .vs-transcript-text {
+        font-size: 17px;
+    }
+
+    .vs-commands-grid {
+        grid-template-columns: 1fr;
+    }
+}

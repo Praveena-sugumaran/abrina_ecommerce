@@ -1,0 +1,268 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   SupplierSidebar.css  —  Global styles for the dark sidebar
+   (These classes are applied without CSS module syntax in the JSX)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Layout wrapper ─────────────────────────────────────────────────── */
+.supplier-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #f4f7fb;
+  color: #1a1a2e;
+}
+
+/* ── Body (header + sidebar + main) ─────────────────────────────────── */
+.supplier-layout-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ══════════════════════════════════════════════
+   SIDEBAR — Dark Premium
+   ══════════════════════════════════════════════ */
+.supplier-sidebar {
+  width: 272px;
+  background: #0d121e;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--sp-header-h, 68px));
+  max-height: calc(100vh - var(--sp-header-h, 68px));
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+}
+
+.supplier-sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.025) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.supplier-sidebar.collapsed {
+  width: 64px;
+}
+
+/* Hub "home" button at the very top */
+.supplier-sidebar-item.hub-top-item {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* ── Sidebar nav items ────────────────────────────────────────────── */
+.supplier-sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  margin: 2px 0;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 11px;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  position: relative;
+  font-family: inherit;
+}
+
+.supplier-sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  padding-left: 18px;
+}
+
+.supplier-sidebar-item.active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Left accent bar on active items */
+.supplier-sidebar-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  background: var(--clr-accent, #ff6a00);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ── Mobile bottom nav tabs ────────────────────────────────────────── */
+.supplier-mob-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  padding: 6px 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  transition: color 0.2s;
+  border-radius: 0;
+  position: relative;
+  font-family: inherit;
+}
+
+.supplier-mob-nav-item span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.supplier-mob-nav-item:hover {
+  color: var(--primary-color, #0d2e67);
+}
+
+.supplier-mob-nav-item.active {
+  color: var(--primary-color, #0d2e67);
+}
+
+.supplier-mob-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color, #0d2e67), #1a4a9e);
+  border-radius: 0 0 6px 6px;
+}
+
+/* ── Role switch cards (mobile sheet) ─────────────────────────────── */
+.myalibaba-role-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid #e8edf5;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  width: 100%;
+  font-family: inherit;
+}
+
+.myalibaba-role-card:hover {
+  border-color: #c7d4e8;
+  background: #f8fafc;
+}
+
+.myalibaba-role-card.active {
+  border-color: var(--primary-color, #0d2e67);
+  background: rgba(13, 46, 103, 0.04);
+}
+
+/* ── Account slide-up sheet ────────────────────────────────────────── */
+.myalibaba-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 24px 24px 0 0;
+  z-index: 3001;
+  padding: 0 0 32px;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.18);
+}
+
+.myalibaba-sheet.open {
+  transform: translateY(0);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .supplier-sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px !important;
+    height: 100%;
+    z-index: 2500;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .supplier-sidebar.drawer-open {
+    left: 0;
+  }
+}
+
+/* Support for active indicator */
+.supplier-sidebar-item.active::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.supplier-mob-nav-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.supplier-mob-nav-item.active {
+  color: #000;
+}
+
+/* Custom premium scrollbar for sidebar content scroller */
+.supplier-sidebar-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.supplier-sidebar-content::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.supplier-sidebar-content::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.supplier-sidebar-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 99px !important;
+}
+
+.supplier-sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+}

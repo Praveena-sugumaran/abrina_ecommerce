@@ -1,0 +1,215 @@
+[
+    {
+        "_id": "664c7e6b0000000000000010",
+        "first_name": "John",
+        "last_name": "Buyer",
+        "email": "buyer@gmail.com",
+        "password": "password123",
+        "roles": [
+            "buyer"
+        ],
+        "phone_number": "+1 555 123 4567",
+        "country_code": "US",
+        "is_verified": true,
+        "status": "active",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 5000,
+        "company_name": "Acme Global Sourcing",
+        "profile_image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&h=120&fit=crop&q=80"
+    },
+    {
+        "_id": "664c7e6b0000000000000011",
+        "first_name": "Sarah",
+        "last_name": "Supplier",
+        "email": "supplier@gmail.com",
+        "password": "password123",
+        "roles": [
+            "supplier"
+        ],
+        "phone_number": "+86 138 9876 5432",
+        "country_code": "CN",
+        "is_verified": true,
+        "status": "verified",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 15250,
+        "company_name": "Zhenjiang Industrial Solutions Ltd.",
+        "business_type": [
+            "Manufacturer",
+            "Trading Company"
+        ],
+        "profile_image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&q=80",
+        "payout_methods": [
+            {
+                "type": "bank",
+                "bank_name": "Industrial and Commercial Bank of China",
+                "account_name": "Sarah Supplier",
+                "account_number": "6222021202003456789",
+                "swift_code": "ICBKCNBJXXX",
+                "is_default": true
+            }
+        ]
+    },
+    {
+        "_id": "664c7e6b0000000000000012",
+        "first_name": "Michael",
+        "last_name": "Trading",
+        "email": "supplier2@gmail.com",
+        "password": "password123",
+        "roles": [
+            "supplier"
+        ],
+        "phone_number": "+86 138 9876 1111",
+        "country_code": "CN",
+        "is_verified": true,
+        "status": "verified",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 1000,
+        "company_name": "Michael Global Trading Co.",
+        "business_type": [
+            "Trading Company"
+        ],
+        "profile_image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&q=80",
+        "payout_methods": []
+    },
+    {
+        "_id": "664c7e6b0000000000000013",
+        "first_name": "David",
+        "last_name": "Logistics",
+        "email": "supplier3@gmail.com",
+        "password": "password123",
+        "roles": [
+            "supplier"
+        ],
+        "phone_number": "+86 138 9876 2222",
+        "country_code": "CN",
+        "is_verified": true,
+        "status": "verified",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 2500,
+        "company_name": "David Fast Logistics & Manufacturing",
+        "business_type": [
+            "Manufacturer",
+            "Logistics"
+        ],
+        "profile_image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&q=80",
+        "payout_methods": []
+    },
+    {
+        "_id": "664c7e6b0000000000000014",
+        "first_name": "Jessica",
+        "last_name": "Wholesale",
+        "email": "supplier4@gmail.com",
+        "password": "password123",
+        "roles": [
+            "supplier"
+        ],
+        "phone_number": "+86 138 9876 3333",
+        "country_code": "CN",
+        "is_verified": true,
+        "status": "verified",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 5000,
+        "company_name": "Jessica Wholesale Supplies Ltd.",
+        "business_type": [
+            "Wholesaler",
+            "Distributor"
+        ],
+        "profile_image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&q=80",
+        "payout_methods": []
+    },
+    {
+        "_id": "664c7e6b0000000000000015",
+        "first_name": "Alice",
+        "last_name": "Smith",
+        "email": "alice.buyer@gmail.com",
+        "password": "password123",
+        "roles": [
+            "buyer"
+        ],
+        "phone_number": "+1 555 123 0001",
+        "country_code": "US",
+        "is_verified": true,
+        "status": "active",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 1500,
+        "profile_image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&q=80"
+    },
+    {
+        "_id": "664c7e6b0000000000000016",
+        "first_name": "Bob",
+        "last_name": "Johnson",
+        "email": "bob.buyer@gmail.com",
+        "password": "password123",
+        "roles": [
+            "buyer"
+        ],
+        "phone_number": "+1 555 123 0002",
+        "country_code": "UK",
+        "is_verified": true,
+        "status": "active",
+        "language": "English",
+        "currency": "GBP",
+        "wallet_balance": 3000,
+        "profile_image": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=120&h=120&fit=crop&q=80"
+    },
+    {
+        "_id": "664c7e6b0000000000000017",
+        "first_name": "Charlie",
+        "last_name": "Brown",
+        "email": "charlie.buyer@gmail.com",
+        "password": "password123",
+        "roles": [
+            "buyer"
+        ],
+        "phone_number": "+1 555 123 0003",
+        "country_code": "AU",
+        "is_verified": true,
+        "status": "active",
+        "language": "English",
+        "currency": "AUD",
+        "wallet_balance": 800,
+        "profile_image": "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=120&h=120&fit=crop&q=80"
+    },
+    {
+        "_id": "664c7e6b0000000000000018",
+        "first_name": "Diana",
+        "last_name": "Prince",
+        "email": "diana.buyer@gmail.com",
+        "password": "password123",
+        "roles": [
+            "buyer"
+        ],
+        "phone_number": "+1 555 123 0004",
+        "country_code": "CA",
+        "is_verified": true,
+        "status": "active",
+        "language": "English",
+        "currency": "CAD",
+        "wallet_balance": 5500,
+        "profile_image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&q=80"
+    },
+    {
+        "_id": "664c7e6b0000000000000019",
+        "first_name": "Ethan",
+        "last_name": "Hunt",
+        "email": "ethan.buyer@gmail.com",
+        "password": "password123",
+        "roles": [
+            "buyer"
+        ],
+        "phone_number": "+1 555 123 0005",
+        "country_code": "US",
+        "is_verified": true,
+        "status": "active",
+        "language": "English",
+        "currency": "USD",
+        "wallet_balance": 12000,
+        "profile_image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&q=80"
+    }
+]

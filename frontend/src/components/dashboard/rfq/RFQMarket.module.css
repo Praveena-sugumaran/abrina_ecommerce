@@ -1,0 +1,330 @@
+.rfq-market-container {
+    padding: 24px;
+}
+
+.rfq-market-header {
+    margin-bottom: 30px;
+}
+
+.rfq-market-header h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.rfq-market-header p {
+    color: #666;
+}
+
+.rfq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rfq-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(13, 46, 103, 0.05);
+}
+
+.rfq-card:hover {
+    box-shadow: 0 12px 30px rgba(13, 46, 103, 0.1);
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+}
+
+.rfq-card.selected {
+    border-color: var(--primary-color);
+    background: #fffaf6;
+    box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.15);
+}
+
+.rfq-card-main {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.rfq-card-left {
+    flex: 1;
+}
+
+.rfq-category-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #f0f7ff;
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 100px;
+    margin-bottom: 12px;
+}
+
+.rfq-item-title {
+    font-size: 1.15rem;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.rfq-description-preview {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.rfq-card-right {
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.rfq-stat {
+    text-align: right;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.rfq-quote-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.rfq-quote-btn:hover {
+    filter: brightness(0.9);
+    transform: translateY(-1px);
+}
+
+.rfq-card-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.rfq-empty {
+    padding: 80px 40px;
+    text-align: center;
+    background: #fdfdfd;
+    border-radius: 12px;
+    border: 2px dashed #e1e4e8;
+}
+
+.rfq-empty h3 {
+    color: #1a1a2e;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.rfq-empty p {
+    color: #888;
+    max-width: 450px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.rfq-loading {
+    padding: 60px;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Modal Styles */
+.rfq-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.2s ease;
+}
+
+.rfq-modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rfq-form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.rfq-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #1a1a2e;
+    font-size: 0.9rem;
+}
+
+.rfq-form-group input,
+.rfq-form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.rfq-form-group input:focus,
+.rfq-form-group textarea:focus {
+    border-color: var(--primary-color);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(13, 46, 103, 0.05);
+}
+
+.rfq-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.rfq-cancel-btn {
+    padding: 12px 24px;
+    background: #f1f5f9;
+    color: #475569;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.rfq-cancel-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.rfq-submit-btn {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.rfq-submit-btn:hover {
+    filter: brightness(0.9);
+    transform: translateY(-1px);
+}
+
+.loading-spinner {
+    padding: 60px;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.alert-error {
+    padding: 16px;
+    margin: 24px;
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+    .rfq-market-container {
+        padding: 10px;
+    }
+    .rfq-card-main {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .rfq-card-right {
+        min-width: 0;
+        width: 100%;
+        align-items: flex-start;
+        gap: 12px;
+        background: #f8fafc;
+        padding: 16px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        box-sizing: border-box;
+    }
+    .rfq-stat {
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    }
+    .rfq-quote-btn {
+        width: 100%;
+        margin-top: 4px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .rfq-modal-overlay {
+        align-items: flex-start;
+        padding: 0;
+    }
+    .rfq-modal-content {
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        padding: 24px 24px 100px;
+        margin: 0;
+    }
+}

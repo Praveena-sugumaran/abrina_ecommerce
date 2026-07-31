@@ -1,0 +1,2679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Marketplace – Official Developer & Merchant Documentation</title>
+    <meta name="description"
+        content="Complete documentation for the Global B2B Marketplace platform covering Admin, Buyer, and Supplier panels, setup, workflows, and API references.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --orange: #ff6600;
+            --orange-hover: #e55c00;
+            --orange-light: #ff8533;
+            --orange-subtle: rgba(255, 102, 0, 0.08);
+            --orange-border: rgba(255, 102, 0, 0.2);
+
+            /* Light mode colors */
+            --sidebar-bg: #ffffff;
+            --sidebar-border: #e8ecf0;
+            --bg-main: #f4f6f9;
+            --bg-card: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #9ca3af;
+            --border-subtle: #e5e7eb;
+            --border-card: #e8ecf0;
+            --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-glow: 0 0 0 3px rgba(255, 102, 0, 0.08);
+
+            --sidebar-width: 290px;
+            --header-height: 68px;
+            --font: 'Inter', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ─── SCROLLBAR ─────────────────────────── */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f3f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 102, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--orange);
+        }
+
+        /* ─── HEADER ─────────────────────────────── */
+        header {
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--sidebar-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 36px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--orange), #ff3d00);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
+            flex-shrink: 0;
+        }
+
+        .logo-icon i {
+            color: #fff;
+            font-size: 17px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text span:first-child {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-text span:last-child {
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .header-badges {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .hbadge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .hbadge-ghost {
+            color: var(--text-secondary);
+            border-color: var(--border-card);
+            background: #f8f9fa;
+        }
+
+        .hbadge-ghost:hover {
+            color: var(--orange);
+            border-color: var(--orange-border);
+            background: var(--orange-subtle);
+        }
+
+        .hbadge-orange {
+            color: #fff;
+            background: linear-gradient(135deg, var(--orange), #ff3d00);
+            box-shadow: 0 4px 16px rgba(255, 102, 0, 0.3);
+        }
+
+        .hbadge-orange:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(255, 102, 0, 0.45);
+        }
+
+        /* ─── SIDEBAR ───────────────────────────── */
+        .sidebar {
+            width: var(--sidebar-width);
+            position: fixed;
+            top: var(--header-height);
+            bottom: 0;
+            left: 0;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--sidebar-border);
+            overflow-y: auto;
+            padding: 28px 16px 40px;
+            z-index: 900;
+        }
+
+        .sidebar-search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f4f6f9;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 9px 14px;
+            margin-bottom: 28px;
+            transition: border-color 0.2s;
+        }
+
+        .sidebar-search:focus-within {
+            border-color: rgba(255, 102, 0, 0.4);
+        }
+
+        .sidebar-search i {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .sidebar-search input {
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-family: var(--font);
+            font-size: 12.5px;
+            width: 100%;
+        }
+
+        .sidebar-search input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .nav-group {
+            margin-bottom: 28px;
+        }
+
+        .nav-group-label {
+            font-size: 9.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--text-muted);
+            padding: 0 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-group-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-subtle);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+            transition: all 0.18s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link i {
+            font-size: 11px;
+            width: 16px;
+            text-align: center;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--orange);
+            background: var(--orange-subtle);
+        }
+
+        .nav-link:hover i {
+            opacity: 1;
+            color: var(--orange);
+        }
+
+        .nav-link.active {
+            color: var(--orange);
+            background: var(--orange-subtle);
+            border: 1px solid var(--orange-border);
+            font-weight: 600;
+        }
+
+        .nav-link.active i {
+            opacity: 1;
+            color: var(--orange);
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 3px;
+            background: var(--orange);
+            border-radius: 0 3px 3px 0;
+        }
+
+        /* ─── MAIN CONTENT ──────────────────────── */
+        .content {
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height);
+            padding: 48px 56px 80px;
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* ─── HERO BANNER ───────────────────────── */
+        .doc-hero {
+            background: linear-gradient(135deg, #fff7f0 0%, #ffffff 55%, #fff3eb 100%);
+            border: 1px solid #fdd9c0;
+            border-radius: 20px;
+            padding: 52px 48px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(255, 102, 0, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .doc-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 102, 0, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 102, 0, 0.12);
+            border: 1px solid rgba(255, 102, 0, 0.25);
+            color: var(--orange-light);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero-tag i {
+            font-size: 9px;
+        }
+
+        .doc-hero h1 {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -1.2px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: #111827;
+        }
+
+        .doc-hero p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 580px;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+            margin-top: 36px;
+            padding-top: 30px;
+            border-top: 1px solid #fdd9c0;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .hero-stat-num {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--orange);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* ─── CHAPTER TITLE ─────────────────────── */
+        .chapter-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--orange);
+            margin: 52px 0 24px;
+            padding: 0;
+        }
+
+        .chapter-title::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .chapter-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-subtle);
+        }
+
+        .chapter-title:first-of-type {
+            margin-top: 0;
+        }
+
+        /* ─── SECTION CARD ──────────────────────── */
+        .doc-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            padding: 36px 40px;
+            margin-bottom: 20px;
+            scroll-margin-top: calc(var(--header-height) + 24px);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--orange), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .doc-section:hover {
+            border-color: var(--orange-border);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .doc-section:hover::before {
+            opacity: 1;
+        }
+
+        /* ─── SECTION TITLE ─────────────────────── */
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--orange-subtle);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .section-title-icon i {
+            color: var(--orange);
+            font-size: 14px;
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 28px 0 12px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h3::before {
+            content: '';
+            display: block;
+            width: 3px;
+            height: 14px;
+            background: var(--orange);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        code {
+            font-family: var(--mono);
+            font-size: 12px;
+            background: rgba(255, 102, 0, 0.1);
+            color: var(--orange-light);
+            padding: 2px 7px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 102, 0, 0.15);
+        }
+
+        strong,
+        b {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ─── LISTS ─────────────────────────────── */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        ol {
+            padding-left: 22px;
+            margin-bottom: 20px;
+        }
+
+        ol li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        ol li b {
+            color: var(--text-primary);
+        }
+
+        li {
+            position: relative;
+            padding: 9px 14px 9px 38px;
+            margin-bottom: 6px;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            background: #f9fafb;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            line-height: 1.6;
+            transition: background 0.15s;
+        }
+
+        li:hover {
+            background: #fff3eb;
+            border-color: #fdd9c0;
+        }
+
+        li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--orange);
+            font-size: 10px;
+        }
+
+        /* ─── CODE BLOCKS ───────────────────────── */
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            padding: 20px 20px 18px;
+            font-family: var(--mono);
+            font-size: 12.5px;
+            color: #334155;
+            overflow-x: auto;
+            white-space: pre;
+            margin-bottom: 20px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .code-block-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            margin: -20px -20px 18px;
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .code-dots span:nth-child(1) {
+            background: #ff5f57;
+        }
+
+        .code-dots span:nth-child(2) {
+            background: #febc2e;
+        }
+
+        .code-dots span:nth-child(3) {
+            background: #28c840;
+        }
+
+        .code-lang {
+            font-size: 10.5px;
+            color: var(--text-secondary);
+            font-family: var(--mono);
+            letter-spacing: 0.5px;
+        }
+
+        /* ─── FEATURE CARDS ─────────────────────── */
+        .feature-card {
+            background: #fafbfc;
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--orange);
+            border-radius: 0 3px 3px 0;
+        }
+
+        .feature-card:hover {
+            background: #fff7f0;
+            border-color: var(--orange-border);
+            transform: translateX(3px);
+            box-shadow: 0 2px 12px rgba(255, 102, 0, 0.08);
+        }
+
+        .feature-card strong {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 13.5px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-card strong i {
+            color: var(--orange);
+            font-size: 13px;
+        }
+
+        .feature-card p {
+            font-size: 13.5px;
+            margin-bottom: 0;
+            color: var(--text-secondary);
+        }
+
+        /* ─── CALLOUT BOXES ─────────────────────── */
+        .callout {
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .callout-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .callout-body {
+            flex: 1;
+        }
+
+        .callout-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .callout-body p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .callout-orange {
+            background: #fff7f0;
+            border: 1px solid #fdd9c0;
+        }
+
+        .callout-orange .callout-icon,
+        .callout-orange .callout-title {
+            color: #c2440c;
+        }
+
+        .callout-orange .callout-body p {
+            color: #7c3b17;
+        }
+
+        .callout-blue {
+            background: #eff8ff;
+            border: 1px solid #bfdbfe;
+        }
+
+        .callout-blue .callout-icon,
+        .callout-blue .callout-title {
+            color: #1d4ed8;
+        }
+
+        .callout-blue .callout-body p {
+            color: #1e3a5f;
+        }
+
+        .callout-green {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .callout-green .callout-icon,
+        .callout-green .callout-title {
+            color: #15803d;
+        }
+
+        .callout-green .callout-body p {
+            color: #14532d;
+        }
+
+        /* ─── TABLES ────────────────────────────── */
+        .table-wrap {
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            background: #f8f9fa;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 13px 18px;
+            border-bottom: 1px solid var(--border-card);
+            text-align: left;
+        }
+
+        td {
+            padding: 13px 18px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        td b {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: #fff7f0;
+        }
+
+        /* ─── SCREENSHOTS ───────────────────────── */
+        .screenshot-wrap {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+            margin: 24px 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .screenshot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: #f1f3f5;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .screenshot-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .screenshot-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .screenshot-dots span:nth-child(1) {
+            background: #ff5f57;
+        }
+
+        .screenshot-dots span:nth-child(2) {
+            background: #febc2e;
+        }
+
+        .screenshot-dots span:nth-child(3) {
+            background: #28c840;
+        }
+
+        .screenshot-url {
+            flex: 1;
+            margin: 0 14px;
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            border-radius: 5px;
+            padding: 5px 12px;
+            font-family: var(--mono);
+            font-size: 10.5px;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 380px;
+        }
+
+        .screenshot-wrap:hover {
+            border-color: var(--orange-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 0 0 2px rgba(255, 102, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .screenshot-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ─── BADGE CHIPS ───────────────────────── */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            margin: 3px 2px;
+        }
+
+        .chip-orange {
+            background: #fff3eb;
+            color: #c2440c;
+            border: 1px solid #fdd9c0;
+        }
+
+        .chip-blue {
+            background: #eff8ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+        }
+
+        .chip-green {
+            background: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* ─── STEP FLOW ─────────────────────────── */
+        .step-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 20px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .step-item:not(:last-child) .step-line {
+            position: absolute;
+            left: 16px;
+            top: 36px;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-subtle);
+        }
+
+        .step-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--orange-subtle);
+            border: 2px solid rgba(255, 102, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 800;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-body {
+            padding-bottom: 24px;
+            flex: 1;
+        }
+
+        .step-body h4 {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .step-body p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        /* ─── TECH STACK PILLS ──────────────────── */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-pill {
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            border-radius: 9px;
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .tech-pill:hover {
+            background: var(--orange-subtle);
+            border-color: rgba(255, 102, 0, 0.25);
+            color: var(--orange);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 102, 0, 0.05);
+        }
+
+        .tech-pill-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 102, 0, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tech-pill-icon i {
+            color: var(--orange);
+            font-size: 12px;
+        }
+
+        /* ─── DIVIDER ───────────────────────────── */
+        .divider {
+            height: 1px;
+            background: var(--border-subtle);
+            margin: 28px 0;
+        }
+
+        /* ─── RESPONSIVE ────────────────────────── */
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 32px 24px 60px;
+            }
+
+            .header-badges {
+                display: none;
+            }
+
+            .doc-hero {
+                padding: 32px 24px;
+            }
+
+            .doc-hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .doc-section {
+                padding: 24px;
+            }
+        }
+
+        /* ─── FADE-IN ANIMATION ─────────────────── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .doc-hero,
+        .doc-section {
+            animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .doc-section:nth-child(2) {
+            animation-delay: 0.05s;
+        }
+
+        .doc-section:nth-child(3) {
+            animation-delay: 0.1s;
+        }
+
+        .doc-section:nth-child(4) {
+            animation-delay: 0.15s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ HEADER ═══════════════════════════════════════════ -->
+    <header>
+        <div class="logo-wrap">
+            <img src="images/logo.png" alt="B2B Marketplace" style="height: 32px; object-fit: contain;">
+            <div class="logo-text" style="border-left: 1px solid var(--sidebar-border); padding-left: 12px;">
+                <span>Marketplace</span>
+                <span>Documentation v1</span>
+            </div>
+        </div>
+        <div class="header-badges">
+            <a href="#admin-menus" class="hbadge hbadge-ghost"><i class="fa-solid fa-shield-halved"></i> Admin</a>
+            <a href="#supplier-dashboard" class="hbadge hbadge-ghost"><i class="fa-solid fa-store"></i> Supplier</a>
+            <a href="#buyer-nav" class="hbadge hbadge-ghost"><i class="fa-solid fa-cart-shopping"></i> Buyer</a>
+            <a href="#setup-prereq" class="hbadge hbadge-orange"><i class="fa-solid fa-rocket"></i> Get Started</a>
+        </div>
+    </header>
+
+    <!-- ═══ SIDEBAR ══════════════════════════════════════════ -->
+    <aside class="sidebar">
+        <div class="sidebar-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search docs…" id="sidebarSearch">
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-label">Getting Started</div>
+            <a href="#doc-overview" class="nav-link active"><i class="fa-solid fa-house"></i> Project Overview</a>
+            <a href="#doc-features" class="nav-link"><i class="fa-solid fa-list-check"></i> Supported Features</a>
+            <a href="#doc-new-features" class="nav-link"><i class="fa-solid fa-circle-plus"></i> Newly Added
+                Features</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-label">1. Setup & Installation</div>
+            <a href="#setup-prereq" class="nav-link"><i class="fa-solid fa-microchip"></i> Prerequisites & Stack</a>
+            <a href="#setup-env" class="nav-link"><i class="fa-solid fa-key"></i> Environment Config</a>
+            <a href="#setup-backend" class="nav-link"><i class="fa-solid fa-server"></i> Backend Setup</a>
+            <a href="#setup-frontend" class="nav-link"><i class="fa-brands fa-react"></i> Frontend Setup</a>
+            <a href="#setup-migration" class="nav-link"><i class="fa-solid fa-database"></i> Database Migration</a>
+            <a href="#setup-queue" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> Queue & Cron</a>
+            <a href="#setup-deploy" class="nav-link"><i class="fa-solid fa-cloud-arrow-up"></i> Build & Deployment</a>
+            <a href="#setup-troubleshoot" class="nav-link"><i class="fa-solid fa-triangle-exclamation"></i>
+                Troubleshooting</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-label">2. System Workflows</div>
+            <a href="#flow-lifecycle" class="nav-link"><i class="fa-solid fa-arrows-spin"></i> Transaction Lifecycle</a>
+            <a href="#flow-admin" class="nav-link"><i class="fa-solid fa-shield-halved"></i> Admin Workflow</a>
+            <a href="#flow-buyer" class="nav-link"><i class="fa-solid fa-user"></i> Buyer Workflow</a>
+            <a href="#flow-supplier" class="nav-link"><i class="fa-solid fa-store"></i> Supplier Workflow</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-label">3. Admin Panel</div>
+            <a href="#admin-menus-summary" class="nav-link"><i class="fa-solid fa-table-list"></i> Menu Summary</a>
+            <a href="#admin-menus" class="nav-link"><i class="fa-solid fa-gauge-high"></i> Feature Deep-Dive</a>
+            <a href="#admin-users" class="nav-link"><i class="fa-solid fa-users-gear"></i> Roles & Permissions</a>
+            <a href="#admin-products" class="nav-link"><i class="fa-solid fa-box"></i> Product Moderation</a>
+            <a href="#admin-orders" class="nav-link"><i class="fa-solid fa-receipt"></i> Order Management</a>
+            <a href="#admin-settings" class="nav-link"><i class="fa-solid fa-sliders"></i> System Settings</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-label">4. Buyer Panel</div>
+            <a href="#buyer-nav" class="nav-link"><i class="fa-solid fa-compass"></i> Menus & Navigation</a>
+            <a href="#buyer-search" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Product Browsing</a>
+            <a href="#buyer-rfq" class="nav-link"><i class="fa-solid fa-file-invoice"></i> Quotations (RFQ)</a>
+            <a href="#buyer-cart" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Cart & Checkout</a>
+            <a href="#buyer-wallet" class="nav-link"><i class="fa-solid fa-wallet"></i> Wallet & Payments</a>
+            <a href="#buyer-profile" class="nav-link"><i class="fa-solid fa-circle-user"></i> Profile &
+                Notifications</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-label">5. Supplier Panel</div>
+            <a href="#supplier-dashboard" class="nav-link"><i class="fa-solid fa-chart-line"></i> Store Dashboard</a>
+            <a href="#supplier-products" class="nav-link"><i class="fa-solid fa-boxes-stacked"></i> Product &
+                Inventory</a>
+            <a href="#supplier-rfq" class="nav-link"><i class="fa-solid fa-handshake"></i> Quotation Responses</a>
+            <a href="#supplier-orders" class="nav-link"><i class="fa-solid fa-truck"></i> Order & Shipping</a>
+            <a href="#supplier-wallet" class="nav-link"><i class="fa-solid fa-sack-dollar"></i> Earnings &
+                Withdrawals</a>
+            <a href="#supplier-settings" class="nav-link"><i class="fa-solid fa-building"></i> Business Profile</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-label">6. Demo Credentials</div>
+            <a href="#doc-demo-credentials" class="nav-link"><i class="fa-solid fa-key"></i> Login Details</a>
+        </div>
+    </aside>
+
+    <!-- ═══ MAIN CONTENT ══════════════════════════════════════ -->
+    <main class="content">
+
+        <!-- ─────────── CHAPTER 0: OVERVIEW ─────────── -->
+        <div class="doc-hero" id="doc-overview">
+            <div class="hero-tag"><i class="fa-solid fa-sparkles"></i> Official Platform Documentation</div>
+            <h1>Global B2B Marketplace</h1>
+            <p>Enterprise-grade documentation for developers and administrators. Covering setup, workflows, Admin,
+                Buyer, and Supplier portals — your single source of truth.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-num">3</span>
+                    <span class="hero-stat-label">Portals</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">3</span>
+                    <span class="hero-stat-label">Payment Gateways</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">Real-time</span>
+                    <span class="hero-stat-label">Socket.io Messaging</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">Escrow</span>
+                    <span class="hero-stat-label">Secure Transactions</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-bolt"></i></div>
+                Core Platform Features
+            </h2>
+            <div class="callout callout-orange" style="margin-bottom:20px;">
+                <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">What is this platform?</div>
+                    <p>A full-stack, enterprise-grade B2B marketplace bridging global manufacturers (Suppliers) and bulk
+                        procurement professionals (Buyers), complete with escrow payments, real-time messaging, and a
+                        powerful Admin moderation layer.</p>
+                </div>
+            </div>
+            <ul>
+                <li><b>Multi-Role System:</b> Specialized portals and dashboards for Buyers, Suppliers, and Global
+                    Administrators.</li>
+                <li><b>Dynamic Catalog & Product Tiers:</b> Multi-level category taxonomies with tiered pricing arrays,
+                    MOQ logic, and product customization queries.</li>
+                <li><b>RFQ & Negotiation Engine:</b> Real-time messaging and Request for Quotation (RFQ) channels
+                    powered by Socket.io for seamless custom price agreements.</li>
+                <li><b>End-to-End Visual Order Tracking:</b> Milestone-based timeline tracking (Placed → Paid →
+                    Processing → Shipped → Delivered).</li>
+                <li><b>Multi-Gateway Payment Integration:</b> Pre-integrated Stripe, PayPal, and Razorpay checkout
+                    flows.</li>
+                <li><b>Robust Security & Verification:</b> JWT session security, ReCAPTCHA v3 bot prevention, social
+                    logins (Facebook, LinkedIn), and built-in Admin KYC verification.</li>
+                <li><b>Global Localization:</b> Multi-language display, dynamic currency conversions, and automated
+                    transactional email delivery via SMTP.</li>
+                <li><b>Premium Mobile-First Design:</b> Responsive design with dynamic headers, smart search container
+                    layout, and mobile-optimized image gallery.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="doc-features">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-list-check"></i></div>
+                Supported B2B Feature Modules
+            </h2>
+            <p>Below is the complete status matrix of all enterprise B2B modules currently active and implemented in the
+                B2B Marketplace codebase:</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Module Category</th>
+                            <th style="width: 75%;">Active & Completed Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Account & Auth</b></td>
+                            <td>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Registration &
+                                    Login</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Email SMTP Alerts</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Social Auth
+                                    Configs</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Multi-Role
+                                    Routing</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> KYC & License
+                                    Auditing</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Product Discovery</b></td>
+                            <td>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Text & Category
+                                    Search</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Price/MOQ Filters</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Homepage Promo
+                                    Sliders</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Tiered Bulk
+                                    Pricing</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Custom
+                                    Specifications</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> User Review
+                                    Ledger</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>RFQ & Negotiation</b></td>
+                            <td>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Request for Quote
+                                    (RFQ)</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Supplier Quote
+                                    Response</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Real-time Socket.io
+                                    Chat</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Chat File Sharing</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Quote Comparison</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Product Enquiries</span>
+                                <span class="chip chip-orange"><i class="fa-solid fa-bullhorn"></i> Bulk Sourcing
+                                    Broadcast</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Checkout & Escrow</b></td>
+                            <td>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Multi-Supplier
+                                    Carts</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Cart Splitting
+                                    Logic</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i>
+                                    Stripe/PayPal/Razorpay</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Escrow Wallet
+                                    Releases</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Dispute Mediation</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Automated PDF
+                                    Invoicing</span>
+                                <span class="chip chip-orange"><i class="fa-solid fa-truck-ramp-box"></i> Auto Freight
+                                    Calculator</span>
+                                <span class="chip chip-orange"><i class="fa-solid fa-tags"></i> Coupon Discount
+                                    System</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Supplier Operations</b></td>
+                            <td>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Storefront
+                                    Analytics</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Custom Store
+                                    Branding</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Category RFQ
+                                    Matcher</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Gold Membership
+                                    plans</span>
+                                <span class="chip chip-orange"><i class="fa-solid fa-paper-plane"></i> Email & Affiliate
+                                    Campaigns</span>
+                                <span class="chip chip-orange"><i class="fa-solid fa-users-gear"></i> CRM &
+                                    Auto-Reply</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Admin Moderation</b></td>
+                            <td>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> GMV & Signup
+                                    Charts</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Product & KYC
+                                    Queue</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Withdrawal
+                                    processing</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> CMS Homepage
+                                    Sliders</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> RBAC Moderator
+                                    roles</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Localization & Trust</b></td>
+                            <td>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Multi-Language
+                                    (i18n)</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Multi-Currency
+                                    support</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Verified Supplier
+                                    badges</span>
+                                <span class="chip chip-green"><i class="fa-solid fa-check"></i> Escrow Trade
+                                    Protection</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="doc-section" id="doc-new-features">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-circle-plus"></i></div>
+                Newly Added Enterprise Features
+            </h2>
+            <p>The platform has been enhanced with several custom enterprise features designed to improve bulk
+                procurement, order flexibility, and merchant campaigns:</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <div class="feature-card">
+                    <h3
+                        style="font-size: 14.5px; margin: 0 0 8px 0; color: var(--orange); display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-bullhorn"></i> Bulk Sourcing Inquiry / Broadcast
+                    </h3>
+                    <p>Allows buyers to submit and broadcast custom sourcing requests to multiple relevant suppliers at
+                        once. Suppliers matching the category receive notifications and can quote directly via their
+                        responses portal.</p>
+                </div>
+                <div class="feature-card">
+                    <h3
+                        style="font-size: 14.5px; margin: 0 0 8px 0; color: var(--orange); display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-tags"></i> Coupon Discount System
+                    </h3>
+                    <p>A global marketing module allowing admins and suppliers to manage, distribute, and track
+                        promotional discounts. Vouchers can be configured with usage limits and discount values,
+                        applying directly to checkout totals.</p>
+                </div>
+                <div class="feature-card">
+                    <h3
+                        style="font-size: 14.5px; margin: 0 0 8px 0; color: var(--orange); display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-truck-ramp-box"></i> Auto Freight Calculator
+                    </h3>
+                    <p>Integrates warehouse coordinates and geocoded shipping destinations to automatically calculate
+                        real-time logistical freight and shipping costs during order checkout.</p>
+                </div>
+                <div class="feature-card">
+                    <h3
+                        style="font-size: 14.5px; margin: 0 0 8px 0; color: var(--orange); display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-paper-plane"></i> Campaigns, CRM & Auto-Reply
+                    </h3>
+                    <p>Suppliers can design and dispatch custom email blasts or copy referral links for affiliate
+                        campaigns. The CRM dashboard registers active buyer leads, keeps customized negotiation notes,
+                        and configures instant message auto-replies.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ─────────── CHAPTER 1: SETUP ─────────── -->
+        <div class="chapter-title">1. Full Project Setup & Installation</div>
+
+        <div class="doc-section" id="setup-prereq">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-microchip"></i></div>
+                Prerequisites & Technology Stack
+            </h2>
+            <p>Before installing, ensure your environment meets the following requirements:</p>
+            <div class="tech-grid">
+                <div class="tech-pill">
+                    <div class="tech-pill-icon"><i class="fa-brands fa-node-js"></i></div>Node.js v18/20 LTS
+                </div>
+                <div class="tech-pill">
+                    <div class="tech-pill-icon"><i class="fa-solid fa-leaf"></i></div>MongoDB v6.0+
+                </div>
+                <div class="tech-pill">
+                    <div class="tech-pill-icon"><i class="fa-brands fa-npm"></i></div>NPM / Yarn
+                </div>
+                <div class="tech-pill">
+                    <div class="tech-pill-icon"><i class="fa-brands fa-react"></i></div>Next.js
+                </div>
+                <div class="tech-pill">
+                    <div class="tech-pill-icon"><i class="fa-solid fa-server"></i></div>Nginx / Apache
+                </div>
+                <div class="tech-pill">
+                    <div class="tech-pill-icon"><i class="fa-solid fa-gear"></i></div>PM2 Process Manager
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section" id="setup-env">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-key"></i></div>
+                Environment Variables (.env Configuration)
+            </h2>
+            <p>Both the frontend and backend require properly configured environments. Example environment variables:
+            </p>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">backend/.env</span>
+                </div>PORT=5010
+                MONGODB_URI=mongodb://localhost:27017/alibaba_demo
+                JWT_SECRET=your_super_secret_jwt_key
+                STRIPE_SECRET_KEY=sk_test_...
+                PAYPAL_CLIENT_ID=AcM...
+                PAYPAL_APP_SECRET=EOf...
+                FRONTEND_URL=http://localhost:9010
+            </div>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">frontend/.env</span>
+                </div>NEXT_PUBLIC_API_URL=http://localhost:5010/api
+                REACT_APP_RECAPTCHA_SITE_KEY=your_recaptcha_v3_site_key
+            </div>
+            <div class="callout callout-orange">
+                <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">Security Warning</div>
+                    <p>Never commit your actual live <code>.env</code> files to Git. Always use
+                        <code>.env.example</code> as a template and add <code>.env</code> to your
+                        <code>.gitignore</code>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section" id="setup-backend">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-server"></i></div>
+                Backend Installation (Node.js / Express)
+            </h2>
+            <p>Follow these steps to initialize the core REST API backend.</p>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">bash</span>
+                </div>cd backend/
+                npm install
+
+                # Run local development server with hot-reload (Nodemon)
+                npm run dev
+
+                # Start production server
+                npm start
+            </div>
+        </div>
+
+        <div class="doc-section" id="setup-frontend">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-brands fa-react"></i></div>
+                Frontend Installation (React.js / Next.js)
+            </h2>
+            <p>Start the user interface application which powers the Buyer, Supplier, and Admin portals.</p>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">bash</span>
+                </div>cd frontend/
+                npm install
+                npm start
+            </div>
+            <p>The marketplace will open at <code>http://localhost:9010</code>.</p>
+        </div>
+
+        <div class="doc-section" id="setup-migration">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-database"></i></div>
+                Database Seeding & Storage Setup
+            </h2>
+            <p>Populate your fresh MongoDB instance with default Admin users, predefined categories, and system
+                settings:</p>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">bash</span>
+                </div>cd backend/
+                npm run seed
+            </div>
+            <p><b>Storage Setup:</b> Product images, invoices, and supplier documents are stored locally in
+                <code>backend/uploads</code> or AWS S3/Cloudinary depending on your configured driver in
+                <code>.env</code>. Ensure the <code>uploads/</code> folder has public read permissions.</p>
+        </div>
+
+        <div class="doc-section" id="setup-queue">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                Queue & Cron Job Setup
+            </h2>
+            <p>Cron jobs are initialized automatically upon starting the server, handling background tasks such as:</p>
+            <ul>
+                <li>Auto-canceling unpaid pending orders after 24 hours.</li>
+                <li>Compiling weekly analytics & sending summary emails.</li>
+                <li>Re-syncing subscription status for expired supplier plans.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="setup-deploy">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                Build & Deployment Steps (Production)
+            </h2>
+            <p>Deploy to a live Ubuntu/Linux server by creating a production build and using PM2 for the backend process
+                manager.</p>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">bash</span>
+                </div># 1. Build the Frontend
+                cd frontend/
+                npm run build
+                # Outputs optimized static files to /build
+
+                # 2. Start Backend with PM2
+                cd backend/
+                npm install -g pm2
+                pm2 start server.js --name "alibaba-backend"
+                pm2 save
+                pm2 startup
+            </div>
+            <p>Configure Nginx to serve the <code>frontend/build</code> folder on port 80/443, and proxy
+                <code>/api</code> requests to <code>localhost:5010</code>.</p>
+
+            <h3>Automated Deployment Scripts</h3>
+            <p>To simplify deployment, use the automation scripts provided in the root folder:</p>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">bash</span>
+                </div># Make scripts executable
+                chmod +x deploy.sh check_deploy.sh
+
+                # Run automatic installation & build
+                ./deploy.sh
+
+                # Run health check to verify processes & ports
+                ./check_deploy.sh
+            </div>
+            <p>You can customize the PM2 names and port bindings by editing the configuration variables at the top of <code>deploy.sh</code>.</p>
+
+            <h3>License & Installation Verification</h3>
+            <p>For any new deployment, a valid license activation is mandatory to bind the installation to the server.</p>
+            <div class="callout callout-orange">
+                <div class="callout-icon"><i class="fa-solid fa-key"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">License Key Required</div>
+                    <p>New installations must first activate using a valid <b>Purchase Code</b> and <b>Registered Email</b>. Visit the License Verification screen at: <code>https://your-domain.com/verify-license</code> to link and authorize your application instance.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section" id="setup-troubleshoot">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                Common Troubleshooting Steps
+            </h2>
+            <div class="feature-card">
+                <strong><i class="fa-solid fa-circle-xmark"></i> CORS Errors?</strong>
+                Ensure your <code>FRONTEND_URL</code> in the backend <code>.env</code> precisely matches the domain the
+                React app is served from (including <code>http</code> vs <code>https</code>).
+            </div>
+            <div class="feature-card">
+                <strong><i class="fa-solid fa-image"></i> Images not loading?</strong>
+                Verify that your backend URL resolving static assets matches the explicit server IP or domain. Check
+                <code>backend/uploads/</code> folder permissions.
+            </div>
+            <div class="feature-card">
+                <strong><i class="fa-solid fa-plug-circle-exclamation"></i> Socket.io not connecting?</strong>
+                Ensure the Nginx config includes WebSocket proxy headers:
+                <code>proxy_set_header Upgrade $http_upgrade;</code>
+            </div>
+            <div class="feature-card">
+                <strong><i class="fa-solid fa-triangle-exclamation"></i> Frontend NPM Installation Errors?</strong>
+                If <code>npm install</code> fails on the frontend due to dependency conflicts, execute the installation using legacy peer dependency resolution:
+                <code>npm install --legacy-peer-deps</code>
+            </div>
+        </div>
+
+        <div class="doc-section" id="setup-structure">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-folder-tree"></i></div>
+                Project Codebase Structure
+            </h2>
+            <h3>Backend (Express / Node.js)</h3>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">directory tree</span>
+                </div>backend/
+                ├── controllers/ # Route request/response logic
+                ├── models/ # Mongoose Schemas (User, Product, Order...)
+                ├── routes/ # HTTP Endpoint definitions
+                ├── middlewares/ # Auth, Validation & Upload handlers
+                ├── services/ # Business logic (Stripe, Socket, Mail)
+                └── uploads/ # Local storage for documents and images
+            </div>
+            <h3>Frontend (React / Next.js)</h3>
+            <div class="code-block">
+                <div class="code-block-header">
+                    <div class="code-dots"><span></span><span></span><span></span></div><span
+                        class="code-lang">directory tree</span>
+                </div>frontend/
+                ├── src/
+                │ ├── components/ # Reusable UI components (Shared)
+                │ ├── pages/ # Top-level route pages (Home, Cart...)
+                │ ├── context/ # Global state management
+                │ ├── assets/ # Images, Icons and Fonts
+                │ └── utils/ # Client-side helper functions
+                └── public/ # Static assets and index.html
+            </div>
+        </div>
+
+
+        <!-- ─────────── CHAPTER 2: WORKFLOWS ─────────── -->
+        <div class="chapter-title">2. User Flows & System Architecture</div>
+
+        <div class="doc-section" id="flow-lifecycle">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+                End-to-End Transaction Lifecycle
+            </h2>
+            <div class="callout callout-orange">
+                <div class="callout-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">For Clients (Business Logic)</div>
+                    <p>The platform operates as an Escrow-driven marketplace. Buyers find products, place an order, and
+                        their payment is held securely. The Supplier ships the item. Only once the Buyer confirms
+                        receipt does the platform release funds to the Supplier's virtual wallet, minus the marketplace
+                        commission.</p>
+                </div>
+            </div>
+            <div class="callout callout-blue">
+                <div class="callout-icon"><i class="fa-solid fa-code"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">For Developers (Technical Architecture)</div>
+                    <p><b>Cart Splitting:</b> The MongoDB <code>Cart</code> model splits items by
+                        <code>supplier_id</code>. Checkout generates one parent <code>Transaction</code> and multiple
+                        child <code>Order</code> documents.<br><br>
+                        <b>Payment Escrow:</b> Stripe/Razorpay webhooks mark the <code>Order</code> as <code>paid</code>
+                        while holding distribution in a pending ledger.<br><br>
+                        <b>Wallet DB Ledger:</b> When Buyer hits "Confirm Receipt", the backend calculates admin
+                        commission from Settings and increments the Supplier's <code>User.walletBalance</code>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section" id="flow-admin">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                Admin Workflow
+            </h2>
+            <div class="callout callout-orange">
+                <div class="callout-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">For Clients</div>
+                    <p>Administrators are the overseers. Admins verify new suppliers to prevent fraud, moderate product
+                        listings, resolve buyer-supplier disputes, and manage website content (banners, global taxes,
+                        categories).</p>
+                </div>
+            </div>
+            <div class="callout callout-blue">
+                <div class="callout-icon"><i class="fa-solid fa-code"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">For Developers</div>
+                    <p><b>RBAC:</b> Admins have JWT payload <code>role: 'admin'</code>. The backend <code>isAdmin</code>
+                        middleware protects all <code>/api/admin/*</code> HTTP routes.<br><br>
+                        <b>Dynamic Configuration:</b> Settings like global tax, categories, and hero sliders are fetched
+                        from MongoDB <code>Settings</code> collections and mutated via the React dashboard.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section" id="flow-buyer">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-user"></i></div>
+                Buyer Workflow
+            </h2>
+            <div class="callout callout-orange">
+                <div class="callout-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">For Clients</div>
+                    <p>Buyers log in to source products across global verified suppliers. They can add ready-to-ship
+                        products to their cart, or for custom bulk orders, submit a Request for Quotation (RFQ) directly
+                        to a supplier to negotiate pricing.</p>
+                </div>
+            </div>
+            <div class="callout callout-blue">
+                <div class="callout-icon"><i class="fa-solid fa-code"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">For Developers</div>
+                    <p><b>RFQ Tracking:</b> Bypasses standard cart logic. Mongoose generates a <code>Quotation</code>
+                        document. Communication runs through Socket.io until an agreed custom invoice is
+                        generated.<br><br>
+                        <b>AI Search Layer:</b> Leverages a keyword heuristic route to map conversational queries into
+                        exact <code>Product</code> schema <code>$regex</code> matches.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section" id="flow-supplier">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-store"></i></div>
+                Supplier Workflow
+            </h2>
+            <div class="callout callout-orange">
+                <div class="callout-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">For Clients</div>
+                    <p>Suppliers operate an independent storefront within the marketplace. They undergo KYC
+                        verification, upload catalogs with bulk-pricing tiers, fulfill orders with tracking numbers, and
+                        withdraw earnings natively via the dashboard.</p>
+                </div>
+            </div>
+            <div class="callout callout-blue">
+                <div class="callout-icon"><i class="fa-solid fa-code"></i></div>
+                <div class="callout-body">
+                    <div class="callout-title">For Developers</div>
+                    <p><b>Schema Ownership:</b> <code>Product</code> models require <code>owner: ObjectId</code>
+                        referencing the Supplier. A Supplier can only mutate their own products.<br><br>
+                        <b>Withdrawal System:</b> Funds exist as virtual integers in the DB until a Supplier submits a
+                        <code>WithdrawalRequest</code>. Admin manually approves off-platform.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ─────────── CHAPTER 3: ADMIN ─────────── -->
+        <div class="chapter-title">3. Admin Panel Documentation</div>
+
+        <div class="doc-section" id="admin-menus-summary">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-table-list"></i></div>
+                Explain All Admin Menus
+            </h2>
+            <div class="table-wrap">
+                <table>
+                    <tr>
+                        <th>Menu Component</th>
+                        <th>Purpose & Actionable Data</th>
+                    </tr>
+                    <tr>
+                        <td><b>Dashboard</b></td>
+                        <td>High-level macro statistics, recent orders, signups, and KPI charts.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Products › All Products</b></td>
+                        <td>Force edit, delete, or feature products pushed by suppliers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Products › Categories</b></td>
+                        <td>Manage multi-level category taxonomy (e.g. Electronics › Audio › Headphones).</td>
+                    </tr>
+                    <tr>
+                        <td><b>Orders Management</b></td>
+                        <td>God-eye view of all transactional states. Admins can refund or cancel orders.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Users › Buyers/Suppliers</b></td>
+                        <td>User ban/suspend control, password resets, and manual email verifications.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Company Verification</b></td>
+                        <td>KYC oversight and business authentication center. Review and approve supplier documents.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Finances › Withdrawals</b></td>
+                        <td>Process payout requests submitted by Suppliers to transfer wallet balances to bank accounts.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Finances › Revenue</b></td>
+                        <td>Reports of the commissions earned by the platform per transaction.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="doc-section" id="admin-menus">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                Admin Menu Deep-Dive
+            </h2>
+
+            <h3>1. System Dashboard</h3>
+            <p>Access high-level analytics tracking GMV, new entity registration, and active order queues via the
+                Mongoose-driven reporting engine.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/dashboard</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/admin_dashboard.png?v=3" alt="Admin Dashboard" loading="lazy">
+            </div>
+
+            <h3>2. User Moderation</h3>
+            <p>Full control over Buyer and Supplier life-cycles, including direct manual KYC approval and RBAC
+                permission assignment.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/users</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/all_user.png?v=3" alt="User Management" loading="lazy">
+            </div>
+
+            <h3>2.1 Company Verification (KYC)</h3>
+            <p>Dedicated interface for auditing supplier legitimacy. Admins can review uploaded business licenses, tax
+                IDs, and corporate profiles to grant or revoke "Verified" status badges.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/verification</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/company_Verification.png?v=3" alt="Company Verification" loading="lazy">
+            </div>
+        </div>
+
+        <div class="doc-section" id="admin-users">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-users-gear"></i></div>
+                Roles & Permissions
+            </h2>
+            <p>The platform implements a highly granular Role-Based Access Control (RBAC) system. Admins can create
+                custom sub-roles for internal staff moderators.</p>
+            <ul>
+                <li><b>Permission Groups:</b> Toggle capabilities like <code>Order View Only</code> vs
+                    <code>Order Mutation/Refund</code>.</li>
+                <li><b>Supplier Verification:</b> Dedicated roles can be assigned to strictly audit and approve KYC
+                    documents.</li>
+                <li><b>Security:</b> All session logs are tracked per admin user ID for accountability.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="admin-products">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-box"></i></div>
+                Product Moderation & Catalogs
+            </h2>
+            <p><strong>Products › All Products:</strong> Force edit, delete, or feature products pushed by suppliers.
+                Ensure strict catalog quality control.<br>
+                <strong>Products › Categories:</strong> Manage dynamic multi-level category taxonomy trees (e.g.,
+                Electronics › Audio › Headphones).
+            </p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/products</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Products-04-07-2026_03_55_PM.png?v=3" alt="Product Moderation"
+                    loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/categories</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Categories-04-07-2026_03_56_PM.png?v=3" alt="Category Taxonomy"
+                    loading="lazy">
+            </div>
+        </div>
+
+        <div class="doc-section" id="admin-orders">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-receipt"></i></div>
+                Orders Management
+            </h2>
+            <p>A god-eye administrative view of all marketplace transactional states. Admins can track tracking IDs,
+                intercept, refund, or forcibly cancel active orders across all suppliers.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/orders</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Orders-04-07-2026_03_55_PM.png?v=3" alt="Order Hub" loading="lazy">
+            </div>
+
+            <h3>4.1 Product Approvals Queue</h3>
+            <p>A specialized workflow for auditing new product listings submitted by Suppliers. Admins must review
+                specifications, pricing, and images before a product goes live.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/approvals</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Approvals-04-07-2026_03_56_PM.png?v=3" alt="Product Approvals"
+                    loading="lazy">
+            </div>
+        </div>
+
+        <div class="doc-section" id="admin-settings">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-sliders"></i></div>
+                System Settings & Configuration
+            </h2>
+
+            <h3>5. Finances, Earnings & Withdrawals</h3>
+            <p><strong>Finances › Withdrawals:</strong> Manually process and finalize payout requests submitted by
+                Suppliers.<br>
+                <strong>Finances › Revenue:</strong> Monitor real-time platform commission earnings generated from each
+                supplier transaction.
+            </p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/revenue</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Revenue-04-07-2026_03_59_PM.png?v=3" alt="Revenue Analytics"
+                    loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/withdrawals</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Withdrawals-04-07-2026_03_58_PM.png?v=3" alt="Withdrawal Requests"
+                    loading="lazy">
+            </div>
+
+            <h3>6. CMS & Homepage Optimization</h3>
+            <p>Dynamically alter the frontend UI without touching the codebase. Manage hero banners, promotional
+                sliders, footer links, and SEO metadata natively via the dashboard.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/cms</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Cms-04-07-2026_04_02_PM.png?v=3" alt="CMS Hub" loading="lazy">
+            </div>
+
+            <h3>6.1 Payment Gateway Settings</h3>
+            <ul>
+                <li><b>Payment Gateways:</b> Switch seamlessly between Stripe, PayPal, Razorpay keys via GUI forms.</li>
+                <li><b>Email Integrations:</b> Configure native SMTP hosts for automated transactional receipt delivery
+                    and notifications.</li>
+                <li><b>Tax & Duties:</b> Define robust state/country level digital tax and GST compliance percentages
+                    globally.</li>
+            </ul>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/payment-settings</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Payment-Methods-04-07-2026_04_01_PM.png?v=3" alt="Payment Gateway Settings"
+                    loading="lazy">
+            </div>
+
+            <h3>7. Global Settings & Compliance</h3>
+            <p><strong>Worldwide Reach:</strong> Manage country-level availability and currency mappings.<br>
+                <strong>Tax & Compliance:</strong> Define state/country level digital tax and GST compliance percentages
+                globally.
+            </p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/worldwide</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Worldwide-04-07-2026_03_57_PM.png?v=3" alt="Worldwide Settings"
+                    loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/tax</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Tax-04-07-2026_04_02_PM.png?v=3" alt="Tax Compliance" loading="lazy">
+            </div>
+
+            <h3>8. Revenue & Subscriptions</h3>
+            <p><strong>Commissions:</strong> Fine-tune platform percentage cuts per category or per transaction.<br>
+                <strong>Subscription Plans:</strong> Manage recurring membership tiers for Suppliers and Premium Buyers.
+            </p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/commissions</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Commissions-04-07-2026_04_01_PM.png?v=3" alt="Commissions" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/subscriptions</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Subscriptions-04-07-2026_04_03_PM.png?v=3" alt="Subscription Plans"
+                    loading="lazy">
+            </div>
+
+            <h3>9. Security & Disputes</h3>
+            <p><strong>Dispute Resolution:</strong> Centralized hub for mediating conflicts between buyers and
+                suppliers.<br>
+                <strong>Social Auth:</strong> Configure OAuth providers (Google, Facebook) for seamless entity
+                onboarding.
+            </p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/disputes</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Disputes-04-07-2026_03_57_PM.png?v=3" alt="Disputes" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/admin/social-login</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Social-Login-04-07-2026_04_03_PM.png?v=3" alt="Social Login Config"
+                    loading="lazy">
+            </div>
+        </div>
+
+
+        <!-- ─────────── CHAPTER 4: BUYER ─────────── -->
+        <div class="chapter-title">4. Buyer Panel Documentation</div>
+
+        <div class="doc-section" id="buyer-nav">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-compass"></i></div>
+                Buyer Menus & Navigation
+            </h2>
+            <p>The Buyer portal is optimized for procurement, removing seller-specific clutter and surfacing sourcing
+                tools front and center.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/buyer/dashboard</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/all_buyer.png?v=3" alt="Buyer Portal Layout" loading="lazy">
+            </div>
+
+            <h3>Explain All Buyer Menus</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr>
+                        <th>Menu Component</th>
+                        <th>Purpose & Actionable Data</th>
+                    </tr>
+                    <tr>
+                        <td><b>Dashboard</b></td>
+                        <td>High-level overview of orders, RFQs, messaging channels, and quick sourcing shortcuts.</td>
+                    </tr>
+                    <tr>
+                        <td><b>My RFQs</b></td>
+                        <td>Manage Request for Quotations and chat/negotiate directly with suppliers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Customization Requests</b></td>
+                        <td>Track bulk custom manufacturing specifications and request status with suppliers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Product Enquiries</b></td>
+                        <td>History of quick queries and product questions sent directly to supplier listings.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Messenger</b></td>
+                        <td>Unified real-time chat interface to message suppliers about products and RFQs.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Notifications</b></td>
+                        <td>System alerts regarding order milestones, new quote messages, and verification updates.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Orders</b></td>
+                        <td>Full history of transactions, shipping statuses, tracking numbers, and order milestone
+                            confirmations.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Disputes</b></td>
+                        <td>Central dispute tickets filed by the buyer regarding refunds, damaged shipments, or escrow
+                            releases.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Saved & History</b></td>
+                        <td>Quick reference bookmarks for saved products, categories, and manufacturing suppliers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Subscription</b></td>
+                        <td>Review available Buyer membership/subscription plans and their respective bulk-sourcing
+                            benefits.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Company Profile</b></td>
+                        <td>Business identity configuration, company details, tax registration ID, and KYC verification
+                            status.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Shipping Address</b></td>
+                        <td>Manage shipping destination addresses for purchasing and checkout deliveries.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Settings</b></td>
+                        <td>Personal user details, language and currency preferences, and security passwords.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="doc-section" id="buyer-search">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                Product Discovery & AI Search
+            </h2>
+            <p>Buyers can find products via standard category trees or the advanced AI-driven search bar which supports
+                conversational queries.</p>
+            <ul>
+                <li><b>Filters:</b> Sort by MOQ, Price Tiers, Supplier Country, and Verification Status.</li>
+                <li><b>Ready-to-Ship:</b> Filter specifically for products that don't require RFQ negotiation.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="buyer-rfq">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                Quotations (RFQ) Workflow
+            </h2>
+            <p>Custom bulk negotiation logic powered by real-time Socket.io channels.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/buyer/dashboard/rfqs</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/buyer_rfqs.png?v=3" alt="RFQ Flow" loading="lazy">
+            </div>
+        </div>
+
+        <div class="doc-section" id="buyer-cart">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                Cart & Checkout Flow
+            </h2>
+            <p>Supports multi-supplier carts. The checkout logic automatically splits the payment and order tracking
+                into independent supplier shipments.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/cart</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/buyer_cart.png?v=3" alt="Cart & Checkout Flow" loading="lazy">
+            </div>
+        </div>
+
+        <div class="doc-section" id="buyer-wallet">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-wallet"></i></div>
+                Wallet & Payments
+            </h2>
+            <p>Buyers maintain a virtual wallet for quick refunds and streamlined checkouts across the marketplace.</p>
+        </div>
+
+        <div class="doc-section" id="buyer-profile">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-circle-user"></i></div>
+                Profile & Notifications
+            </h2>
+            <p>Manage shipping addresses, business license details for tax exemption, and real-time email/push
+                notification settings.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/buyer/dashboard/settings</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/buyer_profile.png?v=3" alt="Buyer Profile & Notifications" loading="lazy">
+            </div>
+        </div>
+
+
+        <!-- ─────────── CHAPTER 5: SUPPLIER ─────────── -->
+        <div class="chapter-title">5. Supplier Panel Documentation</div>
+
+        <div class="doc-section" id="supplier-dashboard">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-chart-line"></i></div>
+                Store Dashboard Overview
+            </h2>
+            <p>Real-time shop performance analytics and pending action queues (Orders/RFQs).</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/supplier/dashboard</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/all_supplier.png?v=3" alt="Supplier Dashboard" loading="lazy">
+            </div>
+
+            <h3>Explain All Supplier Menus</h3>
+            <div class="table-wrap">
+                <table>
+                    <tr>
+                        <th>Menu Component</th>
+                        <th>Purpose & Actionable Data</th>
+                    </tr>
+                    <tr>
+                        <td><b>Product Management</b></td>
+                        <td>Upload products, define tiered bulk-pricing levels, and specify minimum order quantities
+                            (MOQ).</td>
+                    </tr>
+                    <tr>
+                        <td><b>RFQ Market</b></td>
+                        <td>Browse open sourcing requests submitted by buyers worldwide and offer custom
+                            proposals/quotations.</td>
+                    </tr>
+                    <tr>
+                        <td><b>My Quotes</b></td>
+                        <td>Track all active price quotations, status flags, and ongoing negotiations with buyers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Orders</b></td>
+                        <td>Manage order fulfillment flow: pick/pack items, update shipping carriers, and assign
+                            tracking numbers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Customization Requests</b></td>
+                        <td>Receive, review, and quote custom manufacturing specs requested by potential buyers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Product Enquiries</b></td>
+                        <td>Answer quick queries and product questions asked directly by buyers on product detail pages.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Notifications</b></td>
+                        <td>Real-time notifications for incoming orders, payments, new RFQ requests, and account
+                            updates.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Messages</b></td>
+                        <td>Real-time messaging hub to communicate directly with buyers negotiating pricing or order
+                            details.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Disputes</b></td>
+                        <td>Monitor, submit evidence, and resolve open order disputes initiated by buyers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Reviews</b></td>
+                        <td>View user feedback, ratings, and testimonials left by buyers on your fulfilled orders.</td>
+                    </tr>
+                    <tr>
+                        <td><b>My Wallet</b></td>
+                        <td>View transaction ledgers, virtual balance, platform commission cuts, and submit payout
+                            withdrawal requests.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Payout Method</b></td>
+                        <td>Configure bank account details, SWIFT codes, and transfer modes to receive earnings
+                            withdrawals.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Company Profile</b></td>
+                        <td>Define factory operational details, certifications, registration documents, and submit
+                            business KYC verifications.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Subscription Plan</b></td>
+                        <td>Select, upgrade, or renew premium seller memberships (e.g. Gold Supplier) to list products
+                            and sell globally.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Settings</b></td>
+                        <td>Manage user login profile settings, password changes, and email notification preferences.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="doc-section" id="supplier-products">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                Product & Inventory Management
+            </h2>
+            <p>Creating highly compliant listings ensures better ranking across the marketplace.</p>
+            <ul>
+                <li><b>Basic Info:</b> Title, precise categorization, brand, model.</li>
+                <li><b>Trade Details:</b> Setting realistic Min. Order Quantities (MOQ), tiered pricing arrays (e.g.
+                    1-100 units: $5, 100-500 units: $4).</li>
+                <li><b>Media:</b> Main thumbnail and gallery additions.</li>
+                <li><b>Inventory Tracking:</b> SKU management and exact stock counts to prevent overselling.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="supplier-rfq">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-handshake"></i></div>
+                Quotation Responses
+            </h2>
+            <p>When Buyers submit tailored Requests for Quotation (RFQs) on custom setups or bulk inquiries, Suppliers
+                receive them instantly.</p>
+            <ul>
+                <li>Chat directly via the active real-time WebSockets tracking window.</li>
+                <li>Propose adjusted Minimum Order Quantities (MOQs) or revised tiered pricing structures.</li>
+                <li>Finalize quotes to immediately spawn a custom sub-order cart logic for the Buyer.</li>
+            </ul>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/supplier/dashboard/quotes</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/supplier_quotes.png?v=3" alt="Quotation Responses" loading="lazy">
+            </div>
+        </div>
+
+        <div class="doc-section" id="supplier-orders">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-truck"></i></div>
+                Order Fulfillment & Shipping
+            </h2>
+            <p>The fulfillment pipeline mandates strict state updates:</p>
+            <div class="step-flow">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-line"></div>
+                    <div class="step-body">
+                        <h4>Pending</h4>
+                        <p>Waiting for buyer payment confirmation via Stripe/PayPal webhook.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-line"></div>
+                    <div class="step-body">
+                        <h4>Processing</h4>
+                        <p>Supplier is picking and packing the items for shipment.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-line"></div>
+                    <div class="step-body">
+                        <h4>Shipped</h4>
+                        <p>Supplier attaches tracking ID and selects Shipping Carrier. Buyer is notified automatically.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <h4>Delivered</h4>
+                        <p>Handover completed. Buyer confirms receipt. Wallet funds are released to Supplier.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/supplier/dashboard/orders</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/Admin-Panel-Orders-04-07-2026_03_55_PM.png?v=3" alt="Supplier Orders Management"
+                    loading="lazy">
+            </div>
+        </div>
+
+        <div class="doc-section" id="supplier-wallet">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                Earnings, Wallet & Payouts
+            </h2>
+            <p>For every successful order, minus platform commission, funds are assigned to the Supplier's Virtual
+                Wallet.</p>
+            <p>The <b>Withdrawals</b> section allows Suppliers to submit a bank transfer request for a chosen amount.
+                The Admin approves this manually off-platform and flags it as 'Processed'.</p>
+            <div class="screenshot-wrap">
+                <div class="screenshot-header">
+                    <div class="screenshot-dots"><span></span><span></span><span></span></div>
+                    <div class="screenshot-url">b2b.sangvish.com/supplier/dashboard/wallet</div>
+                    <span class="chip chip-green"><i class="fa-solid fa-circle" style="font-size:7px;"></i> Live</span>
+                </div>
+                <img src="images/supplier_wallet.png?v=3" alt="Earnings, Wallet & Payouts" loading="lazy">
+            </div>
+        </div>
+
+        <div class="doc-section" id="supplier-settings">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-building"></i></div>
+                Business Profile Settings
+            </h2>
+            <p>A high-quality verified public profile directly correlates to B2B conversions. Settings encompass:</p>
+            <ul>
+                <li><b>Company KYC:</b> Upload Registration Certificates, ISO badges, and localized Tax ID info.</li>
+                <li><b>Capabilities Map:</b> Define precise factory locations, main operational sectors, and global
+                    export nodes.</li>
+                <li><b>Media Richness:</b> Embedded promotional YouTube links, banner galleries, and branded SEO
+                    tagging.</li>
+            </ul>
+        </div>
+
+
+        <!-- ─────────── CHAPTER 6: FAQ ─────────── -->
+        <div class="chapter-title">6. Frequently Asked Questions</div>
+
+        <div class="doc-section" id="doc-faq">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-circle-question"></i></div>
+                FAQ
+            </h2>
+            <div class="feature-card">
+                <strong><i class="fa-solid fa-percent"></i> Q: How do I change the marketplace commission?</strong>
+                Navigate to Admin › Settings › General Config. Update the "Commission Percentage" field. This affects
+                all subsequent <code>Order</code> deliveries.
+            </div>
+            <div class="feature-card">
+                <strong><i class="fa-brands fa-stripe"></i> Q: Can I add new payment gateways?</strong>
+                Yes. Developers should create a new driver in <code>backend/services/paymentDrivers/</code> and register
+                it in the configuration seeder.
+            </div>
+            <div class="feature-card">
+                <strong><i class="fa-solid fa-language"></i> Q: How is multi-language handled?</strong>
+                Language strings are managed through the i18n configuration. Admins can add translation files via the
+                CMS language panel.
+            </div>
+        </div>
+
+        <!-- ─────────── CHAPTER 7: DEMO CREDENTIALS ─────────── -->
+        <div class="chapter-title" id="doc-demo-credentials">7. Demo Login Credentials</div>
+
+        <div class="doc-section" id="doc-demo-login-details">
+            <h2 class="section-title">
+                <div class="section-title-icon"><i class="fa-solid fa-key"></i></div>
+                Demo / Test Login Credentials
+            </h2>
+            <div class="callout callout-green" style="margin-top: 14px;">
+                <div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div>
+                <div class="callout-body">
+                    <p style="margin-bottom: 8px;">Use the following pre-configured credentials to log into each portal
+                        of the B2B Marketplace:</p>
+                    <table
+                        style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; background: #ffffff; border-radius: 6px; overflow: hidden; border: 1px solid #e2e8f0;">
+                        <thead>
+                            <tr style="background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+                                <th
+                                    style="padding: 10px 14px; text-align: left; font-weight: 700; color: #334155; font-size: 11px; border: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Role</th>
+                                <th
+                                    style="padding: 10px 14px; text-align: left; font-weight: 700; color: #334155; font-size: 11px; border: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Email Address</th>
+                                <th
+                                    style="padding: 10px 14px; text-align: left; font-weight: 700; color: #334155; font-size: 11px; border: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                <td style="padding: 10px 14px; color: #0f172a; font-weight: 600; border: none;">
+                                    Administrator</td>
+                                <td style="padding: 10px 14px; font-family: monospace; color: #ea580c; border: none;">
+                                    admin@gmail.com</td>
+                                <td style="padding: 10px 14px; font-family: monospace; color: #475569; border: none;">
+                                    12345678</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                <td style="padding: 10px 14px; color: #0f172a; font-weight: 600; border: none;">Buyer
+                                </td>
+                                <td style="padding: 10px 14px; font-family: monospace; color: #ea580c; border: none;">
+                                    buyer@gmail.com</td>
+                                <td style="padding: 10px 14px; font-family: monospace; color: #475569; border: none;">
+                                    password123</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px 14px; color: #0f172a; font-weight: 600; border: none;">Supplier
+                                </td>
+                                <td style="padding: 10px 14px; font-family: monospace; color: #ea580c; border: none;">
+                                    supplier@gmail.com</td>
+                                <td style="padding: 10px 14px; font-family: monospace; color: #475569; border: none;">
+                                    password123</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+        const sections = Array.from(document.querySelectorAll('.doc-section'));
+        const HEADER_H = 68; // px – matches CSS --header-height
+
+        /* ── set one nav link as active and scroll sidebar to show it ── */
+        function setActive(id) {
+            let matched = null;
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + id) {
+                    link.classList.add('active');
+                    matched = link;
+                }
+            });
+
+            /* scroll the sidebar so the active link is always visible */
+            if (matched && sidebar) {
+                const linkTop = matched.offsetTop;
+                const linkBottom = linkTop + matched.offsetHeight;
+                const sidebarTop = sidebar.scrollTop;
+                const sidebarBot = sidebarTop + sidebar.clientHeight;
+
+                if (linkTop < sidebarTop + 60) {
+                    sidebar.scrollTo({ top: linkTop - 80, behavior: 'smooth' });
+                } else if (linkBottom > sidebarBot - 60) {
+                    sidebar.scrollTo({ top: linkBottom - sidebar.clientHeight + 80, behavior: 'smooth' });
+                }
+            }
+        }
+
+        /* ── scroll-spy using window scroll ───────────────────────── */
+        function onScroll() {
+            const scrollY = window.scrollY + HEADER_H + 30; // offset for header
+
+            /* find the last section whose top is above the current scroll */
+            let current = sections[0].getAttribute('id');
+            sections.forEach(sec => {
+                if (sec.offsetTop <= scrollY) {
+                    current = sec.getAttribute('id');
+                }
+            });
+
+            setActive(current);
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll(); // run once on page load
+
+        /* ── click on nav link: smooth scroll & instant active ─────── */
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const y = target.getBoundingClientRect().top + window.scrollY - HEADER_H - 16;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    setActive(targetId);
+                }
+            });
+        });
+
+        /* ── Sidebar search filter ──────────────────────────────────── */
+        const searchInput = document.getElementById('sidebarSearch');
+        searchInput.addEventListener('input', () => {
+            const q = searchInput.value.toLowerCase().trim();
+            navLinks.forEach(link => {
+                link.style.display = (!q || link.textContent.toLowerCase().includes(q)) ? '' : 'none';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

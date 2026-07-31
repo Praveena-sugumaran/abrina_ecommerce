@@ -1,0 +1,99 @@
+# EMI Payment — Implementation Plan
+
+## Overview
+
+Implement a full EMI (Equated Monthly Installments) system for high-value orders. Buyers split a large order into N monthly payments. Admins configure EMI plans. Stripe and Razorpay collect each installment.
+
+---
+
+## Architecture
+
+```
+Admin configures EMI Plans (e.g. "3-Month 0%", "6-Month 2%", "12-Month 5%")
+       ↓
+Buyer at Checkout sees EMI options when cart ≥ min_order_amount
+       ↓
+Buyer selects a plan → first installment charged immediately via Stripe/Razorpay
+       ↓
+EmiSchedule created with remaining installments as "scheduled"
+       ↓
+Buyer pays remaining installments from their dashboard
+       ↓
+Order fulfilment begins after first installment is paid
+```
+
+---
+
+## Open Questions
+
+> [!IMPORTANT]
+> **First installment at checkout**: The first installment is charged immediately. Remaining installments are due monthly and paid manually from the dashboard. Is this correct, or should it be fully automatic recurring billing?
+
+> [!NOTE]
+> **Overdue handling**: Overdue installments are flagged but the order is not blocked. No penalty — can be extended later.
+
+---
+
+## Proposed Changes
+
+### Backend — New Models
+
+#### [NEW] `EmiPlan.js`
+- `name`, `installments` (3/6/12/24), `interest_rate` (% per month, 0 = zero-cost), `processing_fee`, `min_order_amount`, `max_order_amount`, `supported_gateways`, `is_active`
+
+#### [NEW] `EmiSchedule.js`
+- `order_id`, `buyer_id`, `emi_plan_id`
+- `total_amount`, `principal`, `interest_total`, `processing_fee`
+- `installments[]` — `number`, `due_date`, `amount`, `status` (pending/paid/overdue/waived), `paid_at`, `payment_intent_id`, `gateway`
+- `status` — active / completed / defaulted / cancelled
+
+### Backend — Modified Files
+
+#### [MODIFY] `Order.js`
+- Add `is_emi: Boolean`, `emi_plan_id`, `emi_schedule_id`
+
+#### [NEW] `emiController.js`
+- `getEmiPlans` (public), admin CRUD, `initiateEmi`, `getMyEmiSchedules`, `getEmiScheduleById`, `payInstallment`, `getAdminEmiSchedules`
+
+#### [NEW] `emiRoutes.js`
+- `GET /api/emi/plans`, `POST /api/emi/initiate`, `GET /api/emi/my-schedules`, `GET /api/emi/schedule/:id`, `POST /api/emi/schedule/:id/pay/:num`
+
+#### [MODIFY] `adminRoutes.js` + `adminMenu.json`
+- Admin EMI plan CRUD + "EMI Plans" sidebar menu item
+
+---
+
+### Frontend — Admin Panel
+
+#### [NEW] `AdminEmiPlans.tsx` + `/admin/emi-plans/page.tsx`
+- Plan management table with create/edit/toggle/delete
+- Stats: total EMI orders, outstanding amount, completed schedules
+
+### Frontend — Checkout
+
+#### [MODIFY] `Checkout.tsx`
+- EMI plan cards shown when `cartTotal >= plan.min_order_amount`
+- Each card: N × monthly amount, interest, processing fee, total payable
+
+### Frontend — User Dashboard
+
+#### [NEW] `MyEmiSchedules.tsx`
+- Installment timeline: paid ✓ / current 🔵 / upcoming ⭕ / overdue 🔴
+- "Pay Now" button → Stripe/Razorpay for that installment
+
+#### [MODIFY] `BuyerDashboard.tsx`
+- Add "My EMI Plans" tab
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- `node --check` on all new backend files
+
+### Manual Verification
+1. Admin creates 6-month plan ($500 min, 0% interest)
+2. Buyer adds $600+ to cart → checkout shows EMI panel
+3. Buyer selects 6-month plan → first installment paid
+4. Dashboard shows timeline → "Pay Now" on installment 2 works
+5. Admin can view all schedules and outstanding amounts

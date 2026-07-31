@@ -1,0 +1,69 @@
+/* ══════════════════════════════════════════════
+   STICKY WIDGETS — Floating Sidebar (AliExpress Style)
+   ══════════════════════════════════════════════ */
+.sticky-widgets-bar {
+    position: fixed;
+    right: 24px;
+    top: 60%;
+    transform: translateY(-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sticky-widget-item {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #475569;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.sticky-widget-item:hover {
+    background: var(--primary-color, #ff6600);
+    color: #ffffff;
+    border-color: var(--primary-color, #ff6600);
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.25);
+}
+
+/* Tooltip on hover */
+.sticky-widget-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 56px;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background: #1e293b;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-widget-item:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+    .sticky-widgets-bar {
+        display: none !important;
+    }
+}

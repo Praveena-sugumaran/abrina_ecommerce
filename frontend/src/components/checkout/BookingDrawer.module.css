@@ -1,0 +1,268 @@
+.booking-drawer {
+    position: fixed;
+    top: 0;
+    right: -480px;
+    width: 480px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+    z-index: 10001;
+    border-top: 4px solid var(--primary-color);
+    transition: right 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-drawer.open {
+    right: 0;
+}
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    backdrop-filter: blur(2px);
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.drawer-header {
+    padding: 1rem 1.5rem;
+    background: var(--primary-color);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.drawer-header h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.close-drawer {
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #000;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.15s;
+}
+
+.close-drawer:hover {
+    background: #f5f5f5;
+}
+
+.drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem 1.5rem;
+}
+
+.drawer-footer {
+    padding: 1.25rem 1.5rem;
+    background: #f8fafc;
+    border-top: 2px solid var(--primary-color);
+    flex-shrink: 0;
+}
+
+@media (max-width: 500px) {
+    .booking-drawer {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+/* Shipping Modal Styles */
+.shipping-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+    backdrop-filter: blur(4px);
+}
+
+.shipping-modal-box {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalSlideUp 0.3s ease-out;
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.shipping-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shipping-modal-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.shipping-modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+.shipping-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.shipping-modal-subtext {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.shipping-services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.shipping-service-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 1.5px solid #eee;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.shipping-service-item:hover {
+    border-color: #ddd;
+    background: #f9f9f9;
+}
+
+.shipping-service-item.active {
+    border-color: #111;
+    background: #fdfdfd;
+}
+
+.ss-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.shipping-service-item.active .ss-radio {
+    border-color: #111;
+}
+
+.ss-radio-inner {
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.ss-radio-inner.checked {
+    background: #111;
+}
+
+.ss-info {
+    flex: 1;
+}
+
+.ss-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #111;
+}
+
+.ss-delivery {
+    font-size: 12px;
+    color: #666;
+}
+
+.ss-price {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+}
+
+.ss-price-sub {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: #888;
+    margin-top: 2px;
+}
+
+.shipping-modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+}
+
+.ss-apply-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 60px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ss-apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}

@@ -1,0 +1,2101 @@
+/* ╔══════════════════════════════════════════════════════╗
+   ║        HERO BANNER — Premium Live-Site Style         ║
+   ╚══════════════════════════════════════════════════════╝ */
+
+/* ─── Section ─── */
+.hero-banner-section {
+    padding: 20px 0 0;
+    background: transparent;
+}
+
+/* ─── Root Layout ─── */
+.hb-root {
+    display: grid;
+    grid-template-columns: 78% 22%;
+    height: 380px;
+    max-height: 380px;
+    background: var(--bg-white);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    border: 1px solid #D6E4FF;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+}
+
+.hb-bg-image,
+.hb-bg-image picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Constrain banner on ultra-wide screens */
+@media (min-width: 1600px) {
+    .hb-root {
+        height: 420px;
+        max-height: 420px;
+    }
+
+    .hb-hero {
+        height: 420px;
+        max-height: 420px;
+    }
+
+    .hb-quicklinks {
+        height: 420px;
+        max-height: 420px;
+    }
+}
+
+@media (min-width: 1920px) {
+    /* container handles width now */
+}
+
+/* ═══════════════════════════════ SIDEBAR (hidden) ═══════════════════════════════ */
+.hb-sidebar {
+    display: none !important;
+}
+
+.hb-sidebar-hidden {
+    background: #fff;
+    position: relative;
+    z-index: 60;
+    border-right: 1px solid #ebebeb;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+}
+
+.hb-sidebar-head {
+    background: var(--grad-vibrant);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 15px 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+}
+
+.hb-cat-list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    overflow-y: auto;
+    flex: 1;
+    scrollbar-width: none;
+}
+
+.hb-cat-list::-webkit-scrollbar {
+    display: none;
+}
+
+.hb-cat-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 0;
+    position: relative;
+    font-size: 12.5px;
+    color: #333;
+    font-weight: 500;
+}
+
+.hb-cat-item:hover,
+.hb-cat-active {
+    background: var(--clr-primary-light);
+    color: var(--clr-primary);
+}
+
+.hb-cat-active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--clr-primary);
+    border-radius: 0 3px 3px 0;
+}
+
+.hb-cat-thumb {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ebebeb;
+}
+
+.hb-cat-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hb-cat-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hb-cat-chevron {
+    flex-shrink: 0;
+    color: #bbb;
+    transition: transform 0.2s;
+}
+
+.hb-cat-item:hover .hb-cat-chevron {
+    color: var(--clr-primary);
+    transform: translateX(2px);
+}
+
+/* ─── Megamenu ─── */
+.hb-mega {
+    position: absolute;
+    left: 100%;
+    top: 50px;
+    width: 520px;
+    max-height: 430px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--clr-primary);
+    border-radius: 0 16px 16px 0;
+    box-shadow: 8px 12px 40px rgba(100, 60, 220, 0.13);
+    z-index: 999;
+    padding: 16px;
+    animation: megaIn 0.18s ease;
+}
+
+@keyframes megaIn {
+    from {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.hb-mega-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1.5px solid #f0f4ff;
+}
+
+.hb-mega-title>span {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--clr-primary);
+}
+
+.hb-mega-all {
+    font-size: 12px;
+    color: var(--clr-accent);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.hb-mega-all:hover {
+    color: var(--clr-accent-dark);
+}
+
+.hb-mega-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.hb-mega-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #444;
+    font-size: 11.5px;
+    font-weight: 500;
+    text-align: center;
+    transition: color 0.2s, transform 0.2s;
+    padding: 6px 4px;
+    border-radius: 10px;
+}
+
+.hb-mega-item:hover {
+    color: var(--clr-primary);
+    transform: translateY(-3px);
+}
+
+.hb-mega-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--clr-primary-light);
+    border: 1.5px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s;
+}
+
+.hb-mega-item:hover .hb-mega-img {
+    border-color: var(--clr-primary);
+}
+
+.hb-mega-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ═══════════════════════════════ HERO CENTER ═══════════════════════════════ */
+.hb-hero {
+    position: relative;
+    overflow: hidden;
+    height: 380px;
+    max-height: 380px;
+    background: var(--grad-hero);
+    transition: background 0.7s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px 0 0 20px;
+}
+
+/* Background decorative elements */
+.hb-bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.blob-tl {
+    width: 340px;
+    height: 340px;
+    top: -100px;
+    left: -80px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
+}
+
+.blob-br {
+    width: 420px;
+    height: 420px;
+    bottom: -140px;
+    right: -60px;
+    background: radial-gradient(circle, var(--clr-accent) 0%, transparent 70%);
+    opacity: 0.15;
+}
+
+.hb-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.hb-bg-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+}
+
+.glow-top {
+    top: -80px;
+    right: 80px;
+    background: var(--clr-accent);
+    opacity: 0.25;
+}
+
+.glow-bottom {
+    bottom: -80px;
+    left: 30px;
+    background: var(--clr-primary-mid);
+    opacity: 0.35;
+}
+
+/* ─── Floating chips ─── */
+.hb-floating-chips {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.hb-chip {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    animation: chipFloat 4s ease-in-out infinite;
+}
+
+.chip-0 {
+    top: 18px;
+    right: 24px;
+    animation-delay: 0s;
+}
+
+.chip-1 {
+    top: 18px;
+    right: 145px;
+    animation-delay: 0.8s;
+}
+
+.chip-2 {
+    bottom: 70px;
+    right: 24px;
+    animation-delay: 1.6s;
+}
+
+.chip-3 {
+    bottom: 70px;
+    right: 145px;
+    animation-delay: 2.4s;
+}
+
+@keyframes chipFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.hb-chip-num {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+
+.hb-chip-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+/* ─── Slide content ─── */
+.hb-slide-content {
+    position: relative;
+    z-index: 10;
+    padding: 24px 0 16px 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    max-width: 620px;
+}
+
+.hb-slide-enter {
+    animation: slideEnter 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.hb-slide-exit {
+    animation: slideExit 0.3s ease both;
+}
+
+@keyframes slideEnter {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideExit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+}
+
+/* Tag / Badge */
+.hb-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    width: fit-content;
+    letter-spacing: 0.4px;
+}
+
+/* Title */
+.hb-title {
+    font-size: clamp(24px, 2.5vw, 36px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0 0 8px;
+    letter-spacing: -0.5px;
+}
+
+.hb-title-accent {
+    color: var(--clr-accent-glow);
+    position: relative;
+    display: block;
+}
+
+.hb-title-accent::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 60px;
+    height: 3px;
+    background: var(--clr-accent-glow);
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
+/* Subtitle */
+.hb-subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.5;
+    margin: 0 0 14px;
+    max-width: 480px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Action Buttons */
+.hb-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.hb-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--grad-warm);
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 6px 24px rgba(255, 120, 20, 0.45);
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+.hb-btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(255, 120, 20, 0.6);
+}
+
+.hb-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+    backdrop-filter: blur(8px);
+    white-space: nowrap;
+}
+
+.hb-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px);
+}
+
+/* ─── Quick Search Bar — hidden at 250px height ─── */
+.hb-quick-search {
+    display: none;
+}
+
+.hb-quick-search-hidden {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 5px 5px 5px 20px;
+    max-width: 460px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.hb-quick-search:focus-within {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.hb-qs-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 13.5px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.hb-qs-input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.hb-qs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #fff;
+    color: var(--clr-primary);
+    border: none;
+    border-radius: 50px;
+    padding: 9px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+
+.hb-qs-btn:hover {
+    background: var(--clr-accent);
+    color: #fff;
+}
+
+/* ─── Controls ─── */
+.hb-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 8px 0 10px;
+    position: relative;
+    z-index: 20;
+}
+
+.hb-arrow {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    backdrop-filter: blur(6px);
+}
+
+.hb-arrow:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.hb-dots {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+
+.hb-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s;
+}
+
+.hb-dot-active {
+    width: 26px;
+    border-radius: 4px;
+    background: #fff;
+}
+
+/* Progress bar */
+.hb-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    z-index: 30;
+}
+
+.hb-progress-fill {
+    height: 100%;
+    background: var(--clr-accent);
+    width: 0%;
+    animation: progressRun 5.5s linear forwards;
+    border-radius: 0 2px 2px 0;
+}
+
+@keyframes progressRun {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* ═══════════════════════════════ RIGHT QUICKLINKS ═══════════════════════════════ */
+.hb-quicklinks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #f4f6fb;
+    border-left: 1px solid #D6E4FF;
+    padding: 12px 24px 12px 12px;
+    height: 380px;
+    max-height: 380px;
+    border-radius: 0 20px 20px 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.hb-ql-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    text-decoration: none;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e8edf7;
+    box-shadow: 0 1px 4px rgba(13, 46, 103, 0.06);
+    flex: 1;
+    transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.hb-ql-card:hover {
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--clr-primary) 22%, transparent);
+    transform: translateY(-2px);
+    border-color: #D6E4FF;
+}
+
+/* Remove old ::before accent strip */
+.hb-ql-card::before {
+    display: none;
+}
+
+/* ── Per-card icon colors ── */
+.side-orange .hb-ql-icon {
+    background: #ff7300;
+    color: #ffffff;
+}
+
+.side-blue .hb-ql-icon {
+    background: #2a68ff;
+    color: #ffffff;
+}
+
+.side-gold .hb-ql-icon {
+    background: #ffb800;
+    color: #ffffff;
+}
+
+.side-purple .hb-ql-icon {
+    background: #2bbd5e;
+    color: #ffffff;
+}
+
+.hb-ql-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.hb-ql-card:hover .hb-ql-icon {
+    transform: scale(1.08);
+}
+
+.hb-ql-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.hb-ql-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1a1a2e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hb-ql-sub {
+    font-size: 10.5px;
+    color: #aaa;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hb-ql-arrow {
+    flex-shrink: 0;
+    color: #64748b;
+    opacity: 1;
+    transform: none;
+    transition: color 0.2s, transform 0.2s;
+    stroke-width: 2.5;
+}
+
+.hb-ql-card:hover .hb-ql-arrow {
+    color: var(--clr-primary);
+    transform: translateX(3px);
+}
+
+/* ═══════════════════════════════ RESPONSIVE ═══════════════════════════════ */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .hb-floating-chips {
+        display: none;
+    }
+}
+
+/* ── Tablet (768px – 1024px): quicklinks shown as 4-col row below hero ── */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hb-root {
+        grid-template-columns: 1fr;
+        height: auto;
+        max-height: none;
+    }
+
+    /* Hero takes full width */
+    .hb-hero {
+        border-radius: 12px !important;
+        height: 300px;
+        max-height: 300px;
+    }
+
+    /* Quicklinks: switch from vertical sidebar to horizontal 4-col row */
+    .hb-quicklinks {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        height: auto !important;
+        max-height: none !important;
+        border-radius: 0 0 16px 16px;
+        border-left: none;
+        border-top: 1px solid #D6E4FF;
+        padding: 12px;
+    }
+
+    .hb-ql-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 12px;
+        gap: 8px;
+    }
+
+    .hb-ql-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .hb-ql-arrow {
+        display: none;
+    }
+
+    .hb-ql-title {
+        font-size: 12px;
+    }
+
+    .hb-ql-sub {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hb-quicklinks {
+        display: none;
+    }
+
+    .hb-root {
+        grid-template-columns: 1fr;
+    }
+
+    /* Hero is now full-width — reset all 4 corners */
+    .hb-hero {
+        border-radius: 12px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .hb-root {
+        grid-template-columns: 1fr;
+        border-radius: 8px;
+        box-shadow: none;
+    }
+
+    .hb-hero {
+        height: 300px;
+        max-height: 300px;
+        border-radius: 14px !important;
+    }
+
+    .hb-slide-content {
+        padding: 20px 18px 10px;
+        max-width: 100%;
+    }
+
+    .hb-title {
+        font-size: 20px;
+    }
+
+    .hb-subtitle {
+        font-size: 12px;
+    }
+
+    .hb-chip {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .hb-hero {
+        min-height: 220px;
+    }
+
+    .hb-slide-content {
+        padding: 28px 18px 14px;
+        gap: 0;
+    }
+
+    .hb-title {
+        font-size: 22px;
+    }
+
+    .hb-subtitle {
+        font-size: 13px;
+        margin-bottom: 18px;
+    }
+
+    .hb-actions {
+        gap: 8px;
+    }
+
+    .hb-btn-primary {
+        padding: 11px 20px;
+        font-size: 13px;
+    }
+
+    .hb-btn-ghost {
+        padding: 9px 16px;
+        font-size: 13px;
+    }
+
+    .hb-quick-search {
+        max-width: 100%;
+        padding: 4px 4px 4px 14px;
+    }
+
+    .hb-qs-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    .hb-tag {
+        font-size: 11px;
+        padding: 6px 12px;
+        margin-bottom: 12px;
+    }
+}
+
+/* ─── Alignment Classes ─── */
+.hb-slide-content.hb-align-left {
+    align-items: flex-start;
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.hb-slide-content.hb-align-center {
+    align-items: center;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hb-slide-content.hb-align-center .hb-title-accent::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hb-slide-content.hb-align-center .hb-actions {
+    justify-content: center;
+}
+
+.hb-slide-content.hb-align-right {
+    align-items: flex-end;
+    text-align: right;
+    padding-left: 0;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.hb-slide-content.hb-align-right .hb-title-accent::after {
+    left: auto;
+    right: 0;
+}
+
+.hb-slide-content.hb-align-right .hb-actions {
+    justify-content: flex-end;
+}
+
+/* ─── Sale Campaign Theme & Layout ─── */
+.hb-sale-theme {
+    background: linear-gradient(135deg, #7f1d1d 0%, #dc2626 50%, #991b1b 100%) !important;
+}
+
+.hb-sale-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.hb-countdown-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 4px 14px;
+    color: #fff;
+}
+
+.hb-countdown-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hb-timer-boxes {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.hb-time-val {
+    font-size: 12px;
+    font-weight: 900;
+    background: #fff;
+    color: #ef4444;
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1;
+}
+
+.hb-time-divider {
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    padding: 0 1px;
+}
+
+.hb-campaign-ended {
+    font-size: 12px;
+    font-weight: 800;
+    color: #fca5a5;
+}
+
+.hb-sale-discount-title {
+    display: block;
+    font-size: clamp(20px, 2.5vw, 36px);
+    font-weight: 900;
+    color: #fef08a;
+    /* soft gold */
+    margin-top: 4px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Coupon Items Grid inside Sale Layout */
+.hb-coupons-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+    width: 100%;
+}
+
+.hb-coupon-item-card {
+    background: #fff;
+    border-radius: 12px;
+    border-left: 4px dashed #ef4444;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    flex: 1;
+    min-width: 130px;
+    max-width: 180px;
+    transition: transform 0.2s;
+}
+
+.hb-coupon-item-card:hover {
+    transform: translateY(-2px);
+}
+
+.hb-coupon-value {
+    font-size: 14px;
+    font-weight: 900;
+    color: #dc2626;
+    line-height: 1.1;
+}
+
+.hb-coupon-min-order {
+    font-size: 9.5px;
+    color: #64748b;
+    font-weight: 600;
+    margin: 2px 0 4px;
+}
+
+.hb-coupon-code-badge {
+    font-size: 9px;
+    font-weight: 800;
+    background: #fee2e2;
+    color: #ef4444;
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+/* ─── Extra Slide Elements ─── */
+.hb-slide-discount-text {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--clr-accent-glow);
+    margin-bottom: 12px;
+}
+
+.hb-slide-features-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.hb-feature-tag-item {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 3px 10px;
+    border-radius: 50px;
+}
+
+.hb-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--clr-accent);
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 6px 24px rgba(239, 68, 68, 0.45);
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+.hb-btn-secondary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(239, 68, 68, 0.6);
+}
+
+/* ═══ REFER IMAGE ALIGNMENT & PREMIUM CUSTOMIZATION ═══ */
+
+/* 1. Centered slide tag (outline golden box) */
+.hb-slide-content.hb-align-center .hb-tag {
+    background: transparent !important;
+    border: 1px solid rgba(212, 175, 55, 0.65) !important;
+    color: #FFD700 !important;
+    text-transform: uppercase;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.5px !important;
+    padding: 6px 14px !important;
+    margin-bottom: 16px !important;
+}
+
+/* 2. Centered slide title (two-line sizing and coloring) */
+.hb-slide-content.hb-align-center .hb-title {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 1.2px !important;
+    color: #ffffff !important;
+    line-height: 1.3 !important;
+    margin-bottom: 8px !important;
+}
+
+.hb-slide-content.hb-align-center .hb-title-accent {
+    font-size: clamp(34px, 3.8vw, 46px) !important;
+    font-weight: 900 !important;
+    color: #FFD700 !important;
+    /* Gold text */
+    text-transform: uppercase;
+    letter-spacing: -0.5px !important;
+    line-height: 1.1 !important;
+    margin-top: 6px !important;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    display: block !important;
+}
+
+/* Hide underline accent bar */
+.hb-slide-content.hb-align-center .hb-title-accent::after {
+    display: none !important;
+}
+
+/* 3. Centered subtitle styling */
+.hb-slide-content.hb-align-center .hb-subtitle {
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin-bottom: 18px !important;
+    max-width: 540px !important;
+}
+
+/* 4. Features list in single row */
+.hb-slide-content.hb-align-center .hb-slide-features-row {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 14px !important;
+    margin-bottom: 22px !important;
+}
+
+.hb-slide-content.hb-align-center .hb-feature-tag-item {
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 4px 12px !important;
+    border-radius: 50px !important;
+}
+
+/* 5. Center align actions - Premium white Shop Now button */
+.hb-slide-content.hb-align-center .hb-btn-primary {
+    background: #ffffff !important;
+    color: #111111 !important;
+    padding: 12px 32px !important;
+    border-radius: 50px !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+    transition: all 0.25s ease !important;
+}
+
+.hb-slide-content.hb-align-center .hb-btn-primary:hover {
+    background: #f8fafc !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+}
+
+.hb-slide-content.hb-align-center .hb-btn-primary svg {
+    display: none !important;
+    /* Remove arrow icon inside button matching refer image */
+}
+
+/* Hide standard text display for discount inside center layout */
+.hb-slide-content.hb-align-center .hb-slide-discount-text {
+    display: none !important;
+}
+
+/* 6. Reposition controls: Arrows to edges, dots center bottom */
+.hb-prev {
+    position: absolute !important;
+    left: 16px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 25 !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #fff !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    opacity: 0.75 !important;
+}
+
+.hb-prev:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.hb-next {
+    position: absolute !important;
+    right: 16px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 25 !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #fff !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    opacity: 0.75 !important;
+}
+
+.hb-next:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.hb-dots {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 25 !important;
+    display: flex !important;
+    gap: 6px !important;
+    align-items: center !important;
+}
+
+.hb-controls {
+    position: static !important;
+}
+
+/* 7. Right floating gold double-circle badge */
+.hb-discount-badge {
+    position: absolute;
+    right: 5%;
+    top: 15%;
+    z-index: 15;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: badgePulse 2.5s infinite alternate;
+}
+
+.hb-discount-badge.hb-has-products {
+    right: 120px;
+    /* Position cleanly above the lower product card container */
+    top: 15px;
+}
+
+@keyframes badgePulse {
+    0% {
+        transform: scale(0.98);
+    }
+
+    100% {
+        transform: scale(1.04);
+    }
+}
+
+.hb-badge-circle-outer {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    border: 2px solid rgba(212, 175, 55, 0.85);
+    /* gold outer */
+    padding: 3px;
+    background: rgba(139, 0, 0, 0.35);
+    /* crimson glass */
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hb-badge-circle-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.6);
+    /* gold inner */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
+.hb-badge-up-to {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: -3px;
+}
+
+.hb-badge-percent {
+    font-size: 26px;
+    font-weight: 900;
+    color: #FFD700;
+    /* Gold */
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hb-badge-off {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: -3px;
+}
+
+/* 8. Bottom horizontal benefits bar styling */
+.hb-benefits-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-top: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.hb-benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+}
+
+.hb-benefit-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: #e2e8f0;
+}
+
+.hb-benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.hb-benefit-icon.shipping {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+.hb-benefit-icon.returns {
+    background-color: #fff5f5;
+    border: 1px solid #fed7d7;
+    color: #e53e3e;
+}
+
+.hb-benefit-icon.payments {
+    background-color: #eff6ff;
+    border: 1px solid #dbeafe;
+    color: #2563eb;
+}
+
+.hb-benefit-icon.support {
+    background-color: #f0fdf4;
+    border: 1px solid #dcfce7;
+    color: #16a34a;
+}
+
+.hb-benefit-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.hb-benefit-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.hb-benefit-subtitle {
+    font-size: 11px;
+    color: #64748b;
+    margin: 2px 0 0;
+    line-height: 1.2;
+}
+
+@media (max-width: 1024px) {
+    .hb-discount-badge {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .hb-benefits-bar {
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .hb-benefit-item {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .hb-benefit-item:not(:last-child)::after {
+        display: none;
+    }
+}
+
+/* ═══════════════════════════════ DYNAMIC PRODUCT CARDS ═══════════════════════════════ */
+.hb-products-showcase {
+    position: absolute;
+    right: 40px;
+    top: 58%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 12;
+    pointer-events: auto;
+}
+
+.hb-product-card {
+    background: #ffffff;
+    border: 4px solid #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.hb-product-card-img-wrapper {
+    width: 100%;
+    height: 110px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hb-product-card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hb-product-card:hover .hb-product-card-img-wrapper img {
+    transform: scale(1.08);
+}
+
+.hb-product-card-info {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+}
+
+.hb-product-card-price {
+    font-size: 13px;
+    font-weight: 850;
+    color: #ef4444;
+}
+
+.hb-product-card-old-price {
+    font-size: 10px;
+    color: #94a3b8;
+    text-decoration: line-through;
+    margin-left: 5px;
+}
+
+/* Overlapping and tilts */
+.hb-product-card-0 {
+    transform: rotate(-6deg) translateY(8px);
+    z-index: 3;
+}
+
+.hb-product-card-0:hover {
+    transform: translateY(-8px) rotate(-6deg) scale(1.1);
+    z-index: 10;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.hb-product-card-1 {
+    transform: rotate(4deg) translateY(-8px);
+    margin-left: -25px;
+    z-index: 2;
+}
+
+.hb-product-card-1:hover {
+    transform: translateY(-24px) rotate(4deg) scale(1.1);
+    z-index: 10;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.hb-product-card-2 {
+    transform: rotate(-3deg) translateY(12px);
+    margin-left: -25px;
+    z-index: 1;
+}
+
+.hb-product-card-2:hover {
+    transform: translateY(-4px) rotate(-3deg) scale(1.1);
+    z-index: 10;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsiveness: hide on medium and small screens */
+@media (max-width: 1024px) {
+    .hb-products-showcase {
+        display: none !important;
+    }
+}
+
+/* ─── Dark Text Color Theme Overrides ─── */
+.hb-dark-text-theme .hb-title {
+    color: #1e293b !important;
+}
+
+.hb-dark-text-theme .hb-subtitle {
+    color: #475569 !important;
+}
+
+.hb-dark-text-theme .hb-feature-tag-item {
+    color: #475569 !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.hb-dark-text-theme .hb-tag {
+    color: #c2410c !important;
+    border-color: rgba(194, 65, 12, 0.3) !important;
+    background: rgba(194, 65, 12, 0.08) !important;
+}
+
+.hb-dark-text-theme .hb-btn-ghost {
+    color: #1e293b !important;
+    border-color: rgba(30, 41, 59, 0.4) !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+}
+
+.hb-dark-text-theme .hb-btn-ghost:hover {
+    background: rgba(0, 0, 0, 0.08) !important;
+    border-color: #1e293b !important;
+}
+
+/* --- Premium Redesign Updates --- */
+
+/* Summer tag styling */
+.hb-summer-tag {
+    background: #fff5f2 !important;
+    color: #ea580c !important;
+    border: 1.5px solid #ffedd5 !important;
+    font-weight: 750 !important;
+    padding: 4px 12px !important;
+    border-radius: 50px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.hb-summer-sun-icon {
+    font-size: 14px;
+    animation: sunSpin 6s linear infinite;
+    display: inline-block;
+}
+
+@keyframes sunSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Feature tags as white pills */
+.hb-feature-tag-item {
+    background: #ffffff !important;
+    color: #1e293b !important;
+    border: 1px solid #e2e8f0 !important;
+    padding: 5px 12px !important;
+    border-radius: 50px !important;
+    font-weight: 650 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 12.5px !important;
+}
+
+.hb-feature-tag-item svg {
+    color: #ea580c !important;
+}
+
+/* Customer Trust Badge */
+.hb-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    animation: fadeIn 0.8s ease;
+}
+
+.hb-trust-avatars {
+    display: flex;
+    align-items: center;
+}
+
+.hb-trust-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    margin-left: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.hb-trust-avatar:first-child {
+    margin-left: 0;
+}
+
+.hb-avatar-g1 {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+.hb-avatar-g2 {
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.hb-avatar-g3 {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+}
+
+.hb-avatar-plus {
+    background: #1e293b;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.hb-trust-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.hb-trust-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.hb-trust-star {
+    color: #fbbf24;
+    font-size: 12px;
+}
+
+.hb-trust-text {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.hb-dark-text-theme .hb-trust-text {
+    color: #475569 !important;
+}
+
+/* Slider Controls & Navigation */
+.hb-controls {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 10px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: none !important;
+    z-index: 20 !important;
+}
+
+.hb-dots {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    display: flex !important;
+    gap: 8px !important;
+    align-items: center !important;
+    pointer-events: auto !important;
+}
+
+.hb-dot {
+    width: 8px !important;
+    height: 8px !important;
+    background: #cbd5e1 !important;
+    border: none !important;
+    border-radius: 50% !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+}
+
+.hb-dot-active {
+    width: 24px !important;
+    background: #ea580c !important;
+    border-radius: 4px !important;
+}
+
+.hb-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    color: #0f172a !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.2s !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+.hb-arrow:hover {
+    background: #ffffff !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-50%) scale(1.05) !important;
+}
+
+.hb-prev {
+    left: 24px !important;
+}
+
+.hb-next {
+    right: 24px !important;
+}
+
+/* Polaroid Card border updates */
+.hb-product-card {
+    border-width: 6px 6px 20px 6px !important;
+    background: #ffffff !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 8px !important;
+}
+
+.hb-product-card-price {
+    color: #ea580c !important;
+    font-weight: 800 !important;
+}
+
+.hb-product-card-old-price {
+    color: #94a3b8 !important;
+    text-decoration: line-through !important;
+}
+
+/* Quicklinks sidebar styling */
+.hb-quicklinks {
+    background: transparent !important;
+    border-left: none !important;
+    padding: 14px 12px 14px 12px !important;
+}
+
+.hb-ql-card {
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+.hb-ql-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+    border-color: #cbd5e1 !important;
+}
+
+/* Position discount badge strictly top-right */
+.hb-discount-badge {
+    position: absolute;
+    right: 24px !important;
+    top: 24px !important;
+    z-index: 15;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: badgePulse 2.5s infinite alternate;
+}
+
+.hb-discount-badge.hb-has-products {
+    right: 24px !important;
+    top: 24px !important;
+}
+
+/* ── Tag Pill (Summer / Seasonal promo) ──────────────────── */
+.hb-tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 237, 213, 0.92);
+    color: #c2410c;
+    border: 1.5px solid rgba(234, 88, 12, 0.25);
+    border-radius: 50px;
+    padding: 4px 14px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+}
+
+.hb-tag-sun {
+    font-size: 14px;
+    animation: sunSpin 6s linear infinite;
+    display: inline-block;
+}
+
+.hb-tag-text {
+    line-height: 1;
+}
+
+/* ── Slide Features Row (white pill badges) ────────────────── */
+.hb-slide-features-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+/* ─── HeroBanner Skeleton Loader ─── */
+.hb-skeleton-root {
+    display: grid;
+    grid-template-columns: 78% 22%;
+    height: 480px;
+    background: #ffffff;
+    border: 1px solid #D6E4FF;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.hb-skeleton-sidebar {
+    display: none !important;
+}
+
+.hb-skeleton-main {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hb-skeleton-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f4f6fb;
+    border-left: 1px solid #D6E4FF;
+    padding: 14px 12px;
+    box-sizing: border-box;
+}
+
+/* Skeleton items */
+.hb-skeleton-tag {
+    width: 200px;
+    height: 24px;
+    background: #e2e8f0;
+    border-radius: 12px;
+    animation: hb-pulse 1.5s infinite ease-in-out;
+}
+
+.hb-skeleton-title {
+    width: 80%;
+    height: 40px;
+    background: #e2e8f0;
+    border-radius: 8px;
+    animation: hb-pulse 1.5s infinite ease-in-out;
+}
+
+.hb-skeleton-text {
+    width: 90%;
+    height: 16px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    animation: hb-pulse 1.5s infinite ease-in-out;
+}
+
+.hb-skeleton-btn {
+    width: 160px;
+    height: 46px;
+    background: #e2e8f0;
+    border-radius: 23px;
+    animation: hb-pulse 1.5s infinite ease-in-out;
+}
+
+.hb-skeleton-ql {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e8edf7;
+    animation: hb-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes hb-pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .hb-skeleton-root {
+        grid-template-columns: 100%;
+    }
+
+    .hb-skeleton-right {
+        display: none;
+    }
+}

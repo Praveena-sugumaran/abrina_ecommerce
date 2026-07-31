@@ -1,0 +1,700 @@
+
+/* ─── Page Wrapper ─── */
+.register-page {
+    min-height: 100vh;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.register-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 480px;
+}
+
+/* ─── Title v2 ─── */
+.register-title-v2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 24px;
+    margin-top: 8px;
+    letter-spacing: -0.5px;
+}
+
+.social-btns-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-btn.premium-social {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    color: #111;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.social-btn.premium-social:hover {
+    background: #f9f9f9;
+    border-color: #ccc;
+}
+
+.social-icon {
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+}
+
+/* ─── Divider ─── */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #ccc;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.divider span {
+    padding: 0 1rem;
+    color: #999;
+}
+
+/* ─── Floating Label Inputs ─── */
+.float-input-wrap {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.float-input,
+.float-select {
+    width: 100%;
+    padding: 1.1rem 1rem 0.5rem;
+    border: 1.5px solid #d5d5d5;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #111;
+    background: #fff;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    appearance: none;
+}
+
+.float-select {
+    padding-right: 2rem;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem top 55%;
+    background-size: 0.65rem auto;
+    cursor: pointer;
+}
+
+.float-input:focus,
+.float-select:focus {
+    border-color: #111;
+}
+
+.float-label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.18s ease;
+    background: transparent;
+}
+
+.float-input:focus~.float-label,
+.float-input:not(:placeholder-shown)~.float-label {
+    top: 0.5rem;
+    transform: none;
+    font-size: 0.72rem;
+    color: #111;
+}
+
+.float-label-active {
+    position: absolute;
+    left: 1rem;
+    top: 0.5rem;
+    font-size: 0.72rem;
+    color: #111;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* Country select arrow */
+.float-select+.float-label-active {
+    top: 0.45rem;
+}
+
+/* ─── Name row ─── */
+.name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.req {
+    color: var(--primary-color);
+}
+
+/* ─── Password ─── */
+.password-wrap .float-input {
+    padding-right: 2.8rem;
+}
+
+.toggle-pw {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 0;
+    color: #777;
+}
+
+.pw-rules {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0 0 1.25rem;
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* ─── Buttons ─── */
+/* ─── Buttons v2 ─── */
+.reg-btn-primary-v2 {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.reg-btn-primary-v2:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: scale(1.02);
+}
+
+.reg-btn-primary-v2:disabled {
+    background: #ffb380;
+    cursor: not-allowed;
+}
+
+.reg-btn-primary:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.reg-btn-primary:disabled,
+.reg-btn-primary.disabled-btn {
+    background: #8d9db5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.reg-btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    background: #fff;
+    color: #333;
+    border: 1.5px solid #ccc;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.reg-btn-secondary:hover {
+    background: #f5f5f5;
+}
+
+/* ─── Links ─── */
+.reg-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.reg-link:hover {
+    text-decoration: underline;
+}
+
+.reg-link-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: inherit;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.reg-footer-text {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+.reg-error {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    margin-top: -0.25rem;
+    font-weight: 500;
+}
+
+/* ─── Role Selection ─── */
+.role-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.role-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    background: #fff;
+    min-height: 100px;
+}
+
+.role-card.selected {
+    border-color: var(--primary-color);
+    background: #f5f7fb;
+    box-shadow: 0 4px 12px rgba(11, 26, 50, 0.08);
+}
+
+.role-card input[type="radio"] {
+    display: none;
+}
+
+.role-radio-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #dcdcdc;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.role-card.selected .role-radio-dot {
+    border-color: var(--primary-color);
+}
+
+.role-card.selected .role-radio-dot::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.role-info {
+    flex: 1;
+}
+
+.role-info strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #111;
+    margin-bottom: 0.4rem;
+}
+
+.role-info p {
+    font-size: 0.88rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.role-note {
+    display: block;
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 0.5rem;
+    font-style: normal;
+}
+
+.role-image-box {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.role-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ─── Unified Primary Buttons ─── */
+.orange-btn {
+    background: var(--clr-accent) !important;
+}
+
+.orange-btn:hover:not(:disabled) {
+    background: var(--accent-hover) !important;
+}
+
+.blue-btn {
+    background: var(--primary-color) !important;
+}
+
+.blue-btn:hover:not(:disabled) {
+    background: #1a2f50 !important;
+}
+
+.reg-footer-split {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ─── Phone Row ─── */
+.phone-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+/* ─── Captcha Placeholder ─── */
+.captcha-placeholder {
+    margin: 1.5rem 0;
+    background: #efefef;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide-track {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 0;
+}
+
+.slide-btn {
+    width: 48px;
+    height: 46px;
+    background: #fff;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.slide-track span {
+    flex: 1;
+    text-align: center;
+    font-size: 0.88rem;
+    color: #666;
+    padding-right: 48px;
+}
+
+/* ─── Business Info ─── */
+.reg-sub-label {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+.form-section-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.business-type-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    /* Increased gap */
+    margin-bottom: 2rem;
+}
+
+.business-type-card {
+    border: 1.5px solid #d5d5d5;
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    /* Side-by-side checkbox and text */
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    position: relative;
+    min-height: 80px;
+}
+
+.business-type-card.checked {
+    border-color: var(--primary-color);
+    background: #f0f4ff;
+}
+
+.business-type-card input {
+    width: 18px;
+    height: 18px;
+    accent-color: #111;
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.terms-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 1.25rem 0;
+    cursor: pointer;
+}
+
+.terms-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: #111;
+}
+
+.terms-row span {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+.business-type-card span {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+/* ─── OTP Info ─── */
+.reg-sub-info {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+/* ─── OTP v2 Premium Design ─── */
+.otp-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.otp-boxes-v2 {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.otp-box-v2 {
+    width: 52px;
+    height: 58px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
+    background: #fafafa;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.otp-box-v2:focus {
+    border-color: #111;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.otp-box-v2.filled {
+    border-color: #111;
+    background: #fff;
+    color: #111;
+}
+
+.otp-resend-row {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1.25rem;
+}
+
+.otp-timer {
+    color: #999;
+    font-weight: 500;
+}
+
+/* ─── Modal Controls v2 ─── */
+.auth-modal-close-v2 {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 10;
+}
+
+.auth-modal-close-v2:hover {
+    background: #eee;
+    color: #111;
+}
+
+.auth-modal-back-v2 {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toggle-pw-v2 {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+}
+
+.reg-footer-text-v2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 15px;
+}
+
+.reg-link-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+
+.role-card-v2 {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.role-card-v2.selected {
+    border-color: #111;
+    background: #f8fafc;
+}

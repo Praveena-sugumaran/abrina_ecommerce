@@ -1,0 +1,195 @@
+/* ═══════════════════════════════════════════
+   ShowcaseProducts v2 – Premium product slider
+   ═══════════════════════════════════════════ */
+
+.showcaseSection {
+    background: #ffffff;
+    padding: 0;
+}
+
+.showcaseInner {
+    padding: 32px 0 32px;
+}
+
+/* ── Card wrapper ── */
+.showcaseCard_wrapper {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04), 0 1px 8px rgba(15, 23, 42, 0.02);
+}
+
+.showcaseCard_wrapper::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+/* ── Header ── */
+.showcaseHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 16px;
+}
+
+.showcaseTitleGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Eyebrow */
+.showcaseEyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary-color, #ff6600);
+    margin-bottom: 5px;
+}
+
+.showcaseTitle {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+}
+
+.showcaseSubtitle {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin: 5px 0 0;
+    font-weight: 400;
+}
+
+/* View All */
+.viewAllBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1.5px solid var(--primary-color, #ff6600);
+    padding: 7px 18px;
+    border-radius: 50px;
+    color: var(--primary-color, #ff6600);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.viewAllBtn:hover {
+    background: var(--primary-color, #ff6600);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(255, 102, 0, 0.25);
+}
+
+.sliderContainer {
+    position: relative;
+    padding: 4px 0;
+}
+
+.sliderTrack {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 6px 4px 16px 4px;
+    margin: 0 -4px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sliderTrack::-webkit-scrollbar {
+    display: none;
+}
+
+.slideCardWrap {
+    flex: 0 0 calc(25% - 15px);
+    min-width: calc(25% - 15px);
+    box-sizing: border-box;
+}
+
+.swiperNav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid #f1f5f9;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #1e293b;
+    user-select: none;
+}
+
+.swiperNav:hover {
+    background: var(--primary-color, #ff6600);
+    color: #ffffff;
+    border-color: var(--primary-color, #ff6600);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 102, 0, 0.25);
+}
+
+.skeletonCard {
+    flex: 0 0 calc(25% - 15px);
+    min-width: calc(25% - 15px);
+    aspect-ratio: 0.75;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #f3f4f6 25%, #e8eaed 50%, #f3f4f6 75%);
+    background-size: 200% 100%;
+    animation: sc-shimmer 1.5s infinite linear;
+}
+
+@keyframes sc-shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@media (max-width: 1024px) {
+    .slideCardWrap, .skeletonCard {
+        flex: 0 0 calc(33.333% - 14px);
+        min-width: calc(33.333% - 14px);
+    }
+}
+
+@media (max-width: 640px) {
+    .showcaseCard_wrapper {
+        padding: 16px;
+        border-radius: 14px;
+    }
+    .showcaseInner {
+        padding: 20px 0;
+    }
+    .slideCardWrap, .skeletonCard {
+        flex: 0 0 calc(50% - 10px);
+        min-width: calc(50% - 10px);
+    }
+}

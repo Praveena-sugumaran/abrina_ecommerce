@@ -1,0 +1,224 @@
+.enquiry-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    backdrop-filter: blur(5px);
+}
+
+.enquiry-modal-box {
+    background: #fff;
+    width: 95%;
+    max-width: 550px;
+    max-height: 90vh;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: modalSlideUp 0.3s ease-out;
+}
+
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.enquiry-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f0f2f5;
+    background: #fcfcfd;
+}
+
+.enquiry-modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.enquiry-modal-header button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.enquiry-modal-header button:hover {
+    color: #333;
+}
+
+.enquiry-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+
+.enquiry-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.enquiry-product-summary {
+    display: flex;
+    gap: 16px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    align-items: center;
+}
+
+.enquiry-product-summary img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.enquiry-prod-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 0 4px 0;
+    color: #334155;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.enquiry-prod-moq {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.enquiry-field {
+    margin-bottom: 20px;
+}
+
+.enquiry-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.enquiry-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+.enquiry-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.enquiry-label-row label {
+    margin-bottom: 0;
+}
+
+/* AI button styles removed as requested */
+
+.enquiry-field input, 
+.enquiry-field select, 
+.enquiry-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    transition: all 0.2s;
+}
+
+.enquiry-field input:focus, 
+.enquiry-field select:focus, 
+.enquiry-field textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(13, 46, 103, 0.1);
+}
+
+.enquiry-actions {
+    display: flex;
+    gap: 12px;
+    padding: 20px 24px;
+    border-top: 1px solid #f0f2f5;
+    background: #fcfcfd;
+}
+
+.btn-send {
+    flex: 2;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-send:hover {
+    background: #0a2452;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 46, 103, 0.2);
+}
+
+.btn-cancel {
+    flex: 1;
+    background: #fff;
+    color: #64748b;
+    border: 1.5px solid #e2e8f0;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+.enquiry-success {
+    padding: 50px 30px;
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 100px;
+    margin-bottom: 20px;
+}
+
+.enquiry-success h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #059669;
+}
+
+.enquiry-success p {
+    color: #64748b;
+}
