@@ -93,6 +93,7 @@ const DEFAULT_MENU_ITEMS: AdminMenuItem[] = [
         items: [
             { id: "emi-plans", label: "EMI Plans", path: "/admin/emi-plans", icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" },
             { id: "coupons", label: "Coupons & Promo Codes", path: "/admin/coupons", icon: "M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" },
+            { id: "gift-cards", label: "Gift Cards", path: "/admin/gift-cards", icon: "M12 8v13m0-13V3.5A1.5 1.5 0 0113.5 2h.178a1.5 1.5 0 011.5 1.5V5h-3m0 3H6.5A1.5 1.5 0 005 6.5v.178A1.5 1.5 0 006.5 8.178H12m0-3.178H6.5" },
             { id: "sale-campaigns", label: "Sale Campaigns", path: "/admin/sale-campaigns", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
             { id: "newsletter", label: "Email Campaigns", path: "/admin/newsletter", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
             { id: "subscriptions", label: "Subscriptions", path: "/admin/subscriptions", icon: "M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 003-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" }
@@ -147,6 +148,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         '/admin/approvals': 'products.view',
         '/admin/categories': 'products.view',
         '/admin/coupons': 'products.view',
+        '/admin/gift-cards': 'products.view',
         '/admin/reviews': 'products.view',
         '/admin/roles': 'roles.view',
         '/admin/permissions': 'permissions.view',
@@ -213,7 +215,12 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const formatNavLabel = (label?: string) => {
         if (!label) return '';
         if (label.toLowerCase() === 'suppliers' || label.toLowerCase() === 'supplier') return 'Sellers';
-        return t(normalizeKey(label)) || label;
+        const key = normalizeKey(label);
+        const translated = t(key);
+        if (!translated || translated === key || translated.includes('_')) {
+            return label.replace(/_/g, ' ').replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        }
+        return translated;
     };
     const [isCollapsed, setIsCollapsed] = React.useState(false);
     const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -254,7 +261,17 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
             try {
                 const mRes = await api.get('/admin/menu');
                 if (Array.isArray(mRes.data) && mRes.data.length > 0) {
-                    setNavItems(mRes.data);
+                    const merged = DEFAULT_MENU_ITEMS.map(defGroup => {
+                        const foundGroup = mRes.data.find((g: any) => g.group === defGroup.group);
+                        if (!foundGroup) return defGroup;
+                        const existingIds = new Set((foundGroup.items || []).map((i: any) => i.id));
+                        const missingItems = (defGroup.items || []).filter(i => !existingIds.has(i.id));
+                        return {
+                            ...foundGroup,
+                            items: [...(foundGroup.items || []), ...missingItems]
+                        };
+                    });
+                    setNavItems(merged);
                 }
             } catch (err) {
                 console.error('Error fetching layout data:', err);

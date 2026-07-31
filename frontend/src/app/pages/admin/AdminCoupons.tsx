@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
 import api from '@/services/axiosConfig';
+import AdminGiftCards from './AdminGiftCards';
 import styles from './AdminLayout.module.css';
 
 interface Coupon {
@@ -39,6 +40,7 @@ const emptyForm = {
 
 const AdminCoupons = () => {
     const { showToast } = useToast();
+    const [activeTab, setActiveTab] = useState<'coupons' | 'gift_cards'>('coupons');
     const [coupons, setCoupons] = useState<Coupon[]>([]);
     const [showForm, setShowForm] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
@@ -188,38 +190,78 @@ const AdminCoupons = () => {
     const currentData = coupons.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(coupons.length / itemsPerPage);
 
-    if (loading) return <div className="admin-loading-text">Loading coupon configurations...</div>;
+    if (loading && activeTab === 'coupons') return <div className="admin-loading-text">Loading coupon configurations...</div>;
 
     return (
         <div className="admin-page">
-            <div className="admin-page-header">
-                <div>
-                    <h1 className="admin-page-title">Coupons & Promo Codes</h1>
-                    <p className="admin-page-subtitle">Manage global marketplace promo codes and supplier specific discounts</p>
-                </div>
-                {!showForm && (
-                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                        <button 
-                            onClick={handleExport}
-                            className="admin-btn admin-btn-secondary"
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                        >
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                <polyline points="7 10 12 15 17 10" />
-                                <line x1="12" y1="15" x2="12" y2="3" />
-                            </svg>
-                            Export CSV
-                        </button>
-                        <button 
-                            onClick={() => { setEditingId(null); setForm(emptyForm); setShowForm(true); }} 
-                            className="admin-btn admin-btn-primary"
-                        >
-                            + Create Global Coupon
-                        </button>
-                    </div>
-                )}
+            {/* Horizontal Tabs Header */}
+            <div style={{ display: 'flex', gap: '12px', marginBottom: '20px', borderBottom: '2px solid #e2e8f0', paddingBottom: '12px' }}>
+                <button
+                    onClick={() => setActiveTab('coupons')}
+                    style={{
+                        padding: '10px 20px',
+                        borderRadius: '10px',
+                        border: 'none',
+                        background: activeTab === 'coupons' ? '#ff6a00' : '#f1f5f9',
+                        color: activeTab === 'coupons' ? '#fff' : '#475569',
+                        fontWeight: 800,
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s'
+                    }}
+                >
+                    🎟️ Discount Coupons
+                </button>
+                <button
+                    onClick={() => setActiveTab('gift_cards')}
+                    style={{
+                        padding: '10px 20px',
+                        borderRadius: '10px',
+                        border: 'none',
+                        background: activeTab === 'gift_cards' ? '#ff6a00' : '#f1f5f9',
+                        color: activeTab === 'gift_cards' ? '#fff' : '#475569',
+                        fontWeight: 800,
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s'
+                    }}
+                >
+                    🎁 Gift Card Products
+                </button>
             </div>
+
+            {activeTab === 'gift_cards' ? (
+                <AdminGiftCards />
+            ) : (
+                <>
+                    <div className="admin-page-header">
+                        <div>
+                            <h1 className="admin-page-title">Coupons & Promo Codes</h1>
+                            <p className="admin-page-subtitle">Manage global marketplace promo codes and supplier specific discounts</p>
+                        </div>
+                        {!showForm && (
+                            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                <button 
+                                    onClick={handleExport}
+                                    className="admin-btn admin-btn-secondary"
+                                    style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                                >
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="7 10 12 15 17 10" />
+                                        <line x1="12" y1="15" x2="12" y2="3" />
+                                    </svg>
+                                    Export CSV
+                                </button>
+                                <button 
+                                    onClick={() => { setEditingId(null); setForm(emptyForm); setShowForm(true); }} 
+                                    className="admin-btn admin-btn-primary"
+                                >
+                                    + Create Global Coupon
+                                </button>
+                            </div>
+                        )}
+                    </div>
 
             {showForm ? (
                 <div className="admin-card" style={{ maxWidth: '800px' }}>
@@ -439,6 +481,8 @@ const AdminCoupons = () => {
                         </div>
                     )}
                 </div>
+            )}
+            </>
             )}
         </div>
     );

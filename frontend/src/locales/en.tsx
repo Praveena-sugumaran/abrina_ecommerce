@@ -728,6 +728,8 @@ export default {
 ,
     'coupons_and_promo_codes': 'Coupons & Promo Codes'
 ,
+    'gift_cards': 'Gift Cards'
+,
     'marketing_sales': 'Marketing & Sales'
 ,
     'coupons_vouchers': 'Coupons'

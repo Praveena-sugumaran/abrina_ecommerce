@@ -3,17 +3,31 @@ import api from '@/services/axiosConfig';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
 
+interface GiftCardTemplate {
+    _id: string;
+    name: string;
+    value: number;
+    price: number;
+    stock: number;
+    is_active: boolean;
+    description: string;
+}
+
 const BuyerGiftCards = () => {
     const { convertPrice } = useAuth();
     const { showToast } = useToast();
     
+    const [templates, setTemplates] = useState<GiftCardTemplate[]>([]);
+    const [selectedTemplate, setSelectedTemplate] = useState<GiftCardTemplate | null>(null);
     const [giftCards, setGiftCards] = useState<any[]>([]);
     const [walletBalance, setWalletBalance] = useState(0);
     const [loading, setLoading] = useState(true);
     
     // Purchase states
-    const [purchaseAmount, setPurchaseAmount] = useState('25');
-    const [customAmount, setCustomAmount] = useState('');
+    const [enabledMethods, setEnabledMethods] = useState<any[]>([
+        { id: 'stripe', label: 'Credit / Debit Card (Stripe)' },
+        { id: 'wallet', label: 'Use Wallet Balance' }
+    ]);
     const [paymentMethod, setPaymentMethod] = useState('stripe');
     const [purchasing, setPurchasing] = useState(false);
     
@@ -23,21 +37,49 @@ const BuyerGiftCards = () => {
     const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchGiftCardsAndWallet();
+        fetchInitialData();
     }, []);
 
-    const fetchGiftCardsAndWallet = async () => {
+    const fetchInitialData = async () => {
         setLoading(true);
         try {
-            const [gcRes, walletRes] = await Promise.all([
+            const [templatesRes, gcRes, walletRes, payRes] = await Promise.all([
+                api.get('/gift-cards/public-templates'),
                 api.get('/gift-cards/my'),
-                api.get('/auth/wallet')
+                api.get('/auth/wallet'),
+                api.get('/payment-methods/public').catch(() => ({ data: [] }))
             ]);
+
+            const activeTemplates = templatesRes.data?.data || [];
+            setTemplates(activeTemplates);
+            if (activeTemplates.length > 0) {
+                setSelectedTemplate(activeTemplates[0]);
+            }
             setGiftCards(gcRes.data?.giftCards || []);
-            setWalletBalance(walletRes.data?.balance || 0);
+            const userWalletBal = walletRes.data?.balance || 0;
+            setWalletBalance(userWalletBal);
+
+            // Parse Admin enabled payment methods
+            const publicMethods = payRes.data || [];
+            const isStripeEnabled = publicMethods.length === 0 || publicMethods.some((m: any) => m.provider === 'stripe');
+            const isPaypalEnabled = publicMethods.some((m: any) => m.provider === 'paypal');
+
+            const availableList: any[] = [];
+            if (isStripeEnabled) {
+                availableList.push({ id: 'stripe', label: 'Credit / Debit Card (Stripe)' });
+            }
+            if (isPaypalEnabled) {
+                availableList.push({ id: 'paypal', label: 'PayPal Checkout' });
+            }
+            availableList.push({ id: 'wallet', label: `Use Wallet Balance (${convertPrice(userWalletBal).formatted})` });
+
+            setEnabledMethods(availableList);
+            if (availableList.length > 0) {
+                setPaymentMethod(availableList[0].id);
+            }
         } catch (err: any) {
             console.error('Error fetching gift cards/wallet:', err);
-            showToast('Failed to load gift cards data.', 'error', 'Error');
+            showToast('Failed to load gift card options.', 'error', 'Error');
         } finally {
             setLoading(false);
         }
@@ -45,25 +87,25 @@ const BuyerGiftCards = () => {
 
     const handlePurchase = async (e: React.FormEvent) => {
         e.preventDefault();
-        const finalAmount = purchaseAmount === 'custom' ? parseFloat(customAmount) : parseFloat(purchaseAmount);
-        
-        if (isNaN(finalAmount) || finalAmount <= 0) {
-            return showToast('Please select or input a valid purchase amount.', 'error', 'Invalid Amount');
+        if (!selectedTemplate) {
+            return showToast('Please select an available Admin-created Gift Card product.', 'error', 'Select Product');
+        }
+
+        if (selectedTemplate.stock <= 0) {
+            return showToast('The selected Gift Card product is currently out of stock.', 'error', 'Out of Stock');
         }
 
         setPurchasing(true);
         try {
             const { data } = await api.post('/gift-cards/purchase', {
-                amount: finalAmount,
+                templateId: selectedTemplate._id,
                 paymentMethod
             });
 
             if (data.success) {
                 if (paymentMethod === 'wallet') {
-                    showToast(`Successfully purchased $${finalAmount.toFixed(2)} Gift Card Voucher! Use it during checkout booking.`, 'success', 'Purchase Complete');
-                    setPurchaseAmount('25');
-                    setCustomAmount('');
-                    fetchGiftCardsAndWallet();
+                    showToast(`Successfully purchased ${selectedTemplate.name}! Voucher code generated.`, 'success', 'Purchase Complete');
+                    fetchInitialData();
                 } else if (data.url) {
                     showToast('Redirecting to payment gateway...', 'success', 'Payment Redirect');
                     window.location.href = data.url;
@@ -93,7 +135,7 @@ const BuyerGiftCards = () => {
             if (data.success) {
                 showToast(`Successfully redeemed voucher! $${data.amount.toFixed(2)} credited to your account for booking.`, 'success', 'Redeemed Successfully');
                 setRedeemCode('');
-                fetchGiftCardsAndWallet();
+                fetchInitialData();
             }
         } catch (err: any) {
             showToast(err.response?.data?.message || 'Failed to redeem gift card.', 'error', 'Redemption Failed');
@@ -130,10 +172,10 @@ const BuyerGiftCards = () => {
             <div style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #312e81 100%)', borderRadius: '20px', padding: '28px 32px', color: '#fff', boxShadow: '0 8px 24px rgba(15, 23, 42, 0.15)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
                     <div>
-                        <div style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#93c5fd' }}>Marketplace Vouchers</div>
+                        <div style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#93c5fd' }}>Official Store Vouchers</div>
                         <h1 style={{ fontSize: '26px', fontWeight: 900, margin: '4px 0 0', lineHeight: 1.2 }}>Digital Gift Cards & Vouchers</h1>
                         <p style={{ fontSize: '13px', color: '#cbd5e1', margin: '6px 0 0', maxWidth: '520px' }}>
-                            Purchase official gift vouchers or redeem voucher codes to instantly pay for product order bookings at Checkout.
+                            Purchase Admin-approved Gift Cards or redeem voucher codes to pay for order bookings at Checkout.
                         </p>
                     </div>
                     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -149,62 +191,7 @@ const BuyerGiftCards = () => {
                 </div>
             </div>
 
-            {/* Quick Redeem Voucher Card */}
-            <div style={{ background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', padding: '24px', boxShadow: '0 4px 20px rgba(13, 46, 103, 0.02)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', fontWeight: 800 }}>
-                        🎫
-                    </div>
-                    <div>
-                        <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: '#0f172a' }}>Redeem Voucher Code</h3>
-                        <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 500 }}>Have a gift card or promo voucher code? Enter it below to claim its value for booking.</span>
-                    </div>
-                </div>
-
-                <form onSubmit={handleRedeem} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-                    <div style={{ flex: 1, minWidth: '260px' }}>
-                        <input
-                            type="text"
-                            placeholder="GIFT-XXXX-XXXX-XXXX"
-                            value={redeemCode}
-                            onChange={(e) => setRedeemCode(e.target.value.toUpperCase())}
-                            style={{
-                                width: '100%',
-                                padding: '12px 16px',
-                                borderRadius: '10px',
-                                border: '1.5px solid #cbd5e1',
-                                fontSize: '15px',
-                                fontWeight: 800,
-                                fontFamily: 'monospace',
-                                letterSpacing: '0.08em',
-                                color: '#0f172a',
-                                outline: 'none',
-                                boxSizing: 'border-box'
-                            }}
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        disabled={redeeming || !redeemCode.trim()}
-                        style={{
-                            padding: '12px 26px',
-                            borderRadius: '10px',
-                            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)',
-                            color: '#fff',
-                            border: 'none',
-                            fontWeight: 800,
-                            fontSize: '13.5px',
-                            cursor: 'pointer',
-                            opacity: redeeming || !redeemCode.trim() ? 0.6 : 1,
-                            transition: 'all 0.18s'
-                        }}
-                    >
-                        {redeeming ? 'Claiming...' : 'Redeem Code to Account'}
-                    </button>
-                </form>
-            </div>
-
-            {/* Split Row: My Active Gift Cards & Purchase New Store Gift Voucher */}
+            {/* Split Row: My Active Gift Cards & Admin Gift Card Products Catalog */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '24px', alignItems: 'start' }}>
                 
                 {/* Panel 1: My Purchased & Active Gift Cards */}
@@ -223,7 +210,7 @@ const BuyerGiftCards = () => {
                             <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8' }}>Purchased gift cards and redeemed vouchers will appear here for checkout booking.</p>
                         </div>
                     ) : (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxHeight: '420px', overflowY: 'auto', paddingRight: '4px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', maxHeight: '440px', overflowY: 'auto', paddingRight: '4px' }}>
                             {giftCards.map((card) => {
                                 const isExpired = card.expiresAt && new Date(card.expiresAt) < new Date();
                                 const isUsed = card.balance <= 0;
@@ -320,99 +307,123 @@ const BuyerGiftCards = () => {
                     )}
                 </div>
 
-                {/* Panel 2: Purchase Store Gift Card */}
+                {/* Panel 2: Available Admin Gift Card Products Catalog */}
                 <div style={{ background: '#fff', borderRadius: '18px', border: '1.5px solid #e8edf5', padding: '24px', boxShadow: '0 4px 20px rgba(13, 46, 103, 0.02)' }}>
                     <h3 style={{ fontSize: '16px', fontWeight: 800, margin: '0 0 6px 0', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>💳</span> Buy Official Store Gift Card
+                        <span>🛍️</span> Available Store Gift Cards
                     </h3>
                     <p style={{ fontSize: '12px', color: '#64748b', margin: '0 0 16px 0', lineHeight: 1.4 }}>
-                        Purchase store gift vouchers to pay for product bookings during checkout or send voucher codes to friends.
+                        Select an Admin-approved Gift Card product to purchase for order bookings or gift to friends.
                     </p>
 
-                    <form onSubmit={handlePurchase} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                        <div>
-                            <label style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>Select Voucher Value</label>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '10px' }}>
-                                {['10', '25', '50', '100'].map((val) => (
-                                    <button
-                                        key={val}
-                                        type="button"
-                                        onClick={() => setPurchaseAmount(val)}
-                                        style={{
-                                            padding: '10px 4px',
-                                            borderRadius: '10px',
-                                            border: purchaseAmount === val ? '2px solid #ff6a00' : '1px solid #cbd5e1',
-                                            background: purchaseAmount === val ? '#fff7ed' : '#fff',
-                                            color: purchaseAmount === val ? '#ff6a00' : '#334155',
-                                            fontWeight: 800,
-                                            fontSize: '14px',
-                                            cursor: 'pointer',
-                                            transition: 'all 0.15s'
-                                        }}
-                                    >
-                                        ${val}
-                                    </button>
-                                ))}
+                    {templates.length === 0 ? (
+                        <div style={{ padding: '30px', textAlign: 'center', background: '#f8fafc', borderRadius: '12px', color: '#64748b' }}>
+                            No Gift Card products currently available.
+                        </div>
+                    ) : (
+                        <form onSubmit={handlePurchase} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                            <div>
+                                <label style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+                                    Select Gift Card Product
+                                </label>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '10px' }}>
+                                    {templates.map((template) => {
+                                        const isSelected = selectedTemplate?._id === template._id;
+                                        const isOutOfStock = template.stock <= 0;
+
+                                        return (
+                                            <button
+                                                key={template._id}
+                                                type="button"
+                                                disabled={isOutOfStock}
+                                                onClick={() => setSelectedTemplate(template)}
+                                                style={{
+                                                    padding: '12px 10px',
+                                                    borderRadius: '12px',
+                                                    border: isSelected ? '2px solid #ff6a00' : '1px solid #cbd5e1',
+                                                    background: isSelected ? '#fff7ed' : isOutOfStock ? '#f1f5f9' : '#fff',
+                                                    color: isSelected ? '#ff6a00' : isOutOfStock ? '#94a3b8' : '#334155',
+                                                    fontWeight: 800,
+                                                    textAlign: 'center',
+                                                    cursor: isOutOfStock ? 'not-allowed' : 'pointer',
+                                                    transition: 'all 0.15s',
+                                                    opacity: isOutOfStock ? 0.6 : 1
+                                                }}
+                                            >
+                                                <div style={{ fontSize: '15px', fontWeight: 900 }}>${template.value}</div>
+                                                <div style={{ fontSize: '11px', fontWeight: 600, marginTop: '2px', color: isSelected ? '#ff6a00' : '#64748b' }}>
+                                                    {template.name}
+                                                </div>
+                                                <div style={{ fontSize: '10px', marginTop: '4px', fontWeight: 750, color: isOutOfStock ? '#dc2626' : '#16a34a' }}>
+                                                    {isOutOfStock ? 'Out of Stock' : `Price: $${template.price}`}
+                                                </div>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
                             </div>
 
-                            {purchaseAmount === 'custom' ? (
-                                <input
-                                    type="number"
-                                    placeholder="Enter custom amount ($)"
-                                    value={customAmount}
-                                    onChange={(e) => setCustomAmount(e.target.value)}
-                                    style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1.5px solid #cbd5e1', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }}
-                                />
-                            ) : (
-                                <button
-                                    type="button"
-                                    onClick={() => setPurchaseAmount('custom')}
-                                    style={{ fontSize: '12px', color: '#ff6a00', background: 'none', border: 'none', fontWeight: 700, cursor: 'pointer', padding: 0 }}
-                                >
-                                    + Enter Custom Amount
-                                </button>
+                            {selectedTemplate && (
+                                <div style={{ background: '#f8fafc', padding: '12px 16px', borderRadius: '12px', border: '1px solid #e2e8f0', fontSize: '12px', color: '#475569' }}>
+                                    <div style={{ fontWeight: 800, color: '#0f172a' }}>Selected: {selectedTemplate.name}</div>
+                                    <div style={{ marginTop: '2px', color: '#64748b' }}>{selectedTemplate.description}</div>
+                                </div>
                             )}
-                        </div>
 
-                        <div>
-                            <label style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>Payment Method</label>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', borderRadius: '10px', border: paymentMethod === 'stripe' ? '2px solid #ff6a00' : '1px solid #e2e8f0', background: paymentMethod === 'stripe' ? '#fff7ed' : '#fff', cursor: 'pointer', fontSize: '13px', fontWeight: 700 }}>
-                                    <input type="radio" name="pay" checked={paymentMethod === 'stripe'} onChange={() => setPaymentMethod('stripe')} />
-                                    <span>💳 Credit / Debit Card (Stripe)</span>
-                                </label>
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', borderRadius: '10px', border: paymentMethod === 'paypal' ? '2px solid #ff6a00' : '1px solid #e2e8f0', background: paymentMethod === 'paypal' ? '#fff7ed' : '#fff', cursor: 'pointer', fontSize: '13px', fontWeight: 700 }}>
-                                    <input type="radio" name="pay" checked={paymentMethod === 'paypal'} onChange={() => setPaymentMethod('paypal')} />
-                                    <span>🅿️ PayPal Checkout</span>
-                                </label>
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', borderRadius: '10px', border: paymentMethod === 'wallet' ? '2px solid #ff6a00' : '1px solid #e2e8f0', background: paymentMethod === 'wallet' ? '#fff7ed' : '#fff', cursor: 'pointer', fontSize: '13px', fontWeight: 700 }}>
-                                    <input type="radio" name="pay" checked={paymentMethod === 'wallet'} onChange={() => setPaymentMethod('wallet')} />
-                                    <span>👛 Use Wallet Balance ({convertPrice(walletBalance).formatted})</span>
-                                </label>
+                            <div>
+                                <label style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>Payment Method</label>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                    {enabledMethods.map((m) => (
+                                        <label
+                                            key={m.id}
+                                            style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '10px',
+                                                padding: '10px 14px',
+                                                borderRadius: '10px',
+                                                border: paymentMethod === m.id ? '2px solid #ff6a00' : '1px solid #e2e8f0',
+                                                background: paymentMethod === m.id ? '#fff7ed' : '#fff',
+                                                cursor: 'pointer',
+                                                fontSize: '13px',
+                                                fontWeight: 700,
+                                                color: '#1e293b'
+                                            }}
+                                        >
+                                            <input
+                                                type="radio"
+                                                name="pay"
+                                                checked={paymentMethod === m.id}
+                                                onChange={() => setPaymentMethod(m.id)}
+                                            />
+                                            <span>{m.label}</span>
+                                        </label>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        <button
-                            type="submit"
-                            disabled={purchasing}
-                            style={{
-                                width: '100%',
-                                padding: '13px 20px',
-                                borderRadius: '12px',
-                                background: 'linear-gradient(135deg, #ff6a00 0%, #ff8e3c 100%)',
-                                color: '#fff',
-                                border: 'none',
-                                fontWeight: 800,
-                                fontSize: '14px',
-                                cursor: 'pointer',
-                                opacity: purchasing ? 0.6 : 1,
-                                boxShadow: '0 4px 14px rgba(255, 106, 0, 0.25)',
-                                marginTop: '4px'
-                            }}
-                        >
-                            {purchasing ? 'Processing Purchase...' : 'Confirm & Purchase Gift Voucher'}
-                        </button>
-                    </form>
+                            <button
+                                type="submit"
+                                disabled={purchasing || !selectedTemplate || selectedTemplate.stock <= 0}
+                                style={{
+                                    width: '100%',
+                                    padding: '13px 20px',
+                                    borderRadius: '12px',
+                                    background: 'linear-gradient(135deg, #ff6a00 0%, #ff8e3c 100%)',
+                                    color: '#fff',
+                                    border: 'none',
+                                    fontWeight: 800,
+                                    fontSize: '14px',
+                                    cursor: 'pointer',
+                                    opacity: purchasing || !selectedTemplate || selectedTemplate.stock <= 0 ? 0.6 : 1,
+                                    boxShadow: '0 4px 14px rgba(255, 106, 0, 0.25)',
+                                    marginTop: '4px'
+                                }}
+                            >
+                                {purchasing ? 'Processing Purchase...' : `Purchase ${selectedTemplate ? selectedTemplate.name : 'Gift Card'} ($${selectedTemplate ? selectedTemplate.price : 0})`}
+                            </button>
+                        </form>
+                    )}
                 </div>
             </div>
         </div>

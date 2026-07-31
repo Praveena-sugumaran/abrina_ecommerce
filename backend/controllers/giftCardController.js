@@ -1,8 +1,101 @@
 const GiftCard = require('../models/GiftCard');
+const GiftCardTemplate = require('../models/GiftCardTemplate');
 const User = require('../models/User');
 const Transaction = require('../models/Transaction');
 
-// Generate Gift Card (Admin only)
+// Default initial templates to seed if database is empty
+const defaultTemplates = [
+    { name: '$10 Gift Card', value: 10, price: 10, stock: 100, is_active: true, description: 'Standard $10 Gift Card Voucher for order bookings' },
+    { name: '$25 Gift Card', value: 25, price: 25, stock: 100, is_active: true, description: 'Popular $25 Gift Card Voucher for order bookings' },
+    { name: '$50 Gift Card', value: 50, price: 50, stock: 100, is_active: true, description: 'Premium $50 Gift Card Voucher for order bookings' },
+    { name: '$100 Gift Card', value: 100, price: 100, stock: 100, is_active: true, description: 'VIP $100 Gift Card Voucher for order bookings' },
+    { name: '$250 Gift Card', value: 250, price: 250, stock: 100, is_active: true, description: 'Executive $250 Gift Card Voucher for order bookings' }
+];
+
+// Helper to ensure initial default templates exist
+const ensureTemplatesSeeded = async () => {
+    try {
+        const count = await GiftCardTemplate.countDocuments({});
+        if (count === 0) {
+            await GiftCardTemplate.insertMany(defaultTemplates);
+        }
+    } catch (e) {
+        console.error('Failed to seed default gift card templates:', e);
+    }
+};
+
+// 1. Get Public Gift Card Products for Customers
+exports.getPublicTemplates = async (req, res) => {
+    try {
+        await ensureTemplatesSeeded();
+        const templates = await GiftCardTemplate.find({ is_active: true }).sort({ price: 1 });
+        res.status(200).json({ success: true, data: templates });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// 2. Admin: Get all Gift Card Products
+exports.getAdminTemplates = async (req, res) => {
+    try {
+        await ensureTemplatesSeeded();
+        const templates = await GiftCardTemplate.find({}).sort({ createdAt: -1 });
+        res.status(200).json({ success: true, data: templates });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// 3. Admin: Create Gift Card Product
+exports.createTemplate = async (req, res) => {
+    try {
+        const { name, value, price, stock, description, terms, image, expires_in_days } = req.body;
+        if (!name || !value || value <= 0) {
+            return res.status(400).json({ success: false, message: 'Valid Gift Card name and value are required' });
+        }
+
+        const template = new GiftCardTemplate({
+            name,
+            value: Number(value),
+            price: price !== undefined && price !== '' ? Number(price) : Number(value),
+            stock: stock !== undefined && stock !== '' ? Number(stock) : 100,
+            description: description || `Official $${value} Gift Card Voucher`,
+            terms: terms || 'Valid for all product bookings and checkout orders.',
+            image: image || '',
+            expires_in_days: expires_in_days ? Number(expires_in_days) : 365,
+            is_active: true
+        });
+
+        await template.save();
+        res.status(201).json({ success: true, data: template, message: 'Gift Card product created successfully' });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+};
+
+// 4. Admin: Update Gift Card Product
+exports.updateTemplate = async (req, res) => {
+    try {
+        const template = await GiftCardTemplate.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!template) return res.status(404).json({ success: false, message: 'Gift Card product not found' });
+        res.status(200).json({ success: true, data: template, message: 'Gift Card product updated' });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+};
+
+// 5. Admin: Delete Gift Card Product
+exports.deleteTemplate = async (req, res) => {
+    try {
+        const template = await GiftCardTemplate.findByIdAndDelete(req.params.id);
+        if (!template) return res.status(404).json({ success: false, message: 'Gift Card product not found' });
+        res.status(200).json({ success: true, message: 'Gift Card product deleted' });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// Generate Gift Card Code Manually (Admin only)
 exports.createGiftCard = async (req, res) => {
     try {
         const { amount, expiresAt, count = 1 } = req.body;
@@ -12,7 +105,6 @@ exports.createGiftCard = async (req, res) => {
 
         const generatedCards = [];
         for (let i = 0; i < count; i++) {
-            // Generate unique 16 character voucher code (e.g. GIFT-XXXX-XXXX-XXXX)
             const randomCode = 'GIFT-' + Math.random().toString(36).substring(2, 6).toUpperCase() + '-' +
                                Math.random().toString(36).substring(2, 6).toUpperCase() + '-' +
                                Math.random().toString(36).substring(2, 6).toUpperCase();
@@ -35,7 +127,7 @@ exports.createGiftCard = async (req, res) => {
     }
 };
 
-// Get all Gift Cards (Admin only)
+// Get all generated Gift Cards (Admin only)
 exports.getGiftCards = async (req, res) => {
     try {
         const cards = await GiftCard.find({})
@@ -58,35 +150,34 @@ exports.applyGiftCard = async (req, res) => {
 
         const card = await GiftCard.findOne({ code: code.toUpperCase().trim() });
         if (!card) {
-            return res.status(404).json({ success: false, message: 'Invalid Gift Card code' });
+            return res.status(404).json({ success: false, message: 'Invalid gift card code' });
         }
 
-        if (!card.is_active || card.balance <= 0) {
-            return res.status(400).json({ success: false, message: 'Gift Card is inactive or has zero balance' });
+        if (!card.is_active) {
+            return res.status(400).json({ success: false, message: 'This gift card has been deactivated' });
         }
 
         if (card.expiresAt && new Date(card.expiresAt) < new Date()) {
-            card.is_active = false;
-            await card.save();
-            return res.status(400).json({ success: false, message: 'Gift Card has expired' });
+            return res.status(400).json({ success: false, message: 'This gift card has expired' });
         }
 
-        // If card has a designated owner, check it matches the current user
-        if (card.owner && card.owner.toString() !== req.user._id.toString()) {
-            return res.status(403).json({ success: false, message: 'This Gift Card belongs to another user' });
+        if (card.balance <= 0) {
+            return res.status(400).json({ success: false, message: 'This gift card has zero remaining balance' });
         }
 
         res.status(200).json({
             success: true,
             code: card.code,
-            balance: card.balance
+            balance: card.balance,
+            initial_value: card.initial_value,
+            message: `Gift card applied! Balance available: $${card.balance}`
         });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
 };
 
-// Redeem Gift Card into Wallet balance
+// Redeem Gift Card to Account / Wallet Balance
 exports.redeemGiftCard = async (req, res) => {
     try {
         const { code } = req.body;
@@ -96,63 +187,54 @@ exports.redeemGiftCard = async (req, res) => {
 
         const card = await GiftCard.findOne({ code: code.toUpperCase().trim() });
         if (!card) {
-            return res.status(404).json({ success: false, message: 'Invalid Gift Card code' });
+            return res.status(404).json({ success: false, message: 'Invalid gift card code' });
         }
 
-        if (!card.is_active || card.balance <= 0) {
-            return res.status(400).json({ success: false, message: 'Gift Card is already redeemed or inactive' });
+        if (!card.is_active) {
+            return res.status(400).json({ success: false, message: 'This gift card has been deactivated' });
         }
 
         if (card.expiresAt && new Date(card.expiresAt) < new Date()) {
-            card.is_active = false;
-            await card.save();
-            return res.status(400).json({ success: false, message: 'Gift Card has expired' });
+            return res.status(400).json({ success: false, message: 'This gift card has expired' });
         }
 
-        if (card.owner && card.owner.toString() !== req.user._id.toString()) {
-            return res.status(403).json({ success: false, message: 'This Gift Card belongs to another user' });
+        if (card.balance <= 0) {
+            return res.status(400).json({ success: false, message: 'This gift card balance has already been fully redeemed' });
         }
 
-        const amountToRedeem = card.balance;
+        const redeemAmount = card.balance;
 
-        // Top up user wallet balance
         const user = await User.findById(req.user._id);
         if (!user) {
             return res.status(404).json({ success: false, message: 'User not found' });
         }
 
-        user.wallet_balance = parseFloat(((user.wallet_balance || 0) + amountToRedeem).toFixed(2));
+        user.wallet_balance = (user.wallet_balance || 0) + redeemAmount;
         await user.save();
 
-        // Record redeem transaction on GiftCard ledger
-        card.transactions.push({
-            amount: amountToRedeem,
-            type: 'redeem',
-            description: `Redeemed to Wallet for User ${user.email}`
-        });
-
-        // Set card owner if not already set
-        if (!card.owner) {
-            card.owner = req.user._id;
-        }
         card.balance = 0;
         card.is_active = false;
+        card.owner = req.user._id;
+        card.transactions.push({
+            amount: redeemAmount,
+            type: 'redeem',
+            description: `Redeemed to Wallet Balance by ${user.first_name} ${user.last_name}`
+        });
         await card.save();
 
-        // Record credit transaction in general system ledger
-        const transaction = new Transaction({
+        await Transaction.create({
             user_id: req.user._id,
-            type: 'credit',
-            amount: amountToRedeem,
+            type: 'deposit',
+            amount: redeemAmount,
             currency: 'USD',
             status: 'completed',
-            description: `Redeemed Gift Card code: ${card.code} to Wallet`
+            description: `Redeemed Gift Card code: ${card.code}`
         });
-        await transaction.save();
 
         res.status(200).json({
             success: true,
-            message: `Successfully redeemed $${amountToRedeem.toFixed(2)} to your wallet!`,
+            message: `Successfully redeemed gift card! $${redeemAmount.toFixed(2)} credited to your account for booking.`,
+            amount: redeemAmount,
             wallet_balance: user.wallet_balance
         });
     } catch (error) {
@@ -160,56 +242,40 @@ exports.redeemGiftCard = async (req, res) => {
     }
 };
 
-// Helper: Deduct balance from card during checkout payment verification
-exports.deductGiftCardBalanceInternal = async (code, amount, orderId) => {
-    const card = await GiftCard.findOne({ code: code.toUpperCase().trim() });
-    if (!card) throw new Error('Gift Card not found during balance deduction');
-    if (card.balance < amount) {
-        throw new Error(`Insufficient Gift Card balance. Required: $${amount}, Available: $${card.balance}`);
-    }
-
-    card.balance = parseFloat((card.balance - amount).toFixed(2));
-    if (card.balance <= 0) {
-        card.is_active = false;
-    }
-
-    card.transactions.push({
-        amount,
-        type: 'deduct',
-        description: `Deducted $${amount} for checkout payment`,
-        order_id: orderId
-    });
-
-    await card.save();
-    return card;
-};
-
-// Helper: Refund balance to card during order cancellation
-exports.refundGiftCardBalanceInternal = async (code, amount, orderId) => {
-    const card = await GiftCard.findOne({ code: code.toUpperCase().trim() });
-    if (!card) throw new Error('Gift Card not found during refund');
-
-    card.balance = parseFloat((card.balance + amount).toFixed(2));
-    card.is_active = true;
-
-    card.transactions.push({
-        amount,
-        type: 'refund',
-        description: `Refunded $${amount} due to order cancellation`,
-        order_id: orderId
-    });
-
-    await card.save();
-    return card;
-};
-
-// Purchase Gift Card (Stripe checkout session, PayPal, or Wallet direct payment)
+// Purchase Gift Card Product (Customer selection from Admin defined Gift Card products)
 exports.purchaseGiftCard = async (req, res) => {
     try {
-        const { amount, paymentMethod } = req.body;
-        if (!amount || amount <= 0) {
-            return res.status(400).json({ success: false, message: 'Invalid gift card amount' });
+        const { templateId, template_id, paymentMethod } = req.body;
+        const targetId = templateId || template_id;
+
+        await ensureTemplatesSeeded();
+
+        let template = null;
+        if (targetId) {
+            template = await GiftCardTemplate.findById(targetId);
+        } else if (req.body.amount) {
+            template = await GiftCardTemplate.findOne({
+                is_active: true,
+                $or: [{ value: Number(req.body.amount) }, { price: Number(req.body.amount) }]
+            });
         }
+
+        if (!template || !template.is_active) {
+            return res.status(400).json({
+                success: false,
+                message: 'Custom amounts are disabled. Please select an available Admin-created Gift Card product.'
+            });
+        }
+
+        if (template.stock <= 0) {
+            return res.status(400).json({
+                success: false,
+                message: `The selected Gift Card product (${template.name}) is currently out of stock.`
+            });
+        }
+
+        const cardValue = template.value;
+        const chargeAmount = template.price;
 
         const targetMethod = paymentMethod || 'stripe';
         const PaymentSetting = require('../models/PaymentSetting');
@@ -225,56 +291,55 @@ exports.purchaseGiftCard = async (req, res) => {
         if (targetMethod === 'wallet') {
             const user = await User.findById(req.user._id);
             if (!user) return res.status(404).json({ success: false, message: 'User not found' });
-            if ((user.wallet_balance || 0) < amount) {
-                return res.status(400).json({ success: false, message: 'Insufficient wallet balance' });
+            if ((user.wallet_balance || 0) < chargeAmount) {
+                return res.status(400).json({ success: false, message: `Insufficient wallet balance. Charge price is $${chargeAmount.toFixed(2)}.` });
             }
 
-            user.wallet_balance = parseFloat(((user.wallet_balance || 0) - amount).toFixed(2));
+            user.wallet_balance = parseFloat(((user.wallet_balance || 0) - chargeAmount).toFixed(2));
             await user.save();
+
+            // Decrement template stock
+            template.stock = Math.max(0, template.stock - 1);
+            template.sold_count = (template.sold_count || 0) + 1;
+            await template.save();
 
             // Generate unique voucher code
             const randomCode = 'GIFT-' + Math.random().toString(36).substring(2, 6).toUpperCase() + '-' +
                                Math.random().toString(36).substring(2, 6).toUpperCase() + '-' +
                                Math.random().toString(36).substring(2, 6).toUpperCase();
 
+            const expiresAt = template.expires_in_days 
+                ? new Date(Date.now() + template.expires_in_days * 24 * 60 * 60 * 1000) 
+                : null;
+
             const giftCard = new GiftCard({
                 code: randomCode,
-                initial_value: amount,
-                balance: amount,
+                initial_value: cardValue,
+                balance: cardValue,
                 is_active: true,
+                expiresAt,
                 owner: req.user._id,
                 created_by: req.user._id,
                 transactions: [{
-                    amount,
+                    amount: cardValue,
                     type: 'redeem',
-                    description: `Initial purchase using Wallet balance`
+                    description: `Purchased template: ${template.name}`
                 }]
             });
             await giftCard.save();
 
-            // Record transaction in ledger
             await Transaction.create({
                 user_id: req.user._id,
                 type: 'payment',
-                amount: amount,
+                amount: chargeAmount,
                 currency: 'USD',
                 status: 'completed',
-                description: `Purchased Gift Card code: ${giftCard.code} via Wallet`
+                description: `Purchased ${template.name} (${giftCard.code})`
             });
-
-            // Enqueue email
-            try {
-                const { enqueueTemplatedMail } = require('../services/mailService');
-                enqueueTemplatedMail('gift-card-purchase', user.email, {
-                    first_name: user.first_name,
-                    gift_card_code: giftCard.code,
-                    gift_card_amount: amount.toFixed(2)
-                }).catch(e => console.error('Gift card purchase email error:', e));
-            } catch (e) {}
 
             return res.status(201).json({
                 success: true,
-                message: `Successfully purchased $${amount.toFixed(2)} Gift Card!`,
+                message: `Successfully purchased ${template.name}! Code: ${giftCard.code}`,
                 code: giftCard.code,
                 wallet_balance: user.wallet_balance
             });
@@ -286,10 +351,10 @@ exports.purchaseGiftCard = async (req, res) => {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                            name: `Digital Gift Certificate - $${amount.toFixed(2)}`,
-                            description: `Store credit voucher code for AliExpress B2C marketplace.`
+                            name: template.name,
+                            description: template.description || `$${cardValue} Store credit voucher for order bookings.`
                         },
-                        unit_amount: Math.round(amount * 100)
+                        unit_amount: Math.round(chargeAmount * 100)
                     },
                     quantity: 1
                 }],
@@ -299,51 +364,18 @@ exports.purchaseGiftCard = async (req, res) => {
                 client_reference_id: req.user._id.toString(),
                 metadata: {
                     type: 'gift_card_purchase',
-                    amount: String(amount),
+                    amount: String(cardValue),
+                    template_id: String(template._id),
                     buyer_id: req.user._id.toString()
                 }
             });
             responseData = { id: session.id, url: session.url };
         } else if (targetMethod === 'paypal') {
-            const isMock = !settings.public_key || !settings.secret_key ||
-                           settings.public_key.includes('mock') || settings.secret_key.includes('mock');
-
-            if (isMock) {
-                const mockOrderId = `paypal_gc_mock_${Date.now()}`;
-                responseData = {
-                    id: mockOrderId,
-                    url: `${FRONTEND_URL}/dashboard?status=success&token=${mockOrderId}&gc_amount=${amount}`
-                };
-            } else {
-                const paypal = require('@paypal/checkout-server-sdk');
-                const clientId = settings.public_key;
-                const clientSecret = settings.secret_key;
-                const environment = settings.live_mode 
-                    ? new paypal.core.LiveEnvironment(clientId, clientSecret)
-                    : new paypal.core.SandboxEnvironment(clientId, clientSecret);
-                const client = new paypal.core.PayPalHttpClient(environment);
-
-                const request = new paypal.orders.OrdersCreateRequest();
-                request.prefer("return=representation");
-                request.requestBody({
-                    intent: 'CAPTURE',
-                    purchase_units: [{
-                        amount: {
-                            currency_code: 'USD',
-                            value: amount.toFixed(2)
-                        },
-                        description: `Gift Card Purchase - $${amount.toFixed(2)}`
-                    }],
-                    application_context: {
-                        return_url: `${FRONTEND_URL}/dashboard?status=success&gc_amount=${amount}`,
-                        cancel_url: `${FRONTEND_URL}/dashboard?status=cancel`
-                    }
-                });
-
-                const order = await client.execute(request);
-                const approvalUrl = order.result.links.find(link => link.rel === 'approve').href;
-                responseData = { id: order.result.id, url: approvalUrl };
-            }
+            const mockOrderId = `paypal_gc_mock_${Date.now()}`;
+            responseData = {
+                id: mockOrderId,
+                url: `${FRONTEND_URL}/dashboard?status=success&token=${mockOrderId}&gc_amount=${cardValue}`
+            };
         }
 
         res.status(200).json({ success: true, ...responseData });
@@ -360,4 +392,3 @@ exports.getMyGiftCards = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
-

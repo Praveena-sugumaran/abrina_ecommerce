@@ -87,7 +87,8 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ isCollapsed, setIsCollapsed, 
         if (!last || last === 'dashboard') return 'Dashboard';
         if (last === 'suppliers' || last === 'supplier') return 'Sellers';
         if (last === 'approvals') return 'Product Approvals';
-        return last.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        if (last === 'gift_cards' || last === 'gift-cards') return 'Gift Cards';
+        return last.replace(/_/g, '-').split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     };
 
     const handleSaveLangCurr = async () => {
